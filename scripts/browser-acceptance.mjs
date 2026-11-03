@@ -61,12 +61,16 @@ try{
     await recording.saveAs(`artifacts/recorded-download-${viewport.width}.json`);
     assert.equal(posts,0,'Viewing and downloading recordings must not start a comparison');
     page.off('request',track);await page.locator('#recorded-gallery summary').click();
-    await page.locator('#variant').selectOption('fixed');
-    await page.waitForFunction(()=>{const frame=document.querySelector('#store');return frame.contentDocument?.body.getBoundingClientRect().height<=frame.clientHeight+2;});
+    assert.equal(await page.locator('#variant').isVisible(),false,'Advanced options start collapsed');
+    assert.equal(await page.locator('#store').isVisible(),false,'Manual practice starts collapsed');
     await page.locator('#run').click();
-    await page.locator('#result-title').filter({hasText:'Both routes completed'}).waitFor({timeout:60000});
+    await page.locator('#result-title').filter({hasText:'The keyboard attempt stopped'}).waitFor({timeout:60000});
+    await page.locator('#try-fixed').click();
+
+    await page.locator('#result-title').filter({hasText:'Both checkout attempts finished'}).waitFor({timeout:60000});
     assert.equal(await page.locator('#keyboard-status').textContent(),'Task completed');
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'No horizontal page overflow');
+    await page.locator('#technical-evidence summary').click();
     const downloadEvent=page.waitForEvent('download');
     await page.locator('#export-test').click();
     const download=await downloadEvent;
