@@ -8,7 +8,7 @@ Original source first written during November 2, 2026 Pacific. Git history begin
 
 Real Chromium acceptance passes on the current source in GitHub Actions, including six scripted mouse/keyboard comparisons, six saved-action replays, the exported Playwright test, and the judge flow at desktop and 390px mobile width. The hosted application is deployed at https://meta.aizoya.com behind the current Vercel team access policy.
 
-A bounded live Meta check also passed on November 3, 2026: Muse Spark completed the keyboard route on the owned corrected fixture in five requests (Tab, Tab, Space, Tab, Space), and the saved-action replay completed without another model request. See [run 41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171). This verifies one keyboard-only owned fixture. It does not verify the mouse comparison, other variants, unseen applications, physical iPhone use, or public AI availability. Live Meta remains disabled in the hosted app.
+A bounded live Meta check also passed on November 3, 2026: Muse Spark completed the keyboard route on the owned corrected fixture in five requests (Tab, Tab, Space, Tab, Space), and the saved-action replay completed without another model request. See [run 41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171). This verifies one keyboard-only owned fixture. It does not verify the mouse comparison, other variants, unseen applications, or public AI availability. Live Meta remains disabled in the hosted app.
 
 ## Run locally
 
@@ -26,21 +26,21 @@ Compare the original, corrected, arrow-key, reordered, Space-key and focus-trap 
 
 Meta mode requires MODEL_API_KEY, PASSAGE_ENABLE_META=1 and a positive PASSAGE_MAX_META_CALLS (at most 100). Do not enable it without billing readiness and an authorized finite request allowance. The server reserves requests before dispatch, without automatic retries. This is a request quota, not an exact dollar guarantee or a provider bill cap. Standard-mode Muse Spark 1.3 is the prepared endpoint. A bounded keyboard-only run succeeded as documented above; public Meta mode remains disabled. Never paste keys into chat, browser fields or source.
 
-Saved runs are in per-session server memory with one-hour expiry, a maximum of six run records and two global active jobs. They do not survive process restart. They are not durable evidence records. No public deployment, arbitrary URL input, production authentication or container isolation is implemented. Anonymous local sessions are not production identity.
+Saved runs are in per-session server memory with one-hour expiry, a maximum of six run records and two global active jobs. They do not survive process restart. They are not durable evidence records. No arbitrary URL input, production authentication or container isolation is implemented. The public hackathon deployment is a constrained prototype. Anonymous local sessions are not production identity.
 
 ## Result interpretation
 
 A recorded completion predicate is separate from the planner. A failed bounded attempt is **needs review**, not proof that no keyboard route exists. Replaying saved actions can establish repeated observed outcomes, not general accessibility or WCAG compliance. Generated test code is built from a fixed template and validated actions; the server never executes model-generated code. The export requires @playwright/test in the consumer's project and is a draft expected-outcome assertion, not an independent diagnosis.
 
-Next acceptance: keep the hosted judge flow stable, test more varied tasks before claiming generality, perform a physical iPhone/Safari check, and confirm logged-out judge access before submission. Any additional live inference requires a new finite allowance. Repository visibility is verified public and GitHub recognizes the MIT license.
+Next acceptance: keep the hosted judge flow stable and test more varied tasks before claiming generality. On November 3, 2026, the owner verified the core flow in physical iPhone Safari and opened the production URL in a fresh Private Safari session without a sign-in wall; this is owner evidence, not an independent browser audit. Any additional live inference requires a new finite allowance. Repository visibility is verified public and GitHub recognizes the MIT license.
 
 Run the same browser checks after installing dependencies and Chromium: `npm run test:browser`. This also needs the pinned `@playwright/test` development dependency.
 
 ## Judge and release preparation
 
-See JUDGE_GUIDE.md, DEMO_SCRIPT.md, SUBMISSION_READINESS.md and HOSTING_HANDOFF.md. The practice iframe now fits its content, and completed results scroll into view with reduced-motion support. Six authored examples are regression cases, not an independent benchmark. Production hosting is verified at https://meta.aizoya.com under Vercel team authentication. A fully public judge session and physical iPhone/Safari acceptance remain pending.
+See JUDGE_GUIDE.md, DEMO_SCRIPT.md, SUBMISSION_READINESS.md and HOSTING_HANDOFF.md. The practice iframe now fits its content, and completed results scroll into view with reduced-motion support. Six authored examples are regression cases, not an independent benchmark. Production hosting is verified at https://meta.aizoya.com. On November 3, 2026, the owner verified anonymous access in a fresh Private Safari session and exercised the core mobile judge flow on physical iPhone Safari.
 
-Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Nineteen control tests pass locally, including five hosting checks. TLS and the custom domain are verified on the hosted deployment. Durable cross-instance quotas and storage are not implemented; see HOSTING_HANDOFF.md. Public Meta calls remain disabled.
+Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Current main source controls report 37 passing tests in GitHub Actions run 41735584947. TLS and the custom domain are verified on the hosted deployment. Durable cross-instance quotas and storage are not implemented; see HOSTING_HANDOFF.md. Public Meta calls remain disabled.
 
 ## Recorded examples and standalone preview
 
