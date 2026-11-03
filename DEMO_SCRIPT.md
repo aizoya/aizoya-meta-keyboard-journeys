@@ -1,17 +1,24 @@
-# Three-minute demo — rehearsal draft
+# Three-minute demo — final recording script
 
-Organizer reminder supplied November 2 confirms a three-minute video is important to judging. Target a 2:45–2:55 final cut to leave room for titles and playback transitions; this is an internal production target, not an organizer rule.
-
-Use real captured runs and live interactions. No generated testimonials, invented metrics, simulated provider success or concealed cuts. Final branding is pending. This is a rehearsal script, not a recorded video or submitted entry.
+Target **2:45–2:55** so the video stays safely under three minutes. Use the hosted application, real recorded evidence and the verified Meta run. Do not imply that the public demo is calling Meta live.
 
 | Time | Screen action | Spoken draft |
 | --- | --- | --- |
-| 0:00–0:20 | Show the practice checkout and choose Blue with a mouse. | A checkout can look complete and still leave a keyboard user behind. We make the actual task inspectable: what the browser did, where focus went, and whether the task finished. |
-| 0:20–0:55 | Compare Original control. Show the two route outcomes and keyboard focus trail. | These routes run in separate browser contexts. The keyboard executor can press keys; it cannot click or move focus through a script. Completion comes from the store's receipt, independently of the planner. Here, the mouse completes and the bounded keyboard attempt does not. |
-| 0:55–1:20 | Inspect a recorded frame and replay the actions. | A verdict alone is hard to investigate. We keep the actions and captured state, then replay them in a fresh context. Repeated failure is useful evidence to review, rather than a claim that every possible keyboard route must fail. |
-| 1:20–1:50 | Try the correction, compare, then download the test draft. | Now both routes finish. The saved route becomes a reviewable Playwright test draft that checks the same outcome. That exported test has been executed against this owned fixture. |
-| 1:50–2:15 | Show Arrow-key control and the focus trap. | Keyboard interaction is more than pressing Tab. A radio group can require arrow keys. A focus trap can allow selection while blocking the final action. These examples test different behaviors instead of treating one key sequence as universal. |
-| 2:15–2:40 | Show the runner label and actual provider evidence only if available. | Current verified version: this demonstration uses the clearly labelled scripted planner. The Meta planner transport is prepared, but live verification is blocked by billing. We will replace this segment with a real bounded Meta run only after it passes. |
-| 2:40–3:00 | Show downloadable evidence and the repository. | The product direction is task evidence that an engineer can inspect, replay and turn into a regression check. The present scope is an owned practice store. It does not certify accessibility or claim success on arbitrary websites. |
+| 0:00–0:18 | Open https://meta.aizoya.com and show the fictional checkout. | A checkout can look complete with a mouse and still stop a keyboard customer. AIZOYA Keyboard Journeys makes the task inspectable: what the browser did, where focus moved and whether checkout finished. |
+| 0:18–0:48 | Run **Check this journey** on Original control. | We run mouse and keyboard attempts in separate browser contexts. The keyboard executor may press only approved keys. It cannot click, fill controls directly or move focus with script. Completion comes from the store receipt, independently of the planner. |
+| 0:48–1:12 | Show mouse complete, keyboard stopped, then inspect a captured step. | Here the mouse finishes and the bounded keyboard attempt stops. We show the exact actions and focused controls. This is evidence for review, not a claim that every possible keyboard route fails. |
+| 1:12–1:33 | Select **Run the same check again**. | Saved actions replay in fresh browser contexts without another model request. Repeated observed outcomes make the finding reproducible. |
+| 1:33–1:58 | Select **Check the corrected checkout** and show both routes complete. | After the control is corrected, both scripted routes finish. The successful keyboard route can be exported as a Playwright regression-test draft. |
+| 1:58–2:20 | Open the six recorded examples and switch between Arrow-key and Focus-trap controls. | Keyboard operation is more than pressing Tab. The examples cover arrow-key radios, Space activation, changed tab order and a focus trap. |
+| 2:20–2:42 | Show the verified Meta evidence line and GitHub Actions run 41721095171. | Muse Spark also completed the owned corrected keyboard fixture in five requests: Tab, Tab, Space, Tab, Space. The saved-action replay completed with zero additional model calls. Public Meta mode stays disabled to control cost. |
+| 2:42–2:55 | Show evidence download and the public repository after release. | The result is an inspectable path from observed behavior to replay and regression evidence. Current scope is one owned practice store; it is not an accessibility certification. |
 
-Before final recording, verify the organizer's video length, finalize the hosted link, and replace the Meta segment only with actual successful runtime evidence. Runtime Meta use remains essential to the intended competition entry; coding assistance and scripted fixtures alone do not establish that requirement.
+## Recording checklist
+
+- Start from a fresh browser session.
+- Keep the browser at a readable zoom; hide bookmarks and unrelated tabs.
+- Confirm recorded examples are already selectable when opened.
+- Use the scripted runner for the live screen recording so the result is deterministic and incurs no model request.
+- Show the successful Meta evidence as a verified past run, with its exact one-fixture limitation.
+- Confirm the final repository is public and the video plays without sign-in.
+- Export at 1080p when practical and verify audio, captions, URLs and total duration before submission.

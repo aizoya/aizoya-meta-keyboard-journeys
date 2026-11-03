@@ -1,39 +1,30 @@
 # Meta connection checkpoint
 
-Verified November 2, 2026 Pacific. No credentials stored here.
+Verified November 3, 2026 Pacific. No credential is stored in source.
 
-| Capability | Status | Evidence / next action |
+| Capability | Status | Evidence |
 | --- | --- | --- |
-| Meta account and credits | User-reported; not independently verified | User reports key created and credit claimed. Applied balance is unknown here. |
-| Local runtime credential | Missing | Boolean configuration check returns false. |
-| GitHub Actions credential | Present for prior run; value not read | Manual run 41559772934 reached provider and returned HTTP 402. |
-| Meta-specific connected service | Missing | No Meta credential-management operation is exposed. |
-| Request transport format | Docs checked; live unverified | Official quickstart and structured-output documentation support the configured model, endpoint and JSON format. |
-| Runtime browser workflow | Verified, scripted only | GitHub acceptance run 41555310325. |
-| Live agent behavior | Blocked | Requires secure credential configuration and an authorized allowance. |
+| GitHub Actions credential | Configured; value never read | Manual workflows reached the Meta Model API |
+| Transport and structured output | Verified | Run 41719145398 produced one valid allowlisted action |
+| Keyboard agent workflow | Verified on one owned fixed fixture | Run 41721095171 |
+| Saved-action replay | Verified with no added model call | Run 41721095171 |
+| Hosted public Meta mode | Disabled | Vercel uses PASSAGE_ENABLE_META=0 and PASSAGE_MAX_META_CALLS=0 |
+| Credits/billing balance | Not independently verified | Do not infer the provider bill from request counts |
 
-## Current hold
+## Successful bounded workflow
 
-Owner reports the key is saved and billing/credits may become available later. The first authorized transport attempt returned HTTP 402 and made no retry. Further live model calls are paused. No training is configured. Do not repeat the one-request check under its consumed approval.
+GitHub Actions run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171) used Muse Spark 1.3 on the owned corrected fixture, keyboard lane only.
 
-## Secure connection reference
+- Five requests reserved; no automatic retries.
+- Actions: Tab, Tab, Space, Tab, Space.
+- Deterministic receipt: Blue organizer added; practice task complete.
+- Saved-action replay completed without another model request.
+- The artifact contains result JSON plus final keyboard and replay frames.
 
-Create repository Actions secret `MODEL_API_KEY` through GitHub's secure secret form. Never send the value in chat, source, an issue or a pull request.
+This verifies one owned corrected keyboard workflow. It does not verify mouse planning, the other variants, arbitrary websites, public judge inference or a global spend cap.
 
-https://github.com/aizoya/aizoya-meta-keyboard-journeys/settings/secrets/actions/new
+## Secure operation
 
-Adding this secret does not trigger the smoke workflow. The new manual workflow is dormant on the draft branch; activation on the default branch and deliberate invocation remain pending. No automatic model request is added to push or pull-request checks.
+The key remains only in GitHub Actions secrets and is never placed in source, chat, issues, pull requests, artifacts or browser fields. Both Meta workflows are manual-only and have finite request allowances. Do not invoke them again without a new explicit allowance.
 
-## Concrete live check prepared
-
-`node scripts/meta-smoke.mjs --check` inspects configuration without a network request. Actual execution requires the key, `PASSAGE_ENABLE_META=1` and exactly `PASSAGE_MAX_META_CALLS=1`. The script sends one request through the same transport used by the app, validates its action, and reports sanitized model/usage metadata. It makes no retries and uses a synthetic page observation. Passing this check proves transport/action handling only; a full browser agent run is a separate next check.
-
-No spend was performed while preparing this checkpoint. A one-request quota is not an exact dollar cap.
-
-## Primary documentation
-
-- https://dev.meta.ai/docs/quickstart
-- https://dev.meta.ai/docs/cookbook/structured-output
-- https://dev.meta.ai/docs/structured-output
-
-Public search verified the relevant documentation; account-specific project IDs returned in search were not reused as AIZOYA account evidence.
+The hosted application intentionally keeps live Meta disabled. Its scripted mode and recorded examples make no model request.
