@@ -1,4 +1,4 @@
-# Submission readiness — November 2, 2026 Pacific
+# Submission readiness — November 3, 2026 Pacific
 
 ## Organizer reminder received November 2
 
@@ -7,12 +7,12 @@ Source: organizer's event blast pasted by Franklyn in this conversation. This is
 - Binding deadline stated: **November 4, 2026, 9:00 PM ET = 6:00 PM Pacific** (November 5, 02:00 UTC).
 - Internal completion target: **November 4, 5:00 PM Pacific**, retaining one hour for corrections.
 - Organizer emphasizes a **three-minute demo video**.
-- Organizer says the GitHub project **must be open source**. Repository visibility is verified private; public release and an explicit license decision remain pending. Do not mark this requirement complete.
+- Organizer says the GitHub project **must be open source**. MIT licensing is complete, but repository visibility is still verified private. Do not mark the requirement complete until logged-out access works.
 - Prepare the full form early. Saving a draft, if supported, is not proof of submission; retain the final confirmation and exact submitted links.
 
 ## Completed and evidenced
 
-- Private GitHub repository; initial PR #1 merged with source and original local-history bundle.
+- Private GitHub repository with MIT license and auditable commit history.
 - Twenty-one control/integrity tests and the complete browser workflow passed in run 41563180587.
 - Real Chromium: six comparisons and replays, executed test export, desktop/mobile-width app flow and the file-only no-network preview passed.
 - Explicit scripted-versus-Meta labels and documented contribution boundary.
@@ -27,25 +27,25 @@ These are authored synthetic cases, not a blinded external benchmark or independ
 
 ## Required before calling the entry ready
 
-1. Credits/billing resolved and applied balance confirmed by the owner.
-2. New authorization for any further inference after the current billing pause. The previous one-request approval is consumed; no automatic retry.
-3. Successful bounded live Meta browser run with provider metadata, honest latency and observed task outcomes. A transport-only response is insufficient.
-4. More varied tasks before generalizing beyond the sample store.
-5. Hosted browser runtime, upload-free judge access, server-only credentials, finite usage limits and public-link acceptance.
-6. Physical iPhone/Safari check and visual review.
-7. Confirm final competition rules, team/track eligibility, repository visibility and open-source license, final brand, third-party notices, video and submission fields.
-8. Owner approval for public release and production deployment.
+1. Change the repository from private to public and verify logged-out source access.
+2. Confirm logged-out judge access to the hosted app, or explicitly change the Vercel team-authentication policy.
+3. Perform a physical iPhone/Safari smoke check and visual review.
+4. Record, upload and verify the three-minute demo video.
+5. Finish the submission answers, confirm track eligibility and submit before the internal 5:00 PM Pacific target.
+6. Preserve the final confirmation and exact submitted URLs.
+
+## Verified live Meta checkpoint
+
+Authorized GitHub Actions run 41721095171 succeeded on November 3. Muse Spark completed the keyboard route on the owned corrected fixture in five requests, then saved-action replay completed with no additional model request. The scope was one keyboard-only fixture; mouse comparison, other variants and hosted public Meta mode were not tested. Live Meta remains disabled on Vercel.
 
 ## Billing hold
 
-Manual Meta run 41559772934 ended with `meta_http_402`, `requests_reserved:1`, `retried:false`. No live training is configured. Further live inference is paused at the owner's direction. Applied credits, actual bill and provider acceptance remain unverified; a reserved request is not evidence of billed inference.
+Earlier run 41559772934 returned HTTP 402. A later, separately authorized bounded run succeeded as recorded above. Do not make additional live calls without a new finite allowance, and do not enable public Meta mode while credits, global budgets and durable quotas remain unresolved.
 
-Continue with source, synthetic fixtures, no-network tests, owned-browser checks, design and submission preparation. Do not activate a paid model or provision a paid service to bypass this hold.
+## Immediate sequence
 
-## Immediate sequence under the billing hold
-
-1. Finish the submission answers and rehearse the three-minute screen sequence now. Do not wait for credits to draft these.
-2. Resolve the open-source license and source-only public release, with owner approval, after reviewing pending PR #2 and required notices.
-3. When billing/credits are confirmed and further inference is authorized, capture one genuine live Meta workflow and record its actual results.
-4. Verify the public application URL, repository access in a logged-out session, video playback and final form answers.
-5. Submit before the internal target and preserve the organizer's confirmation. If a required runtime capability remains blocked, report that gap; do not conceal it with recorded scripted examples.
+1. Fix and verify the judge-facing recorded gallery and current documentation.
+2. Make the repository public and verify it while logged out.
+3. Resolve logged-out judge access to the hosted application.
+4. Complete the physical iPhone/Safari check.
+5. Record the three-minute video, finish the form and submit early.

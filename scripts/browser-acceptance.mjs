@@ -47,9 +47,10 @@ try{
    try{
     const page=await context.newPage();
     await page.goto('http://127.0.0.1:8787');
+    await page.waitForFunction(()=>!document.querySelector('#recorded-variant').disabled);
+    assert.equal(await page.locator('#recorded-variant').inputValue(),'broken','Recorded examples preload without opening the gallery');
     let posts=0;const track=request=>{if(request.method()==='POST')posts++;};page.on('request',track);
     await page.locator('#recorded-gallery summary').click();
-    await page.waitForFunction(()=>!document.querySelector('#recorded-variant').disabled);
     for(const variant of ['broken','fixed','alternate','reordered','space-only','trap']){
      await page.locator('#recorded-variant').selectOption(variant);
      const expected=['broken','trap'].includes(variant)?'The keyboard attempt did not complete':'Both routes completed';
