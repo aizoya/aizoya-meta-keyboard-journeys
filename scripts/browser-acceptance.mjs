@@ -32,7 +32,7 @@ try{
  }
  // Run the actual exported test against the same live fixture server.
  const exitCode=await new Promise((resolve,reject)=>{
-  const child=spawn(process.execPath,['node_modules/@playwright/test/cli.js','test','artifacts/export-fixed.spec.mjs','--workers=1','--reporter=line'],{stdio:'inherit'});
+  const child=spawn(process.execPath,['node_modules/@playwright/test/cli.js','test','--config=playwright.acceptance.config.mjs'],{stdio:'inherit'});
   child.on('error',reject);child.on('close',resolve);
  });
  assert.equal(exitCode,0,'Exported Playwright test must actually run and pass');
