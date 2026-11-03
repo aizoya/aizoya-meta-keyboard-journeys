@@ -12,7 +12,7 @@ test('configuration-only Meta inspection makes no request even with credentials 
  assert.equal(r.status,0);assert.equal(JSON.parse(r.stdout).ready,true);
 });
 test('Meta transport reserves the only request and refuses a second dispatch',()=>{
- const code=`let calls=0;globalThis.fetch=async()=>{calls++;return {ok:true,json:async()=>({model:'fake-test-only',choices:[{finish_reason:'stop',message:{content:JSON.stringify({kind:'press',key:'Tab'})}}]})}};const {metaAction}=await import('./meta.mjs');await metaAction({},'keyboard','test',[]);try{await metaAction({},'keyboard','test',[]);process.exitCode=1}catch(e){if(e.message!=='meta_request_allowance_exhausted')throw e}if(calls!==1)process.exitCode=1;`;
+ const code=`let calls=0;globalThis.fetch=async()=>{calls++;return {ok:true,json:async()=>({model:'fake-test-only',choices:[{finish_reason:'stop',message:{content:JSON.stringify({action:'press:Tab'})}}]})}};const {metaAction}=await import('./meta.mjs');await metaAction({},'keyboard','test',[]);try{await metaAction({},'keyboard','test',[]);process.exitCode=1}catch(e){if(e.message!=='meta_request_allowance_exhausted')throw e}if(calls!==1)process.exitCode=1;`;
  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
  assert.equal(r.status,0,r.stderr);
 });
@@ -23,7 +23,7 @@ test('manual Meta smoke suppresses arbitrary provider exception details',()=>{
 });
 
 test('Meta request uses minimal reasoning without increasing the token allowance',()=>{
- const code=`globalThis.fetch=async(url,options)=>{const body=JSON.parse(options.body);if(body.reasoning_effort!=='minimal'||body.max_tokens!==300)throw Error('request budget changed');return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"kind":"stop"}'}}]})}};await (await import('./meta.mjs')).metaAction({},'keyboard','test',[]);`;
+ const code=`globalThis.fetch=async(url,options)=>{const body=JSON.parse(options.body);if(body.reasoning_effort!=='minimal'||body.max_tokens!==300)throw Error('request budget changed');return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"action":"stop"}'}}]})}};await (await import('./meta.mjs')).metaAction({},'keyboard','test',[]);`;
  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
  assert.equal(r.status,0,r.stderr);
 });
@@ -62,3 +62,14 @@ for(const [label,response,expected] of [
   assert.equal(JSON.parse(r.stderr).code,expected);assert.equal(JSON.parse(r.stderr).requests_reserved,1);
  });
 }
+
+test('every advertised action decodes to a permitted executor action in its mode',()=>{
+ const code=`import assert from 'node:assert/strict';import {validateAction} from './policy.mjs';const {metaAction}=await import('./meta.mjs');let next;globalThis.fetch=async(url,options)=>{const body=JSON.parse(options.body);assert.equal(body.response_format.json_schema.strict,true);assert.ok(body.response_format.json_schema.schema.properties.action.enum.includes(next));return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({action:next})}}]})}};for(const mode of ['keyboard','mouse'])for(const value of ['press:Tab','press:Shift+Tab','press:Enter','press:Space','press:ArrowRight','press:ArrowLeft','press:ArrowDown','press:ArrowUp','press:Escape','stop',...(mode==='mouse'?['click:blue','click:sand','click:finish']:[])]){next=value;const r=await metaAction({},mode,'test',[]);assert.deepEqual(validateAction(r.action,mode),r.action);if(mode==='keyboard')assert.notEqual(r.action.kind,'click');}`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'30'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);
+});
+test('wire decoder rejects extra fields, unknown commands and keyboard clicks',()=>{
+ const code=`import assert from 'node:assert/strict';const {metaAction}=await import('./meta.mjs');let value;globalThis.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify(value)}}]})});for(value of [{action:'click:blue'},{action:'press:Tab',target:'blue'},{action:'press:Delete'},{action:'eval:code'},{kind:'press',key:'Tab'},null,[],{action:'stop',explanation:'ignored?'}])await assert.rejects(metaAction({},'keyboard','test',[]),{message:'meta_action_not_allowed'});`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'30'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);
+});
