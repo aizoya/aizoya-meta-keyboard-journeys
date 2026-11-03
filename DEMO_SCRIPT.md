@@ -1,5 +1,7 @@
 # Three-minute demo — rehearsal draft
 
+Organizer reminder supplied November 2 confirms a three-minute video is important to judging. Target a 2:45–2:55 final cut to leave room for titles and playback transitions; this is an internal production target, not an organizer rule.
+
 Use real captured runs and live interactions. No generated testimonials, invented metrics, simulated provider success or concealed cuts. Final branding is pending. This is a rehearsal script, not a recorded video or submitted entry.
 
 | Time | Screen action | Spoken draft |
