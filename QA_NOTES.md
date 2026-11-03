@@ -38,3 +38,12 @@ https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41560892019
 - Visual review of earlier desktop/mobile screenshots found clipped lower controls in the fixed-height iframe. The resize-message change addresses that finding; same-origin/source/variant validation and height bounds remain enforced. Physical iPhone/Safari is still untested.
 
 Prior authorized live transport run 41559772934 returned HTTP 402, reserved one request and did not retry. This extension made no live model calls. Further inference is paused pending billing/credits and fresh authorization.
+
+## Hosting source acceptance
+
+Runtime source ca48b78d4d6f5d5845f6512e3ff4539201544a53 passed GitHub run 41561886365:
+https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41561886365
+
+Nineteen control tests passed, including exact HTTPS-origin configuration, Secure/HttpOnly cookies on the configured host, rejection of insecure/foreign Origins and spoofed forwarded-host claims, actual-port/local and configured-origin exports, and 60 practice/status visits without exhausting saved-run sessions. Hosting HTTP tests use an injected runner and simulated proxy headers; they do not establish an actual hosted TLS endpoint.
+
+The same source passed all six real Chromium comparisons and replays, actual exported-test execution, and desktop/mobile-width app compare/export/replay and iframe-fit checks. No live Meta request, training, deployment or paid resource was introduced. Public hosting, proxy acceptance, process isolation, durable quotas and physical iPhone/Safari remain pending.
