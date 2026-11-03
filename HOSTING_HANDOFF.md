@@ -14,7 +14,7 @@ Production is deployed at **https://meta.aizoya.com** through Vercel using the D
 
 ## Current access policy
 
-Vercel team authentication still protects the hosted application. That works for AIZOYA members but may block judges in a fresh logged-out session. Judge access must be resolved and verified before submission.
+On November 3, 2026, the owner opened the hosted application in a fresh Private Safari session without a sign-in wall. Recheck anonymous access immediately before submission. This owner verification is not an independent reviewer browser pass.
 
 ## Remaining production limits
 
@@ -22,7 +22,7 @@ Vercel team authentication still protects the hosted application. That works for
 - Limits are per process; they are not durable cross-instance quotas or a provider bill cap.
 - No public Meta inference should be enabled until durable global cost controls exist.
 - No arbitrary external URLs, accounts or purchases.
-- Physical iPhone/Safari acceptance remains pending.
+- The owner completed a physical iPhone/Safari smoke check on November 3, 2026; broader device coverage remains unverified.
 - Generated evidence links are not durable records.
 
 ## Judge acceptance
