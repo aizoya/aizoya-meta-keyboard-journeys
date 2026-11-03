@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
+import {pathToFileURL} from 'node:url';
+import path from 'node:path';
 import {createApp} from '../server.mjs';
 import {runComparison} from '../runner.mjs';
 import {replaySource} from '../policy.mjs';
@@ -36,6 +38,7 @@ try{
   child.on('error',reject);child.on('close',resolve);
  });
  assert.equal(exitCode,0,'Exported Playwright test must actually run and pass');
+ await import('./export-recorded-preview.mjs');
  const {chromium}=createRequire(import.meta.url)('playwright');
  const browser=await chromium.launch({headless:true});
  try{
@@ -44,6 +47,20 @@ try{
    try{
     const page=await context.newPage();
     await page.goto('http://127.0.0.1:8787');
+    let posts=0;const track=request=>{if(request.method()==='POST')posts++;};page.on('request',track);
+    await page.locator('#recorded-gallery summary').click();
+    await page.waitForFunction(()=>!document.querySelector('#recorded-variant').disabled);
+    for(const variant of ['broken','fixed','alternate','reordered','space-only','trap']){
+     await page.locator('#recorded-variant').selectOption(variant);
+     const expected=['broken','trap'].includes(variant)?'The keyboard attempt did not complete':'Both routes completed';
+     assert.equal(await page.locator('#recorded-title').textContent(),expected);
+     await page.waitForFunction(()=>['recorded-mouse','recorded-keyboard'].every(id=>document.getElementById(id).naturalWidth>0));
+    }
+    const recordingEvent=page.waitForEvent('download');await page.locator('#recorded-download').click();
+    const recording=await recordingEvent;assert.equal(recording.suggestedFilename(),'recorded-trap.json');
+    await recording.saveAs(`artifacts/recorded-download-${viewport.width}.json`);
+    assert.equal(posts,0,'Viewing and downloading recordings must not start a comparison');
+    page.off('request',track);await page.locator('#recorded-gallery summary').click();
     await page.locator('#variant').selectOption('fixed');
     await page.waitForFunction(()=>{const frame=document.querySelector('#store');return frame.contentDocument?.body.getBoundingClientRect().height<=frame.clientHeight+2;});
     await page.locator('#run').click();
@@ -60,6 +77,18 @@ try{
     await page.screenshot({path:`artifacts/ui-${viewport.width}.png`,fullPage:true});
    }finally{await context.close();}
   }
+  const offline=await browser.newContext({viewport:{width:390,height:844}});
+  try{
+   const page=await offline.newPage();let networkRequests=0;
+   page.on('request',request=>{if(/^https?:/.test(request.url()))networkRequests++;});
+   await page.goto(pathToFileURL(path.resolve('artifacts/AIZOYA_Recorded_Browser_Preview.html')).href);
+   await page.waitForFunction(()=>!document.querySelector('#recorded-variant').disabled);
+   await page.locator('#recorded-variant').selectOption('fixed');
+   assert.equal(await page.locator('#recorded-title').textContent(),'Both routes completed');
+   await page.waitForFunction(()=>document.getElementById('recorded-keyboard').naturalWidth>0);
+   assert.equal(networkRequests,0,'Standalone preview must load without external network requests');
+   await page.screenshot({path:'artifacts/offline-preview.png',fullPage:true});
+  }finally{await offline.close();}
  }finally{await browser.close();}
  await writeFile('artifacts/browser-acceptance.json',JSON.stringify({planner:'scripted_fixture_no_AI',results,exported_test_passed:true},null,2));
  console.log('Real browser acceptance passed: six comparisons, six replays, exported test, and desktop/mobile-width UI compare-export-replay. No Meta inference.');
