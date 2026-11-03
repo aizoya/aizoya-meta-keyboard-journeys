@@ -1,0 +1,22 @@
+name: manual-meta-transport-smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  one-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: One authorized Meta request without retries
+        env:
+          MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
+          PASSAGE_ENABLE_META: '1'
+          PASSAGE_MAX_META_CALLS: '1'
+        run: node scripts/meta-smoke.mjs
+# Dormant on this draft branch. No push/PR trigger. Key entry alone runs nothing.
+# Manual invocation spends at most one request, not a guaranteed dollar amount.
