@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
+import {createRequire} from 'node:module';
 import {createApp} from '../server.mjs';
 import {runComparison} from '../runner.mjs';
 import {replaySource} from '../policy.mjs';
@@ -35,6 +36,30 @@ try{
   child.on('error',reject);child.on('close',resolve);
  });
  assert.equal(exitCode,0,'Exported Playwright test must actually run and pass');
+ const {chromium}=createRequire(import.meta.url)('playwright');
+ const browser=await chromium.launch({headless:true});
+ try{
+  for(const viewport of [{width:1280,height:900},{width:390,height:844}]){
+   const context=await browser.newContext({viewport,acceptDownloads:true});
+   try{
+    const page=await context.newPage();
+    await page.goto('http://127.0.0.1:8787');
+    await page.locator('#variant').selectOption('fixed');
+    await page.locator('#run').click();
+    await page.locator('#result-title').filter({hasText:'Both routes completed'}).waitFor({timeout:60000});
+    assert.equal(await page.locator('#keyboard-status').textContent(),'Task completed');
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'No horizontal page overflow');
+    const downloadEvent=page.waitForEvent('download');
+    await page.locator('#export-test').click();
+    const download=await downloadEvent;
+    assert.equal(download.suggestedFilename(),'keyboard-route.spec.mjs');
+    await download.saveAs(`artifacts/ui-export-${viewport.width}.spec.mjs`);
+    await page.locator('#replay').click();
+    await page.locator('#replay-status').filter({hasText:'reproduced the same observed outcomes'}).waitFor({timeout:60000});
+    await page.screenshot({path:`artifacts/ui-${viewport.width}.png`,fullPage:true});
+   }finally{await context.close();}
+  }
+ }finally{await browser.close();}
  await writeFile('artifacts/browser-acceptance.json',JSON.stringify({planner:'scripted_fixture_no_AI',results,exported_test_passed:true},null,2));
- console.log('Real browser acceptance passed: three comparisons, three replays and exported test. No Meta inference.');
+ console.log('Real browser acceptance passed: three comparisons, three replays, exported test, and desktop/mobile-width UI compare-export-replay. No Meta inference.');
 }finally{await new Promise(resolve=>app.close(resolve));}
