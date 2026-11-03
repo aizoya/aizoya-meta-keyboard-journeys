@@ -78,6 +78,14 @@ try{
     await download.saveAs(`artifacts/ui-export-${viewport.width}.spec.mjs`);
     await page.locator('#replay').click();
     await page.locator('#replay-status').filter({hasText:'reproduced the same observed outcomes'}).waitFor({timeout:60000});
+    // A failed replay must preserve the evidence already displayed.
+    await page.route('**/api/replay',route=>route.fulfill({status:429,contentType:'application/json',body:JSON.stringify({error:'session_run_limit'})}));
+    await page.locator('#replay').click();
+    await page.locator('#message').filter({hasText:'six-check limit'}).waitFor({timeout:10000});
+    assert.equal(await page.locator('#result').isVisible(),true,'Failed replay must keep prior evidence visible');
+    assert.equal(await page.locator('#keyboard-status').textContent(),'Task completed');
+    assert.equal(await page.locator('#download').isVisible(),true,'Prior evidence remains downloadable');
+    await page.unroute('**/api/replay');
     await page.screenshot({path:`artifacts/ui-${viewport.width}.png`,fullPage:true});
    }finally{await context.close();}
   }

@@ -20,10 +20,19 @@ function render(r){current=r;$('result').hidden=false;$('result').scrollIntoView
  $('timeline').replaceChildren();const trace=r.keyboard.trace||[];$('step').max=String(Math.max(0,trace.length-1));$('step').value='0';
  trace.forEach((t,i)=>{const li=document.createElement('li');const b=document.createElement('button');b.textContent=`${i===0?'Start':t.action?.key||t.action?.target} → ${t.state.focus.target||t.state.focus.tag}`;b.addEventListener('click',()=>{$('step').value=String(i);renderFrame();});li.append(b);$('timeline').append(li);});renderFrame();
 }
-async function run(replay=false){const version=++generation;const previous=current;$('result').hidden=true;$('run').disabled=true;$('run').textContent='Checking checkout…';$('message').textContent=replay?'Replaying saved actions in fresh contexts…':'Trying checkout with a mouse and a keyboard. No equipment is needed on your device…';
+async function run(replay=false){const version=++generation;const previous=current;if(!previous)$('result').hidden=true;$('replay').disabled=true;$('run').disabled=true;$('run').textContent='Checking checkout…';$('message').textContent=replay?'Replaying saved actions in fresh contexts…':'Trying checkout with a mouse and a keyboard. No equipment is needed on your device…';
  try{const res=await fetch(replay?'/api/replay':'/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(replay?{id:previous.id}:{variant:$('variant').value,planner:$('planner').value})});const r=await res.json();if(version!==generation)return;if(!res.ok)throw Error(r.error||'request_failed');render(r);$('message').textContent=r.summary.status==='infrastructure_error'?'The comparison did not run. You can still try the store yourself.':'Recorded. Inspect the evidence below.';}
- catch(e){if(version===generation)$('message').textContent=e.message==='meta_not_configured'?'Meta mode is not configured. No model request was made.':'The runner could not finish this request. No accessibility finding was made.';}
- finally{if(version===generation){$('run').disabled=false;$('run').textContent='Check this journey ↗';}}
+ catch(e){if(version===generation){
+ const messages={
+  meta_not_configured:'Meta mode is not configured. No model request was made.',
+  session_run_limit:'This session reached its six-check limit. Your previous result is still available to download.',
+  runner_busy:'Another check is running. Wait for it to finish, then try again.',
+  session_capacity:'The demo is busy. Try again later. Your previous result remains available.',
+  not_found:'This saved check is no longer available on the server. You can download the result shown here or start a new check.'
+ };
+ $('message').textContent=messages[e.message]||'The runner could not finish this request. No new finding was made.'+(previous?' Your previous result is still available.':'');
+ }}
+ finally{if(version===generation){$('replay').disabled=false;$('run').disabled=false;$('run').textContent='Check this journey ↗';}}
 }
 $('run').addEventListener('click',()=>run());$('replay').addEventListener('click',()=>run(true));$('step').addEventListener('input',renderFrame);
 $('download').addEventListener('click',()=>{if(current)save('route-evidence.json',current);});
