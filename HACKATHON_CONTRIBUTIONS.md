@@ -4,13 +4,13 @@ Owner: AIZOYA / Franklyn Rosario. Event: Meta Global AI Developer Hackathon, sta
 
 ## Honest history boundary
 
-The concept was selected for feasibility after blind external AI research supplied during November2,2026. Prior recommendations and source archives exist independently. This candidate's Git history begins when these files were first committed; no dates, authorship or earlier development history are backdated.
+The concept was selected for feasibility after blind external AI research supplied during November 2, 2026. Prior recommendations and source archives exist independently. This candidate's Git history begins when these files were first committed; no dates, authorship or earlier development history are backdated.
 
-The initial commit contains source written in this session before repository initialization. Its creation timestamp is not proof of earlier independent work. File modification times are weaker evidence than hosted commit records. GitHub remote acknowledgements will be recorded only after verification.
+The initial commit contains source written in this session before repository initialization. Its creation timestamp is not proof of earlier independent work. File modification times are weaker evidence than hosted commit records. GitHub upload checkpoints are recorded in the repository and QA evidence; original local history is retained in the provenance bundle.
 
 ## New source in this candidate
 
-- Original fictional storefront and broken/corrected/alternate interaction controls.
+- Original fictional storefront and six owned interaction controls.
 - Constrained action policy and local-origin restriction.
 - Separate mouse and keyboard browser contexts and observable outcome checks.
 - Trace/evidence schema, saved-action replay and fixed-template test export.
@@ -28,4 +28,4 @@ The existing restaurant prototype is preserved separately and is not included, r
 
 ## Public release gate
 
-Competition requires a public repository. Current bootstrap target is private until clean-source and publication approval. No secrets, private data, customer assets or unrelated product source may enter publication. Contribution record must distinguish scripted demonstrations from live Meta behavior and tests from proposed targets.
+Competition requires a public repository. The repository is currently private until clean-source and publication approval. The original-project license is pending; see release/OPEN_SOURCE_RELEASE_REVIEW.md. No secrets, private data, customer assets or unrelated product source may enter publication. Contribution record must distinguish scripted demonstrations from live Meta behavior and tests from proposed targets.

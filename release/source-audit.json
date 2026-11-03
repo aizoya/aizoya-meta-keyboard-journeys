@@ -1,0 +1,23 @@
+{
+  "scope": "all reachable local Git history; retained bundle verified byte-identical and its commits are ancestors of the local history",
+  "tracked_files": 49,
+  "unique_text_blobs_scanned": 82,
+  "binary_blobs_not_text_scanned": 7,
+  "blocked_paths": [],
+  "high_confidence_findings": [],
+  "method": "targeted patterns; no credential values included in report",
+  "limits": [
+    "Not a guarantee of absence of secrets",
+    "No entropy scan of encoded image bytes",
+    "GitHub Actions secret storage and logs not part of repository content scan",
+    "Human ownership and final publication authorization remain pending"
+  ],
+  "remote_source_commit": "fcc015f72acba67e1fa7dc2c9561c65df24f7426",
+  "current_tracked_files_matching_remote_blobs": 49,
+  "remote_only_paths": [
+    "GITHUB_CHECKPOINT.md",
+    "provenance/local-history.bundle"
+  ],
+  "retained_bundle_git_blob_sha": "efa1bba431472b47249c84cd85198e3a566f09b2",
+  "retained_bundle_verified": true
+}
