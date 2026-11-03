@@ -73,3 +73,13 @@ test('wire decoder rejects extra fields, unknown commands and keyboard clicks',(
  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'30'},encoding:'utf8'});
  assert.equal(r.status,0,r.stderr);
 });
+
+test('browser journey refuses missing configuration without importing a browser',()=>{
+ const r=spawnSync(process.execPath,['scripts/meta-journey.mjs'],{env:isolated,encoding:'utf8'});
+ assert.equal(r.status,2);assert.match(r.stderr,/Not run/);
+});
+test('browser journey configuration check never dispatches or starts a browser',()=>{
+ const code=`process.argv.push('--check');globalThis.fetch=()=>{throw Error('network must not run')};await import('./scripts/meta-journey.mjs');`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'8'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);assert.equal(JSON.parse(r.stdout).ready,true);
+});
