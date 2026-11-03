@@ -14,7 +14,7 @@ if(process.argv.includes('--check')){
   console.log(JSON.stringify({status:'valid_provider_action',scope:'synthetic_transport_smoke_only',action:decision.action,model:decision.provider.model||null,usage:decision.provider.usage,requests_reserved:metaStatus().calls_reserved,browser_task_completion:'not_tested'}));
  }catch(error){
   // Never log a raw provider body, key, headers or arbitrary exception text.
-  const code=/^meta_(http_\d{3}|not_configured|request_allowance_exhausted|incomplete)$/.test(error.message)?error.message:'provider_or_action_validation_failed';
+  const code=/^meta_(http_\d{3}|not_configured|request_allowance_exhausted|incomplete|timeout|network_error|response_json_invalid|response_shape_invalid|action_json_invalid|action_not_allowed)$/.test(error.message)?error.message:'provider_or_action_validation_failed';
   console.error(JSON.stringify({status:'failed',code,requests_reserved:metaStatus().calls_reserved,retried:false,...(code==='meta_incomplete'?{diagnostics:error.diagnostics}: {})}));
   process.exitCode=1;
  }

@@ -41,3 +41,24 @@ test('untrusted provider metadata cannot leak through incomplete diagnostics',()
  assert.equal(r.status,1);assert.doesNotMatch(r.stderr,/private-marker/);
  assert.deepEqual(JSON.parse(r.stderr).diagnostics,{finish_reason:'unknown',has_visible_content:false,completion_tokens:null,reasoning_tokens:null});
 });
+
+for(const [label,response,expected] of [
+ ['network failure',null,'meta_network_error'],
+ ['invalid response JSON',{ok:true,json:async()=>{throw Error('private-provider-text')}},'meta_response_json_invalid'],
+ ['null response',{ok:true,json:async()=>null},'meta_response_shape_invalid'],
+ ['invalid action JSON',{ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'private-provider-text'}}]})},'meta_action_json_invalid'],
+ ['disallowed keyboard click',{ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"kind":"click","target":"blue"}'}}]})},'meta_action_not_allowed']
+]){
+ test('smoke distinguishes '+label+' without exposing provider content',()=>{
+  const responseCode=response===null?"throw Error('private-provider-text')":'return '+(
+   label==='invalid response JSON'?"{ok:true,json:async()=>{throw Error('private-provider-text')}}":
+   label==='null response'?"{ok:true,json:async()=>null}":
+   label==='invalid action JSON'?`{ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'private-provider-text'}}]})}`:
+   `{ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'{"kind":"click","target":"blue"}'}}]})}`
+  );
+  const code=`let calls=0;globalThis.fetch=async()=>{if(++calls>1)throw Error('retry');${responseCode}};await import('./scripts/meta-smoke.mjs');`;
+  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
+  assert.equal(r.status,1);assert.doesNotMatch(r.stderr,/private-provider-text|test-placeholder/);
+  assert.equal(JSON.parse(r.stderr).code,expected);assert.equal(JSON.parse(r.stderr).requests_reserved,1);
+ });
+}
