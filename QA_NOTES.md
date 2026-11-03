@@ -24,3 +24,17 @@ Scripted fixture planner; no live Meta inference, unseen-site evaluation, physic
 ## Provenance
 
 Private AIZOYA repository and draft PR #1. Original local history is in provenance/local-history.bundle; GitHub history begins at actual upload time. Earlier local dates are not earlier GitHub activity. Branch protection read was forbidden by the integration, so protection is not verified.
+
+## Extended offline acceptance
+
+Source c7878b74198c4174b3e997a9ef31b2fc04d2484a passed run 41560892019:
+https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41560892019
+
+- Fourteen control/HTTP/Meta-guard tests. The four Meta-guard tests use isolated no-network substitutes and never test a live provider.
+- Six comparisons and six saved-action replays: original broken control, corrected buttons, arrow-key radios, reordered buttons, Space activation and a focus trap.
+- Keyboard completion observed in corrected, arrow-key, reordered and Space cases; bounded non-completion in broken and trap cases; mouse completion in all six.
+- The actual exported fixed-fixture test passed.
+- Desktop and 390px-width compare/export/replay passed, including the assertion that the iframe fits its content and the page has no horizontal overflow.
+- Visual review of earlier desktop/mobile screenshots found clipped lower controls in the fixed-height iframe. The resize-message change addresses that finding; same-origin/source/variant validation and height bounds remain enforced. Physical iPhone/Safari is still untested.
+
+Prior authorized live transport run 41559772934 returned HTTP 402, reserved one request and did not retry. This extension made no live model calls. Further inference is paused pending billing/credits and fresh authorization.

@@ -7,10 +7,10 @@
 - Real Chromium: original three comparisons and replays, executed test export and desktop/mobile-width app workflow passed.
 - Explicit scripted-versus-Meta labels and documented contribution boundary.
 
-## In this change, pending browser results
+## Extended checks now passed
 
 - Additional owned controls: reordered buttons, Space activation and a focus trap.
-- Six comparison/replay cases in total; unchanged scripted planner.
+- Six comparisons and six replays passed with the unchanged scripted planner, plus executed test export and desktop/mobile-width app checks including iframe fit (run 41560892019).
 - Judge guide and timed three-minute rehearsal script.
 
 These are authored synthetic cases, not a blinded external benchmark or independent validation set.
