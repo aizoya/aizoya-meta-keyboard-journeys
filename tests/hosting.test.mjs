@@ -62,3 +62,13 @@ test('practice pages and status do not consume the saved-run session pool',async
  }
  assert.equal((await s.request('POST','/api/run')).status,201);
 });
+
+test('Vercel preview trusts only its configured platform hostname',async t=>{
+ const oldFlag=process.env.VERCEL,oldURL=process.env.VERCEL_URL;
+ process.env.VERCEL='1';process.env.VERCEL_URL='candidate-preview.vercel.app';
+ t.after(()=>{if(oldFlag===undefined)delete process.env.VERCEL;else process.env.VERCEL=oldFlag;if(oldURL===undefined)delete process.env.VERCEL_URL;else process.env.VERCEL_URL=oldURL;});
+ const s=await server(t,'https://meta.aizoya.com');
+ const response=await s.request('POST','/api/run',{host:'candidate-preview.vercel.app',origin:'https://candidate-preview.vercel.app'});
+ assert.equal(response.status,201);assert.match(response.headers.get('set-cookie'),/; Secure/);
+ assert.equal((await s.request('POST','/api/run',{host:'other-preview.vercel.app',origin:'https://other-preview.vercel.app'})).status,403);
+});
