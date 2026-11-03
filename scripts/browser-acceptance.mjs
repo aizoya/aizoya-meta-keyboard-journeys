@@ -45,6 +45,7 @@ try{
     const page=await context.newPage();
     await page.goto('http://127.0.0.1:8787');
     await page.locator('#variant').selectOption('fixed');
+    await page.waitForFunction(()=>{const frame=document.querySelector('#store');return frame.contentDocument?.body.getBoundingClientRect().height<=frame.clientHeight+2;});
     await page.locator('#run').click();
     await page.locator('#result-title').filter({hasText:'Both routes completed'}).waitFor({timeout:60000});
     assert.equal(await page.locator('#keyboard-status').textContent(),'Task completed');

@@ -18,3 +18,7 @@ document.addEventListener('focusin',()=>record('focus'));
 document.addEventListener('keydown',e=>record('key',{key:e.key,trusted:e.isTrusted}),true);
 document.addEventListener('click',e=>record('click',{target:e.target.dataset?.target||e.target.tagName,trusted:e.isTrusted,activation:e.detail===0?'keyboard_or_programmatic':'pointer'}),true);
 record('ready');
+// Fit the owned iframe to content instead of requiring a second scroll area.
+function reportSize(){parent.postMessage({type:'fixture-size',variant,height:Math.ceil(document.body.getBoundingClientRect().height)},location.origin);}
+new ResizeObserver(reportSize).observe(document.body);
+window.addEventListener('load',reportSize);
