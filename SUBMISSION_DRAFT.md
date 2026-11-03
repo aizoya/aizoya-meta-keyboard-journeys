@@ -60,7 +60,7 @@ One owned practice store; no arbitrary external URLs, real accounts or purchases
 | Representative | Franklyn Rosario, MBA-ITM |
 | Organization | AIZOYA; do not claim incorporation unless independently completed |
 | Track/theme | Startup track requested; confirm eligibility and final theme in portal |
-| Repository | https://github.com/aizoya/aizoya-meta-keyboard-journeys — currently private; must be public before submission |
+| Repository | https://github.com/aizoya/aizoya-meta-keyboard-journeys — verified public; MIT license recognized |
 | License | MIT, Copyright (c) 2026 Franklyn Rosario |
 | Product URL | https://meta.aizoya.com — currently protected by Vercel team authentication; logged-out judge access remains a gate |
 | Video URL | Pending recording, upload and playback verification |

@@ -32,7 +32,7 @@ Saved runs are in per-session server memory with one-hour expiry, a maximum of s
 
 A recorded completion predicate is separate from the planner. A failed bounded attempt is **needs review**, not proof that no keyboard route exists. Replaying saved actions can establish repeated observed outcomes, not general accessibility or WCAG compliance. Generated test code is built from a fixed template and validated actions; the server never executes model-generated code. The export requires @playwright/test in the consumer's project and is a draft expected-outcome assertion, not an independent diagnosis.
 
-Next acceptance: keep the hosted judge flow stable, test more varied tasks before claiming generality, perform a physical iPhone/Safari check, and confirm logged-out judge access before submission. Any additional live inference requires a new finite allowance. Repository visibility is still private and must be changed to public before submission.
+Next acceptance: keep the hosted judge flow stable, test more varied tasks before claiming generality, perform a physical iPhone/Safari check, and confirm logged-out judge access before submission. Any additional live inference requires a new finite allowance. Repository visibility is verified public and GitHub recognizes the MIT license.
 
 Run the same browser checks after installing dependencies and Chromium: `npm run test:browser`. This also needs the pinned `@playwright/test` development dependency.
 
@@ -52,4 +52,4 @@ Source 37b4162cf237d316b823a1babd16256e084a2d13 passed 21 control tests and the 
 
 ## License and release approval
 
-Original project code is licensed under MIT, Copyright (c) 2026 Franklyn Rosario; see LICENSE. Dependencies retain their own terms in THIRD_PARTY_NOTICES.md. The owner approved licensing, PR #2 integration and public repository release. Earlier proposal documents describe the pre-approval checkpoint. Public visibility must still be verified separately. This approval does not enable model calls or authorize deployment.
+Original project code is licensed under MIT, Copyright (c) 2026 Franklyn Rosario; see LICENSE. Dependencies retain their own terms in THIRD_PARTY_NOTICES.md. The owner approved licensing, PR #2 integration and public repository release. Earlier proposal documents describe the pre-approval checkpoint. Public visibility is verified through the GitHub repository metadata. This approval does not enable model calls or authorize deployment.
