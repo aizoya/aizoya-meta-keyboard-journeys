@@ -40,4 +40,4 @@ Run the same browser checks after installing dependencies and Chromium: `npm run
 
 See JUDGE_GUIDE.md, DEMO_SCRIPT.md, SUBMISSION_READINESS.md and HOSTING_HANDOFF.md. The practice iframe now fits its content, and completed results scroll into view with reduced-motion support. Six authored examples are regression cases, not an independent benchmark. No production or public release is implied.
 
-Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Eighteen control tests pass locally, including four hosting checks. Actual proxy/TLS, isolation, public hosting and deployment remain unverified; see HOSTING_HANDOFF.md. Model calls remain paused.
+Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Nineteen control tests pass locally, including five hosting checks. Actual proxy/TLS, isolation, public hosting and deployment remain unverified; see HOSTING_HANDOFF.md. Model calls remain paused.

@@ -14,7 +14,9 @@ No deployment or paid resource has been created for this candidate. The developm
 - Optional `PUBLIC_ORIGIN` accepts a clean HTTPS origin and adds that exact host to the allowlist. Forwarded host headers do not extend trust.
 - Requests for that configured host require the HTTPS Origin and get a Secure, HttpOnly, SameSite session cookie. Local fixture execution still uses loopback.
 - Test exports use the validated request origin and actual local port, with destination strings JSON-escaped.
-- Four new HTTP/configuration checks pass locally; 18 control tests in total. These simulate proxy headers and do not establish actual TLS termination or hosted operation.
+- Five new HTTP/configuration checks pass locally; 19 control tests in total. These simulate proxy headers and do not establish actual TLS termination or hosted operation.
+
+Practice pages and status responses no longer allocate saved-run sessions. A 60-visit regression check confirms that these visits do not exhaust the session pool.
 
 ## Remaining hosting work
 

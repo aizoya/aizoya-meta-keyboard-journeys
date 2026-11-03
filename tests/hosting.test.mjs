@@ -53,3 +53,12 @@ test('local reproduction exports the actual server port and leaves local cookies
  assert((await exported.text()).includes(s.base+'/fixture/fixed'));
  assert(replaySource([{kind:'press',key:'Tab'}],'fixed','keyboard').includes('http://127.0.0.1:8787/fixture/fixed'));
 });
+
+test('practice pages and status do not consume the saved-run session pool',async t=>{
+ const s=await server(t);
+ for(let i=0;i<60;i++){
+  const response=await s.request('GET',i%2?'/fixture/fixed':'/api/status');
+  assert.equal(response.status,200);assert.equal(response.headers.get('set-cookie'),undefined);
+ }
+ assert.equal((await s.request('POST','/api/run')).status,201);
+});
