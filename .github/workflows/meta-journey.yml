@@ -1,0 +1,36 @@
+name: manual-meta-keyboard-journey
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: manual-meta-keyboard-journey
+  cancel-in-progress: false
+jobs:
+  fixed-keyboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: One bounded keyboard journey, no request retries
+        env:
+          MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
+          PASSAGE_ENABLE_META: '1'
+          PASSAGE_MAX_META_CALLS: '8'
+        run: node scripts/meta-journey.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: meta-fixed-keyboard-evidence
+          path: artifacts/meta-journey/
+          if-no-files-found: ignore
+          retention-days: 7
+# Manual only. Up to eight requests, each capped at 300 output tokens.
+# No live-app configuration changes. Replay uses saved actions with no inference.
