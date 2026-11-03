@@ -6,12 +6,17 @@ Verified November 2, 2026 Pacific. No credentials stored here.
 | --- | --- | --- |
 | Meta account and credits | User-reported; not independently verified | User reports key created and credit claimed. Applied balance is unknown here. |
 | Local runtime credential | Missing | Boolean configuration check returns false. |
+| GitHub Actions credential | Present for prior run; value not read | Manual run 41559772934 reached provider and returned HTTP 402. |
 | Meta-specific connected service | Missing | No Meta credential-management operation is exposed. |
 | Request transport format | Docs checked; live unverified | Official quickstart and structured-output documentation support the configured model, endpoint and JSON format. |
 | Runtime browser workflow | Verified, scripted only | GitHub acceptance run 41555310325. |
 | Live agent behavior | Blocked | Requires secure credential configuration and an authorized allowance. |
 
-## One-time owner action
+## Current hold
+
+Owner reports the key is saved and billing/credits may become available later. The first authorized transport attempt returned HTTP 402 and made no retry. Further live model calls are paused. No training is configured. Do not repeat the one-request check under its consumed approval.
+
+## Secure connection reference
 
 Create repository Actions secret `MODEL_API_KEY` through GitHub's secure secret form. Never send the value in chat, source, an issue or a pull request.
 

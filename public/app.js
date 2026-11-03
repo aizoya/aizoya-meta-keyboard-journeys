@@ -3,14 +3,16 @@ function save(name,data,mime='application/json'){const u=URL.createObjectURL(new
 function reset(){generation++;current=null;human=[];keys=0;clicks=0;$('result').hidden=true;$('message').textContent='';$('human-state').textContent='Your turn.';$('human-detail').textContent='The observer records interactions inside the practice store.';$('focus').textContent='—';$('keys').textContent='0';$('clicks').textContent='0';$('store').src='/fixture/'+$('variant').value;$('run').disabled=false;$('run').textContent='Compare routes ↗';}
 $('variant').addEventListener('change',reset);$('planner').addEventListener('change',reset);$('reset').addEventListener('click',reset);
 window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==$('store').contentWindow||event.data?.type!=='fixture-event'||event.data.variant!==$('variant').value)return;
+ if(event.origin!==location.origin||event.source!==$('store').contentWindow||event.data?.variant!==$('variant').value)return;
+ if(event.data.type==='fixture-size'){const h=event.data.height;if(Number.isFinite(h)&&h>=320&&h<=1800)$('store').style.height=`${h}px`;return;}
+ if(event.data.type!=='fixture-event')return;
  const e=event.data.event;if(!e||typeof e.type!=='string')return;human.push(e);$('focus').textContent=e.focus||'—';
  if(e.type==='key')$('keys').textContent=String(++keys);if(e.type==='click'&&e.activation==='pointer')$('clicks').textContent=String(++clicks);
  if(e.type==='outcome'){$('human-state').textContent=e.complete?'Task completed.':'Choose Blue to finish.';$('human-detail').textContent=e.complete?'The store recorded the expected practice-kit outcome. This describes your attempt only.':'The selected color did not match the task.';}
 });
 $('download-human').addEventListener('click',()=>save('manual-practice-trace.json',{variant:$('variant').value,source:'manual_browser_interactions',events:human,ai_connected:false}));
 function renderFrame(){const t=current?.keyboard?.trace||[];const item=t[Number($('step').value)];if(!item)return;$('step-description').textContent=`Step ${item.index}: ${item.action?JSON.stringify(item.action):'Initial state'} · focus: ${item.state.focus.target||item.state.focus.tag}`;$('frame').src='data:image/png;base64,'+item.screenshot;[...$('timeline').children].forEach((e,i)=>e.classList.toggle('active',i===Number($('step').value)));}
-function render(r){current=r;$('result').hidden=false;$('result-mode').textContent=r.planner==='meta'?'META AGENT RUN':r.planner==='saved_actions'?'SAVED ACTION REPLAY':'SCRIPTED FIXTURE REPLAY · NO AI';$('result-title').textContent=r.summary.title;$('result-detail').textContent=r.summary.detail;
+function render(r){current=r;$('result').hidden=false;$('result').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});$('result-mode').textContent=r.planner==='meta'?'META AGENT RUN':r.planner==='saved_actions'?'SAVED ACTION REPLAY':'SCRIPTED FIXTURE REPLAY · NO AI';$('result-title').textContent=r.summary.title;$('result-detail').textContent=r.summary.detail;
  const has=Boolean(r.mouse&&r.keyboard);document.querySelector('.lanes').hidden=!has;document.querySelector('.evidence').hidden=!has;$('replay').hidden=!has;document.querySelector('.exports').hidden=!has;
  if(!has)return;
  for(const lane of ['mouse','keyboard']){$(lane+'-status').textContent=r[lane].status==='infrastructure_error'?'Runner interrupted':r[lane].completed?'Task completed':'Attempt not completed';$(lane+'-meta').textContent=`${r[lane].actions.length} actions · ${(r[lane].elapsed_ms/1000).toFixed(1)} seconds`;}
