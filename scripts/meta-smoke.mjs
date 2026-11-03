@@ -15,7 +15,7 @@ if(process.argv.includes('--check')){
  }catch(error){
   // Never log a raw provider body, key, headers or arbitrary exception text.
   const code=/^meta_(http_\d{3}|not_configured|request_allowance_exhausted|incomplete)$/.test(error.message)?error.message:'provider_or_action_validation_failed';
-  console.error(JSON.stringify({status:'failed',code,requests_reserved:metaStatus().calls_reserved,retried:false}));
+  console.error(JSON.stringify({status:'failed',code,requests_reserved:metaStatus().calls_reserved,retried:false,...(code==='meta_incomplete'?{diagnostics:error.diagnostics}: {})}));
   process.exitCode=1;
  }
 }
