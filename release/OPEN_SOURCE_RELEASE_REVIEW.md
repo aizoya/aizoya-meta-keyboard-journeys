@@ -1,7 +1,7 @@
-# Open-source release review — ready for visibility approval
+# Open-source release review — published
 
 Repository: https://github.com/aizoya/aizoya-meta-keyboard-journeys  
-Current visibility: **private**  
+Current visibility: **public**  
 License: **MIT**, Copyright (c) 2026 Franklyn Rosario
 
 ## Release contents
@@ -26,13 +26,8 @@ This is strong bounded evidence, not a mathematical guarantee that no encoded se
 - Muse Spark 1.3 completed one owned corrected keyboard fixture in five requests in run 41721095171; replay made no additional model call.
 - Hosted live Meta remains disabled.
 
-## Visibility action
+## Publication result
 
-Publication is required by the organizer. When Franklyn approves the final visibility action:
-
-1. Change this exact repository from private to public.
-2. Verify the repository, README, LICENSE and clone URL in a logged-out session.
-3. Confirm GitHub recognizes the MIT license.
-4. Retain the public URL and final main commit for the submission record.
+GitHub repository metadata verifies public visibility, the `main` default branch and MIT license recognition. Recheck the repository URL in a logged-out browser before final submission and retain the final main commit.
 
 Publication does not authorize additional model calls, spending, public AI mode, unrelated source disclosure or claims beyond the verified scope.

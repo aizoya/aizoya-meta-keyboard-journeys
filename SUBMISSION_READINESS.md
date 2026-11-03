@@ -7,7 +7,7 @@ Source: organizer's event blast pasted by Franklyn in this conversation. This is
 - Binding deadline stated: **November 4, 2026, 9:00 PM ET = 6:00 PM Pacific** (November 5, 02:00 UTC).
 - Internal completion target: **November 4, 5:00 PM Pacific**, retaining one hour for corrections.
 - Organizer emphasizes a **three-minute demo video**.
-- Organizer says the GitHub project **must be open source**. MIT licensing is complete, but repository visibility is still verified private. Do not mark the requirement complete until logged-out access works.
+- Organizer says the GitHub project **must be open source**. MIT licensing is complete and repository visibility is verified public through GitHub metadata. Recheck the exact URL in a logged-out browser before submission.
 - Prepare the full form early. Saving a draft, if supported, is not proof of submission; retain the final confirmation and exact submitted links.
 
 ## Completed and evidenced
@@ -27,12 +27,11 @@ These are authored synthetic cases, not a blinded external benchmark or independ
 
 ## Required before calling the entry ready
 
-1. Change the repository from private to public and verify logged-out source access.
-2. Confirm logged-out judge access to the hosted app, or explicitly change the Vercel team-authentication policy.
-3. Perform a physical iPhone/Safari smoke check and visual review.
-4. Record, upload and verify the three-minute demo video.
-5. Finish the submission answers, confirm track eligibility and submit before the internal 5:00 PM Pacific target.
-6. Preserve the final confirmation and exact submitted URLs.
+1. Confirm logged-out judge access to the hosted app, or explicitly change the Vercel team-authentication policy.
+2. Perform a physical iPhone/Safari smoke check and visual review.
+3. Record, upload and verify the three-minute demo video.
+4. Finish the submission answers, confirm track eligibility and submit before the internal 5:00 PM Pacific target.
+5. Preserve the final confirmation and exact submitted URLs.
 
 ## Verified live Meta checkpoint
 
@@ -45,7 +44,7 @@ Earlier run 41559772934 returned HTTP 402. A later, separately authorized bounde
 ## Immediate sequence
 
 1. Fix and verify the judge-facing recorded gallery and current documentation.
-2. Make the repository public and verify it while logged out.
+2. Recheck the public repository in a logged-out browser.
 3. Resolve logged-out judge access to the hosted application.
 4. Complete the physical iPhone/Safari check.
 5. Record the three-minute video, finish the form and submit early.

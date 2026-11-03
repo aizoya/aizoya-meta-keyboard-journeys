@@ -31,4 +31,4 @@ Run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/action
 
 ## Public release gate
 
-The repository is MIT licensed but remains private. Before submission, change this exact repository to public and verify anonymous read/clone access. Publication does not authorize additional model requests, public AI mode, spending or claims beyond the verified scope.
+The repository is MIT licensed and verified public through GitHub metadata. Recheck the final URL in a logged-out browser before submission. Publication does not authorize additional model requests, public AI mode, spending or claims beyond the verified scope.
