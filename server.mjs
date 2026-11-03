@@ -1,17 +1,20 @@
 import http from 'node:http';import {readFile} from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';import {randomBytes,randomUUID} from 'node:crypto';
-import {VARIANTS,replaySource} from './policy.mjs';import {runComparison} from './runner.mjs';import {metaStatus} from './meta.mjs';
+import {VARIANTS,replaySource,exportOrigin} from './policy.mjs';import {runComparison} from './runner.mjs';import {metaStatus} from './meta.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
-export function createApp({port=8787,hostname='127.0.0.1',run=runComparison}={}){
+export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publicOrigin=process.env.PUBLIC_ORIGIN||null}={}){
+ const external=publicOrigin?new URL(exportOrigin(publicOrigin)):null;
+ if(external&&external.protocol!=='https:')throw Error('public_origin_requires_https');
  const sessions=new Map();let active=0;
  const app=http.createServer(async(req,res)=>{
-  const actualPort=port||app.address()?.port;const host=req.headers.host;const allowed=new Set([`localhost:${actualPort}`,`127.0.0.1:${actualPort}`,'terminal.local:4173']);
+  const actualPort=port||app.address()?.port;const host=req.headers.host;const allowed=new Set([`localhost:${actualPort}`,`127.0.0.1:${actualPort}`,'terminal.local:4173',...(external?[external.host]:[])]);
+  const isExternal=external?.host===host;const requestOrigin=isExternal?external.origin:`http://${host}`;
   const reply=(code,data,mime='application/json')=>{const bytes=mime==='application/json'?Buffer.from(JSON.stringify(data)):Buffer.from(data);res.writeHead(code,{'Content-Type':mime,'Content-Length':bytes.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'none'"});res.end(bytes);};
   if(!allowed.has(host))return reply(403,{error:'untrusted_host'});
   const url=new URL(req.url,`http://${host}`);const now=Date.now();
   for(const [id,s]of sessions)if(s.expires<now&&!s.busy)sessions.delete(id);
   let token=String(req.headers.cookie||'').match(/(?:^|; )passage=([a-f0-9]{48})(?:;|$)/)?.[1];
   let session=sessions.get(token);
-  if(!session){if(sessions.size>=50)return reply(503,{error:'session_capacity'});token=randomBytes(24).toString('hex');session={expires:now+3600000,busy:false,runs:new Map()};sessions.set(token,session);res.setHeader('Set-Cookie',`passage=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600`);}
+  if(!session){if(sessions.size>=50)return reply(503,{error:'session_capacity'});token=randomBytes(24).toString('hex');session={expires:now+3600000,busy:false,runs:new Map()};sessions.set(token,session);res.setHeader('Set-Cookie',`passage=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600${isExternal?'; Secure':''}`);}
   if(req.method==='GET'){
    const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/fixture.js':'fixture.js','/fixture.css':'fixture.css'};
    if(files[url.pathname]||/^\/fixture\/(broken|fixed|alternate|reordered|space-only|trap)$/.test(url.pathname)){
@@ -19,11 +22,11 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison}={})
    }
    if(url.pathname==='/api/status')return reply(200,{meta:metaStatus(),scope:'owned_fixture_only',public_release:false,persistence:'session_memory_1_hour',name_status:'working_description_not_cleared_brand'});
    const match=url.pathname.match(/^\/api\/runs\/([a-f0-9-]+)(\/test)?$/);
-   if(match){const saved=session.runs.get(match[1]);if(!saved)return reply(404,{error:'not_found'});if(match[2]){if(!saved.keyboard)return reply(409,{error:'no_trace'});return reply(200,replaySource(saved.keyboard.actions,saved.variant,'keyboard'),'text/plain; charset=utf-8');}return reply(200,saved);}
+   if(match){const saved=session.runs.get(match[1]);if(!saved)return reply(404,{error:'not_found'});if(match[2]){if(!saved.keyboard)return reply(409,{error:'no_trace'});return reply(200,replaySource(saved.keyboard.actions,saved.variant,'keyboard',requestOrigin),'text/plain; charset=utf-8');}return reply(200,saved);}
    return reply(404,{error:'not_found'});
   }
   if(req.method!=='POST'||!['/api/run','/api/replay'].includes(url.pathname))return reply(404,{error:'not_found'});
-  if(req.headers.origin!==`http://${host}`)return reply(403,{error:'untrusted_origin'});
+  if(req.headers.origin!==requestOrigin)return reply(403,{error:'untrusted_origin'});
   if(req.headers['content-type']?.split(';')[0]!=='application/json')return reply(415,{error:'json_required'});
   const size=Number(req.headers['content-length']);if(!Number.isInteger(size)||size<2||size>2000)return reply(413,{error:'request_size'});
   if(session.busy||active>=2)return reply(429,{error:'runner_busy'});

@@ -9,10 +9,17 @@ No deployment or paid resource has been created for this candidate. The developm
 - A runtime that can launch Chromium and keep the Node server alive across comparison requests. Do not assume the existing long-lived server will work unchanged in a short-lived serverless function.
 - Limited CPU/memory/concurrency, request timeouts, session expiry, and a cost allowance approved before provisioning.
 
-## Source changes still required for public hosting
+## Implemented source preparation
 
-1. Explicit configured public origin and exact host allowlist. Current server permits local development hosts and an internal preview host only.
-2. HTTPS-aware origin validation and Secure session cookies behind the selected proxy. Do not weaken origin checks to make a deployment work.
+- Optional `PUBLIC_ORIGIN` accepts a clean HTTPS origin and adds that exact host to the allowlist. Forwarded host headers do not extend trust.
+- Requests for that configured host require the HTTPS Origin and get a Secure, HttpOnly, SameSite session cookie. Local fixture execution still uses loopback.
+- Test exports use the validated request origin and actual local port, with destination strings JSON-escaped.
+- Four new HTTP/configuration checks pass locally; 18 control tests in total. These simulate proxy headers and do not establish actual TLS termination or hosted operation.
+
+## Remaining hosting work
+
+1. Select and approve the hosting environment and domain, set `PUBLIC_ORIGIN`, and verify real proxy/TLS behavior on that exact URL.
+2. Verify HTTPS-aware origin validation and Secure cookies behind the selected proxy. Do not weaken origin checks to make a deployment work.
 3. External-runtime browser isolation, process cleanup and network restrictions. The current fixture-origin route filter is not an OS sandbox.
 4. Public session/global usage limits appropriate to the selected runtime. The existing limits are in-memory and reset on restart; they are not a durable account quota or provider bill cap.
 5. Decide retention and persistence before describing evidence links as durable. Current server records expire after one hour and disappear on restart.
@@ -22,6 +29,6 @@ No deployment or paid resource has been created for this candidate. The developm
 
 Open the exact public URL in a fresh session, compare one broken and one corrected case, inspect screenshots, replay, download evidence and execute the exported test against the intended fixture URL. Check physical iPhone/Safari separately. Verify secrets are server-only, no external target entry is exposed, and no live model request occurs in scripted mode.
 
-The test export currently targets localhost:8787. A hosted export must use a validated configured fixture origin or a clearly documented local reproduction workflow; do not silently ship a localhost URL as a remotely playable test.
+The server export now uses the validated public origin or actual local listening port. The standalone replaySource helper defaults to localhost:8787 for local reproduction. Hosted exports still require an actual public-URL acceptance check; generating the correct string does not prove external reachability.
 
 Provider choice, price, account allowance, public release and deployment remain owner decisions. Prepared source and passing CI do not establish a free hosting entitlement or deployment authorization.
