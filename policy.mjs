@@ -1,4 +1,4 @@
-export const VARIANTS = new Set(['broken','fixed','alternate']);
+export const VARIANTS = new Set(['broken','fixed','alternate','reordered','space-only','trap']);
 export const KEYS = new Set(['Tab','Shift+Tab','Enter','Space','ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape']);
 export function validateAction(action,mode){
   if(!action||typeof action!=='object'||Array.isArray(action))throw Error('invalid_action');

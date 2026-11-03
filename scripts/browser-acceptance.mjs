@@ -12,13 +12,13 @@ const results=[];
 await mkdir('artifacts',{recursive:true});
 await new Promise(resolve=>app.listen(8787,'127.0.0.1',resolve));
 try{
- for(const variant of ['broken','fixed','alternate']){
+ for(const variant of ['broken','fixed','alternate','reordered','space-only','trap']){
   const result=await runComparison('http://127.0.0.1:8787',variant);
   assert.equal(result.mouse?.status,'observed',JSON.stringify(result.summary));
   assert.equal(result.mouse.completed,true);
   assert.equal(result.keyboard.status,'observed');
-  assert.equal(result.keyboard.completed,variant!=='broken');
-  assert.equal(result.summary.status,variant==='broken'?'needs_review':'completed_both');
+  assert.equal(result.keyboard.completed,!['broken','trap'].includes(variant));
+  assert.equal(result.summary.status,['broken','trap'].includes(variant)?'needs_review':'completed_both');
   assert(result.keyboard.actions.every(action=>action.kind==='press'));
   assert.equal(result.ai_connected,false);
   const replay=await runComparison('http://127.0.0.1:8787',variant,'saved_actions',result);
@@ -61,5 +61,5 @@ try{
   }
  }finally{await browser.close();}
  await writeFile('artifacts/browser-acceptance.json',JSON.stringify({planner:'scripted_fixture_no_AI',results,exported_test_passed:true},null,2));
- console.log('Real browser acceptance passed: three comparisons, three replays, exported test, and desktop/mobile-width UI compare-export-replay. No Meta inference.');
+ console.log('Real browser acceptance passed: six comparisons, six replays, exported test, and desktop/mobile-width UI compare-export-replay. No Meta inference.');
 }finally{await new Promise(resolve=>app.close(resolve));}

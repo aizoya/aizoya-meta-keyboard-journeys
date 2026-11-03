@@ -14,7 +14,7 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison}={})
   if(!session){if(sessions.size>=50)return reply(503,{error:'session_capacity'});token=randomBytes(24).toString('hex');session={expires:now+3600000,busy:false,runs:new Map()};sessions.set(token,session);res.setHeader('Set-Cookie',`passage=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600`);}
   if(req.method==='GET'){
    const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/fixture.js':'fixture.js','/fixture.css':'fixture.css'};
-   if(files[url.pathname]||/^\/fixture\/(broken|fixed|alternate)$/.test(url.pathname)){
+   if(files[url.pathname]||/^\/fixture\/(broken|fixed|alternate|reordered|space-only|trap)$/.test(url.pathname)){
     const file=files[url.pathname]||'fixture.html';const mime=file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8';return reply(200,await readFile(path.join(root,'public',file)),mime);
    }
    if(url.pathname==='/api/status')return reply(200,{meta:metaStatus(),scope:'owned_fixture_only',public_release:false,persistence:'session_memory_1_hour',name_status:'working_description_not_cleared_brand'});
