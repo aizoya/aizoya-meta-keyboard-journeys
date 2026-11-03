@@ -49,3 +49,7 @@ Open **Explore 6 recorded browser examples** to inspect genuine captured outcome
 A self-contained preview is committed at previews/AIZOYA_Recorded_Browser_Preview.html. Open it directly in a browser; all six examples and images are embedded. It is an evidence gallery, not the full application. Regenerate with `node scripts/export-recorded-preview.mjs --deliverable`.
 
 Source 37b4162cf237d316b823a1babd16256e084a2d13 passed 21 control tests and the full browser workflow in run 41563180587. Browser acceptance checked six gallery selections, download with zero comparison POSTs, and standalone file loading with zero external network requests. Live Meta calls remain paused.
+
+## License and release approval
+
+Original project code is licensed under MIT, Copyright (c) 2026 Franklyn Rosario; see LICENSE. Dependencies retain their own terms in THIRD_PARTY_NOTICES.md. The owner approved licensing, PR #2 integration and public repository release. Earlier proposal documents describe the pre-approval checkpoint. Public visibility must still be verified separately. This approval does not enable model calls or authorize deployment.
