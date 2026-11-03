@@ -1,31 +1,34 @@
 # Contribution and provenance record
 
-Owner: AIZOYA / Franklyn Rosario. Event: Meta Global AI Developer Hackathon, startup-track application. Eligibility remains subject to organizer verification.
+Owner: AIZOYA / Franklyn Rosario. Event: Meta Global AI Developer Hackathon. Startup-track eligibility remains subject to organizer verification.
 
 ## Honest history boundary
 
-The concept was selected for feasibility after blind external AI research supplied during November 2, 2026. Prior recommendations and source archives exist independently. This candidate's Git history begins when these files were first committed; no dates, authorship or earlier development history are backdated.
+The concept was selected after external AI research supplied on November 2, 2026. This candidate's Git history begins when its files were first committed; no dates, authorship or earlier development are backdated. The retained local-history bundle preserves development records but is not claimed as earlier GitHub activity.
 
-The initial commit contains source written in this session before repository initialization. Its creation timestamp is not proof of earlier independent work. File modification times are weaker evidence than hosted commit records. GitHub upload checkpoints are recorded in the repository and QA evidence; original local history is retained in the provenance bundle.
-
-## New source in this candidate
+## New work in this candidate
 
 - Original fictional storefront and six owned interaction controls.
-- Constrained action policy and local-origin restriction.
-- Separate mouse and keyboard browser contexts and observable outcome checks.
-- Trace/evidence schema, saved-action replay and fixed-template test export.
-- Interactive interface and manual observation panel.
-- Prepared bounded Meta transport; no successful live inference yet.
+- Constrained action policy and fixed owned-origin scope.
+- Separate mouse and keyboard browser contexts with deterministic completion checks.
+- Trace capture, saved-action replay and fixed-template test export.
+- Mobile-responsive judge interface and recorded evidence gallery.
+- Strict Muse Spark structured-action transport with bounded request accounting.
+- Docker/Vercel hosting, custom domain, session controls and automated browser acceptance.
 
-The existing restaurant prototype is preserved separately and is not included, represented as new code here or counted as verification for this candidate. No ReleaseProof source was imported. No competitor source was copied.
+The existing restaurant and ReleaseProof prototypes were not imported, represented as new work or counted as verification for this candidate. No competitor source was copied.
+
+## Verified Meta boundary
+
+Run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171) verified Muse Spark 1.3 on one owned corrected keyboard fixture. Five requests produced Tab, Tab, Space, Tab, Space; the deterministic receipt confirmed completion. Saved-action replay completed without another model request. Mouse comparison, other variants, unseen sites and hosted public AI were not tested. Vercel keeps live Meta disabled.
 
 ## Third-party and AI assistance
 
-- Playwright1.62.1, Apache2.0: browser automation dependency, not invented by AIZOYA. License and notices must accompany selected distribution; inspect exact dependencies before public release.
-- MetaModelAPI: intended hosted service, subject to its terms; no model weights bundled.
-- AI engineering assistance produced source and review suggestions. Human/external AI research informed concept choice; it does not establish product accuracy, novelty or demand.
-- All storefront visual assets in this checkpoint are authored HTML/CSS; no third-party customer images/data included.
+- Playwright 1.62.1 is an Apache-2.0 browser-automation dependency. Required license and notices are retained.
+- Meta Model API is a hosted service subject to its terms; no Meta model weights are bundled.
+- AI engineering assistance produced source and review suggestions. External AI research informed concept choice; it does not establish novelty, accuracy or demand.
+- Storefront visual assets are authored HTML/CSS; no customer images or data are included.
 
 ## Public release gate
 
-Competition requires a public repository. The repository is currently private until clean-source and publication approval. The original-project license is pending; see release/OPEN_SOURCE_RELEASE_REVIEW.md. No secrets, private data, customer assets or unrelated product source may enter publication. Contribution record must distinguish scripted demonstrations from live Meta behavior and tests from proposed targets.
+The repository is MIT licensed but remains private. Before submission, change this exact repository to public and verify anonymous read/clone access. Publication does not authorize additional model requests, public AI mode, spending or claims beyond the verified scope.
