@@ -1,0 +1,32 @@
+name: container-browser-acceptance
+on:
+  pull_request:
+    paths:
+      - 'Dockerfile.vercel'
+      - '.dockerignore'
+      - 'scripts/container-smoke.mjs'
+      - 'server.mjs'
+      - 'runner.mjs'
+      - 'policy.mjs'
+      - 'meta.mjs'
+      - 'public/**'
+      - 'package.json'
+      - '.github/workflows/container.yml'
+permissions:
+  contents: read
+jobs:
+  chromium-container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: docker build -f Dockerfile.vercel -t keyboard-candidate .
+      - run: docker run -d --name keyboard-candidate -p 127.0.0.1:8787:8787 keyboard-candidate
+      - run: node scripts/container-smoke.mjs
+      - if: always()
+        run: docker logs keyboard-candidate || true
+      - if: always()
+        run: docker rm -f keyboard-candidate || true

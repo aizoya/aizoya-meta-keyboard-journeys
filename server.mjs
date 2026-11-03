@@ -2,12 +2,13 @@ import http from 'node:http';import {readFile} from 'node:fs/promises';import pa
 import {VARIANTS,replaySource,exportOrigin} from './policy.mjs';import {runComparison} from './runner.mjs';import {metaStatus} from './meta.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publicOrigin=process.env.PUBLIC_ORIGIN||null}={}){
- const external=publicOrigin?new URL(exportOrigin(publicOrigin)):null;
- if(external&&external.protocol!=='https:')throw Error('public_origin_requires_https');
+ const configuredOrigins=[publicOrigin,...(process.env.VERCEL==='1'&&process.env.VERCEL_URL?[`https://${process.env.VERCEL_URL}`]:[])].filter(Boolean);
+ const externalOrigins=configuredOrigins.map(value=>new URL(exportOrigin(value)));
+ if(externalOrigins.some(value=>value.protocol!=='https:'))throw Error('public_origin_requires_https');
  const sessions=new Map();let active=0;
  const app=http.createServer(async(req,res)=>{
-  const actualPort=port||app.address()?.port;const host=req.headers.host;const allowed=new Set([`localhost:${actualPort}`,`127.0.0.1:${actualPort}`,'terminal.local:4173',...(external?[external.host]:[])]);
-  const isExternal=external?.host===host;const requestOrigin=isExternal?external.origin:`http://${host}`;
+  const actualPort=port||app.address()?.port;const host=req.headers.host;const allowed=new Set([`localhost:${actualPort}`,`127.0.0.1:${actualPort}`,'terminal.local:4173',...externalOrigins.map(value=>value.host)]);
+  const isExternal=externalOrigins.find(value=>value.host===host);const requestOrigin=isExternal?isExternal.origin:`http://${host}`;
   const reply=(code,data,mime='application/json')=>{const bytes=mime==='application/json'?Buffer.from(JSON.stringify(data)):Buffer.from(data);res.writeHead(code,{'Content-Type':mime,'Content-Length':bytes.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'none'"});res.end(bytes);};
   if(!allowed.has(host))return reply(403,{error:'untrusted_host'});
   const url=new URL(req.url,`http://${host}`);const now=Date.now();
