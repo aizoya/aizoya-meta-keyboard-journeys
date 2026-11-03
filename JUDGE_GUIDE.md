@@ -2,7 +2,7 @@
 
 ## Open the hosted application
 
-Use **https://meta.aizoya.com**. The current deployment is protected by Vercel team authentication, so logged-out judge access must be confirmed before submission.
+Use **https://meta.aizoya.com**. On November 3, 2026, the owner opened the production URL in a fresh Private Safari session without a sign-in wall and exercised the core mobile flow. This is owner-verified access evidence, not an independent reviewer browser test.
 
 For a zero-request preview, open `previews/AIZOYA_Recorded_Browser_Preview.html`. It contains six recorded scripted examples and makes no model request.
 
@@ -15,7 +15,7 @@ For a zero-request preview, open `previews/AIZOYA_Recorded_Browser_Preview.html`
 5. Open **Explore 6 recorded browser examples** for the corrected, arrow-key, reordered, Space-key and focus-trap cases.
 6. Download the evidence or export the fixed-template Playwright test draft.
 
-No real store, payment, account or external URL is involved. Mobile-width checks do not establish physical iPhone or Safari acceptance.
+No real store, payment, account or external URL is involved. Automated mobile-width checks are supplemented by the owner's November 3 physical iPhone/Safari smoke check; neither is an accessibility certification.
 
 ## Verified Meta use
 
@@ -33,7 +33,6 @@ That result covers one keyboard-only fixture. It does not cover a live mouse com
 
 ## Remaining judge-access checks
 
-- Change the GitHub repository from private to public.
-- Confirm the application works in a logged-out judge session or intentionally change the Vercel access policy.
-- Perform the physical iPhone/Safari check.
-- Record and verify the three-minute demo video.
+- Public MIT repository verified; recheck the exact submission URL.
+- Recheck anonymous production access immediately before submission.
+- Record, upload and verify the three-minute demo video.

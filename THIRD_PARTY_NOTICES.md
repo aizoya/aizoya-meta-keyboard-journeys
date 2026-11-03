@@ -1,6 +1,6 @@
 # Third-party notices and distribution boundary
 
-Original project license: pending owner approval. This document does not relicense dependencies.
+Original project code is licensed under MIT. This document does not relicense dependencies.
 
 | Component | Version / use | License evidence |
 | --- | --- | --- |
@@ -9,7 +9,7 @@ Original project license: pending owner approval. This document does not relicen
 | playwright-core | Transitive dependency of Playwright; npm resolves the exact dependency graph at installation | Preserve the notices shipped with the actual installed package. No dependency code is vendored here. |
 | Chromium and FFmpeg | Installed separately by Playwright for browser verification | Browser binaries are not included in this source repository or the standalone gallery. Preserve their actual distribution licenses/notices when packaging a runtime; the application license does not replace them. |
 | Node.js | Runtime, not bundled | Preserve the selected runtime's own license/notices if distributing a runtime image. |
-| Meta Model API | Prepared hosted integration; no model weights bundled | Separate service terms. No claim of a successful live agent run. |
+| Meta Model API | Hosted Muse Spark integration; no model weights bundled | Separate service terms. One bounded manual workflow completed one owned keyboard-only fixture in run 41721095171. Public live Meta remains disabled. |
 
 The Common Goods store, CSS organizer illustration and recorded image assets are authored project materials/captures of the owned synthetic fixtures. No customer uploads or third-party listing photos are included. Captured images retain their source run and content hashes.
 

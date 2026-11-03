@@ -12,7 +12,7 @@ Source: organizer's event blast pasted by Franklyn in this conversation. This is
 
 ## Completed and evidenced
 
-- Private GitHub repository with MIT license and auditable commit history.
+- Public GitHub repository with MIT license and auditable commit history.
 - Twenty-one control/integrity tests and the complete browser workflow passed in run 41563180587.
 - Real Chromium: six comparisons and replays, executed test export, desktop/mobile-width app flow and the file-only no-network preview passed.
 - Explicit scripted-versus-Meta labels and documented contribution boundary.
@@ -27,11 +27,10 @@ These are authored synthetic cases, not a blinded external benchmark or independ
 
 ## Required before calling the entry ready
 
-1. Confirm logged-out judge access to the hosted app, or explicitly change the Vercel team-authentication policy.
-2. Perform a physical iPhone/Safari smoke check and visual review.
-3. Record, upload and verify the three-minute demo video.
-4. Finish the submission answers, confirm track eligibility and submit before the internal 5:00 PM Pacific target.
-5. Preserve the final confirmation and exact submitted URLs.
+1. Recheck owner-verified anonymous access and the physical iPhone/Safari flow immediately before submission.
+2. Record, upload and verify the three-minute demo video.
+3. Finish the submission answers, confirm track eligibility and submit before the internal 5:00 PM Pacific target.
+4. Preserve the final confirmation and exact submitted URLs.
 
 ## Verified live Meta checkpoint
 
@@ -43,8 +42,6 @@ Earlier run 41559772934 returned HTTP 402. A later, separately authorized bounde
 
 ## Immediate sequence
 
-1. Fix and verify the judge-facing recorded gallery and current documentation.
-2. Recheck the public repository in a logged-out browser.
-3. Resolve logged-out judge access to the hosted application.
-4. Complete the physical iPhone/Safari check.
-5. Record the three-minute video, finish the form and submit early.
+1. Merge the final QA documentation reconciliation after checks pass.
+2. Recheck the public repository and anonymous application URL.
+3. Record the three-minute video, finish the form and submit early.

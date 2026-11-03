@@ -1,5 +1,7 @@
 # Container acceptance — November 3, 2026
 
+> Historical pre-deployment checkpoint. For the current hosted state, see `HOSTING_HANDOFF.md` and `SUBMISSION_READINESS.md`.
+
 Runtime source: da5200006cfd65bded537f808b9c2e392bc6b0e6.
 
 - Container build and actual Chromium comparison, same-instance replay and test export passed: https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41687857168
@@ -13,8 +15,8 @@ Use the Container preset after integrating this branch. Set PORT=8787 to match t
 
 No Vercel deployment or registry push has been performed by these GitHub tests. Container storage and active compute may use paid Vercel allowance; no zero-cost entitlement is established.
 
-## Remaining acceptance
+## Remaining acceptance at this checkpoint
 
 Actual Vercel build/launch, protected preview response, screenshots, comparison/replay/export and domain/TLS must be tested before any judge-facing URL is claimed. In-process saved runs and quotas are instance-local; scale-down, restart or another instance can lose them. The container test proves same-instance operation only. Shared state/global quota design remains necessary for reliable multi-instance public operation. Do not label the app production-ready or enable paid inference under these local quotas.
 
-Meta inference remains paused. CNAME has not been added. The root website and email DNS have not been changed.
+At this checkpoint, Meta inference was paused and the CNAME had not been added. Later hosting evidence records the custom-domain deployment. The root website and email DNS were not changed.
