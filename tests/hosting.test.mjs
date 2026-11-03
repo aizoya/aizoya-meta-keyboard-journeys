@@ -72,3 +72,33 @@ test('Vercel preview trusts only its configured platform hostname',async t=>{
  assert.equal(response.status,201);assert.match(response.headers.get('set-cookie'),/; Secure/);
  assert.equal((await s.request('POST','/api/run',{host:'other-preview.vercel.app',origin:'https://other-preview.vercel.app'})).status,403);
 });
+
+test('unknown routes and rejected requests cannot exhaust sessions',async t=>{
+ const s=await server(t);
+ for(let i=0;i<60;i++){
+  for(const [method,path,options,status]of [
+   ['GET','/favicon.ico',{},404],
+   ['GET','/api/runs/abc',{},404],
+   ['POST','/api/run',{origin:'https://attacker.example'},403],
+   ['POST','/unknown',{},404]
+  ]){
+   const r=await s.request(method,path,options);
+   assert.equal(r.status,status);assert.equal(r.headers.get('set-cookie'),undefined);
+  }
+ }
+ assert.equal((await s.request('POST','/api/run')).status,201);
+});
+test('obsolete development host is rejected without terminating the server',async t=>{
+ const s=await server(t);
+ assert.equal((await s.request('GET','/api/status',{host:'terminal.local:4173'})).status,403);
+ assert.equal((await s.request('GET','/api/status')).status,200);
+});
+test('asset errors are contained and the same server remains usable',async t=>{
+ const app=createApp({port:0,readAsset:async()=>{throw Error('private-asset-path');}});
+ await new Promise(resolve=>app.listen(0,'127.0.0.1',resolve));
+ t.after(()=>new Promise(resolve=>app.close(resolve)));
+ const base='http://127.0.0.1:'+app.address().port;
+ const failed=await fetch(base+'/app.js');
+ assert.equal(failed.status,500);assert.deepEqual(await failed.json(),{error:'internal_error'});
+ assert.equal((await fetch(base+'/api/status')).status,200);
+});
