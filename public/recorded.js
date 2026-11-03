@@ -17,16 +17,18 @@ function show(){
  byId('recorded-source').href=`https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/${manifest.source_run_id}`;
  byId('recorded-result').hidden=false;
 }
-byId('recorded-gallery').addEventListener('toggle',async()=>{
- if(!byId('recorded-gallery').open||started)return;started=true;
+async function loadRecorded(){
+ if(started)return;started=true;
  try{
   if(globalThis.RECORDED_EXPORT){manifest=globalThis.RECORDED_EXPORT.manifest;}else{const response=await fetch('/recorded/manifest.json');if(!response.ok)throw Error();manifest=await response.json();}
   if(manifest.is_live!==false||manifest.ai_connected!==false||!Number.isSafeInteger(manifest.source_run_id)||!/^[a-f0-9]{40}$/.test(manifest.source_commit)||!Array.isArray(manifest.results)||manifest.results.length!==6)throw Error();
   const select=byId('recorded-variant');select.replaceChildren();
   for(const row of manifest.results){if(!Object.hasOwn(labels,row.variant))throw Error();const option=document.createElement('option');option.value=row.variant;option.textContent=labels[row.variant];select.append(option);}
   select.disabled=false;show();
- }catch{byId('recorded-message').textContent='Recorded examples are unavailable. You can still try the practice store below.';}
-});
+ }catch{started=false;byId('recorded-message').textContent='Recorded examples are unavailable. You can still try the practice store below.';}
+}
+byId('recorded-gallery').addEventListener('toggle',()=>{if(byId('recorded-gallery').open)loadRecorded();});
+loadRecorded();
 byId('recorded-variant').addEventListener('change',show);
 byId('recorded-download').addEventListener('click',()=>{
  if(!current)return;

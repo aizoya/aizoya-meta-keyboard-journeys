@@ -58,3 +58,10 @@ All 21 control tests passed, including exact image-hash checks against the downl
 The full six-case comparison/replay and exported-test workflow passed. At desktop and mobile widths, all six recorded gallery options showed the expected recorded outcomes and image loads; downloading a recording made no comparison POST. The standalone HTML opened from file in Chromium, showed the corrected-case images/outcome and made zero HTTP(S) requests. It uses embedded assets and a connect-src none policy.
 
 Recordings come from earlier run 41561886365 and retain that provenance. No live Meta call, new model inference or training was performed. Physical iPhone/Safari and public deployment remain unverified.
+
+
+## Live Meta and hosted reliability checkpoint — November 3, 2026
+
+Source 0c792cfce06ecf520685a1ba2c9c9f251734e6c4 passed the bounded live workflow in [run 41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171). Muse Spark completed the owned corrected keyboard fixture in five reserved requests using Tab, Tab, Space, Tab, Space. The deterministic receipt confirmed completion. Saved-action replay completed without another model request. Scope: one owned keyboard-only fixture; mouse comparison and other variants were not tested.
+
+Reliability source 4891d4bb74cd42c4c9ea7bfba019131512db04ef is deployed at https://meta.aizoya.com. Nineteen server/control tests and desktop/mobile-width browser acceptance passed in GitHub Actions. The hosted page loads under Vercel team authentication. Live Meta is disabled there. Logged-out judge access, physical iPhone/Safari use, durable cross-instance storage and global spend enforcement remain unverified.
