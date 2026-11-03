@@ -1,5 +1,9 @@
 # Judge walkthrough — development draft
 
+## Recorded preview while live access is paused
+
+Open previews/AIZOYA_Recorded_Browser_Preview.html directly in a browser to explore the six past scripted runs without a server, key or external network requests. The source/run and capture hashes remain visible or downloadable. This is a recorded evidence gallery, not a new comparison or live Meta run.
+
 ## What to try
 
 Use the application URL once a hosted deployment is verified. There is no judge-ready public URL yet.

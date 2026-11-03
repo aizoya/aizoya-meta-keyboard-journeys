@@ -47,3 +47,14 @@ https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41561886365
 Nineteen control tests passed, including exact HTTPS-origin configuration, Secure/HttpOnly cookies on the configured host, rejection of insecure/foreign Origins and spoofed forwarded-host claims, actual-port/local and configured-origin exports, and 60 practice/status visits without exhausting saved-run sessions. Hosting HTTP tests use an injected runner and simulated proxy headers; they do not establish an actual hosted TLS endpoint.
 
 The same source passed all six real Chromium comparisons and replays, actual exported-test execution, and desktop/mobile-width app compare/export/replay and iframe-fit checks. No live Meta request, training, deployment or paid resource was introduced. Public hosting, proxy acceptance, process isolation, durable quotas and physical iPhone/Safari remain pending.
+
+## Recorded gallery and file-only preview
+
+Source 37b4162cf237d316b823a1babd16256e084a2d13 passed run 41563180587:
+https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41563180587
+
+All 21 control tests passed, including exact image-hash checks against the downloaded CI artifact and read-only/session-free asset serving. The source artifact ZIP hash was verified against GitHub metadata before extraction: c591cd863156f78a2f0cce760a398a0be1f33f4a41021054e5fa3dddd12bd10f. Hashes preserve content identity; they are not an independent signature or accessibility certification.
+
+The full six-case comparison/replay and exported-test workflow passed. At desktop and mobile widths, all six recorded gallery options showed the expected recorded outcomes and image loads; downloading a recording made no comparison POST. The standalone HTML opened from file in Chromium, showed the corrected-case images/outcome and made zero HTTP(S) requests. It uses embedded assets and a connect-src none policy.
+
+Recordings come from earlier run 41561886365 and retain that provenance. No live Meta call, new model inference or training was performed. Physical iPhone/Safari and public deployment remain unverified.

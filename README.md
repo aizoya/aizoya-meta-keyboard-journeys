@@ -41,3 +41,11 @@ Run the same browser checks after installing dependencies and Chromium: `npm run
 See JUDGE_GUIDE.md, DEMO_SCRIPT.md, SUBMISSION_READINESS.md and HOSTING_HANDOFF.md. The practice iframe now fits its content, and completed results scroll into view with reduced-motion support. Six authored examples are regression cases, not an independent benchmark. No production or public release is implied.
 
 Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Nineteen control tests pass locally, including five hosting checks. Actual proxy/TLS, isolation, public hosting and deployment remain unverified; see HOSTING_HANDOFF.md. Model calls remain paused.
+
+## Recorded examples and standalone preview
+
+Open **Explore 6 recorded browser examples** to inspect genuine captured outcomes from run 41561886365. They are explicitly labelled recorded, scripted and no-AI, with source commit/run, archive checksum and image hashes. Viewing them does not start a new comparison or replay.
+
+A self-contained preview is committed at previews/AIZOYA_Recorded_Browser_Preview.html. Open it directly in a browser; all six examples and images are embedded. It is an evidence gallery, not the full application. Regenerate with `node scripts/export-recorded-preview.mjs --deliverable`.
+
+Source 37b4162cf237d316b823a1babd16256e084a2d13 passed 21 control tests and the full browser workflow in run 41563180587. Browser acceptance checked six gallery selections, download with zero comparison POSTs, and standalone file loading with zero external network requests. Live Meta calls remain paused.
