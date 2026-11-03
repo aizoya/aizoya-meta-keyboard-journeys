@@ -1,0 +1,16 @@
+name: source-controls
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit-and-http:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/*.test.mjs
+      - run: node --check public/app.js && node --check public/fixture.js && node --check server.mjs && node --check runner.mjs && node --check meta.mjs
+# This job does not install/run Chromium. It verifies policy and HTTP controls,
+# not browser execution, live Meta behavior, hosted usability or accessibility.

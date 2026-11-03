@@ -1,0 +1,18 @@
+✔ keyboard executor rejects every pointer, fill, focus and script escape (1.43033ms)
+✔ pointer targets and replay exports cannot carry selectors or code (0.383449ms)
+✔ fixture entry restricts origins and variants (0.260594ms)
+✔ failed bounded search remains a review lead and infrastructure failure stays separate (0.147312ms)
+✔ fixture replay can explore the valid arrow-key alternative without clicking (0.23199ms)
+✔ actual HTTP: run records require the session that created them (39.00699ms)
+✔ actual HTTP: cross-origin execution is rejected before the runner (7.182855ms)
+✔ actual HTTP: unconfigured Meta never silently becomes a fixture replay (3.632926ms)
+✔ actual HTTP: arbitrary fixture or planner is rejected (6.42385ms)
+✔ actual HTTP: backend exception is not a completed run (4.922022ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.75368
