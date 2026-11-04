@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v2",
+  "status": "infrastructure_error",
+  "workflow_run": 41748979696,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41748979696",
+  "artifact_id": 13285915527,
+  "artifact_digest": "sha256:d1cd73985e1cf7af75bad472eac1ed66a99e1f8450f828f961dd860e6636a93a",
+  "source_commit": "af24fa4e49f0819dc24e661245d99928a10c4de4",
+  "requests_reserved": 0,
+  "retried": false,
+  "root_cause": "The server served the heldout page, but policy.fixtureURL rejected it because it used the public selectable VARIANTS set.",
+  "disposition": "Published unchanged. heldout-v3 separates internal owned fixtures from public selectable variants before any inference."
+}
