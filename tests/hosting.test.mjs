@@ -120,7 +120,8 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/Five requests, no retry/i);
  assert.match(html,/Read obstacle result/);
  assert.match(html,/meta-obstacle-v2\/result\.json/);
- assert.match(html,/Muse selected Blue, then exposed the focus trap/i);
+ assert.match(html,/Bounded run did not complete; the focus cycle is recorded/i);
+ assert.match(html,/PRECOMMITTED OBSTACLE CHECK · NOV 3/i);
  assert.match(html,/raw runner labeled the terminal/i);
  assert.match(html,/Inspect the exact obstacle JSON/);
  assert.match(html,/&quot;evaluation&quot;: &quot;precommitted_obstacle_v2&quot;/);
