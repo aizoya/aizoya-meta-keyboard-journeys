@@ -24,6 +24,383 @@
     <div class="muse-links"><a class="primary" href="/provenance/meta-obstacle-v2/result.json" target="_blank" rel="noopener noreferrer">Read obstacle result ↗</a><a class="secondary" href="/evaluation/obstacle-v2-plan.json" target="_blank" rel="noopener noreferrer">Read frozen plan ↗</a><a class="secondary" href="https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334" target="_blank" rel="noopener noreferrer">View workflow ↗</a></div>
     <p class="classification-note"><strong>Reporting limitation:</strong> the raw runner labeled the terminal <code>meta_incomplete</code> condition as <code>infrastructure_error</code>. The recorded states still establish bounded noncompletion on this one fixture; they do not prove that no keyboard route exists or certify accessibility.</p>
     <figure class="obstacle-image"><figcaption>Final captured frame · Blue selected, completion unreachable in the recorded Tab cycle</figcaption><img src="/provenance/meta-obstacle-v2/keyboard.png" alt="Final frame from the precommitted obstacle run with Blue selected"></figure>
+    <details class="raw-evidence obstacle-raw"><summary>Inspect the exact obstacle JSON</summary>
+      <p>This is the unmodified source result, including its terminal classification limitation.</p>
+      <pre><code>{
+  &quot;status&quot;: &quot;failed&quot;,
+  &quot;scope&quot;: &quot;one_owned_trap_fixture_keyboard_only&quot;,
+  &quot;evaluation&quot;: &quot;precommitted_obstacle_v2&quot;,
+  &quot;mouse_comparison&quot;: &quot;not_tested&quot;,
+  &quot;other_variants&quot;: &quot;not_tested&quot;,
+  &quot;public_deployment&quot;: &quot;AI remains disabled&quot;,
+  &quot;requests_reserved&quot;: 8,
+  &quot;max_requests&quot;: 8,
+  &quot;retried&quot;: false,
+  &quot;keyboard_completed&quot;: false,
+  &quot;runner_status&quot;: &quot;infrastructure_error&quot;,
+  &quot;error&quot;: &quot;meta_incomplete&quot;,
+  &quot;saved_action_replay_completed&quot;: false,
+  &quot;replay_made_no_model_calls&quot;: true,
+  &quot;actions&quot;: [
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Space&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;press&quot;,
+      &quot;key&quot;: &quot;Tab&quot;
+    }
+  ],
+  &quot;elapsed_ms&quot;: 22721,
+  &quot;steps&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;action&quot;: null,
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: null,
+          &quot;tag&quot;: &quot;BODY&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;\nCOMMON GOODSPractice store · no purchase\nMade for a little more order.DESK ESSENTIALSThe everyday o&quot;
+        },
+        &quot;selected&quot;: &quot;No color selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: true
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 1,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;sand&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Sand&quot;
+        },
+        &quot;selected&quot;: &quot;No color selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: true
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 2,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;blue&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Blue&quot;
+        },
+        &quot;selected&quot;: &quot;No color selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: true
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 3,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Space&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;blue&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Blue&quot;
+        },
+        &quot;selected&quot;: &quot;Blue selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 4,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;sand&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Sand&quot;
+        },
+        &quot;selected&quot;: &quot;Blue selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 5,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;blue&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Blue&quot;
+        },
+        &quot;selected&quot;: &quot;Blue selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 6,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;sand&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Sand&quot;
+        },
+        &quot;selected&quot;: &quot;Blue selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          }
+        ]
+      }
+    },
+    {
+      &quot;index&quot;: 7,
+      &quot;action&quot;: {
+        &quot;kind&quot;: &quot;press&quot;,
+        &quot;key&quot;: &quot;Tab&quot;
+      },
+      &quot;state&quot;: {
+        &quot;focus&quot;: {
+          &quot;target&quot;: &quot;blue&quot;,
+          &quot;tag&quot;: &quot;BUTTON&quot;,
+          &quot;role&quot;: null,
+          &quot;text&quot;: &quot;Blue&quot;
+        },
+        &quot;selected&quot;: &quot;Blue selected&quot;,
+        &quot;complete&quot;: false,
+        &quot;outcome&quot;: &quot;Your practice kit is empty.&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;target&quot;: &quot;sand&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;blue&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          },
+          {
+            &quot;target&quot;: &quot;finish&quot;,
+            &quot;tag&quot;: &quot;BUTTON&quot;,
+            &quot;role&quot;: null,
+            &quot;tabIndex&quot;: 0,
+            &quot;disabled&quot;: false
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre>
+    </details>
   </article>
   <details class="raw-evidence"><summary>Inspect the exact held-out JSON and screenshots</summary>
     <p>The full result and precommitted plan are mirrored on this domain so mobile judges and automated reviewers do not depend on GitHub rendering.</p>
