@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v2",
+  "status": "frozen_before_inference",
+  "created_at": "2026-11-04T00:44:00Z",
+  "relationship_to_v1": "Same challenge content and acceptance criteria. Version changed because v1 ended before inference due to a missing owned-fixture static route.",
+  "infrastructure_change": "Add heldout to the GET-only owned fixture allowlist. Public comparison API still rejects heldout because it is absent from policy VARIANTS.",
+  "challenge": {
+    "owned_fixture": "heldout",
+    "task": "Choose Ocean, then place it in the demo kit",
+    "model_input": "structured text observation only",
+    "screenshots_sent_to_model": false
+  },
+  "acceptance": {
+    "keyboard_completed": true,
+    "runner_status": "observed",
+    "maximum_model_requests": 8,
+    "automatic_retries": 0,
+    "replay_completed": true,
+    "replay_additional_model_requests": 0
+  },
+  "reporting_rule": "Publish pass, failure, timeout or provider error without tuning or rerunning heldout-v2.",
+  "note": "No model request occurred in v1, and no heldout-v2 result existed when this plan was committed."
+}
