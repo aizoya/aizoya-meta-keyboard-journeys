@@ -16,7 +16,7 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publ
   // Static owned fixtures need no session; runner contexts must not consume
   // the limited session pool intended for saved comparisons.
   if(req.method==='GET'){
-   const files={'/':'index.html','/app.js':'app.js','/style.css':'style.css','/fixture.js':'fixture.js','/fixture.css':'fixture.css','/recorded.js':'recorded.js','/recorded/manifest.json':'recorded/manifest.json',
+   const files={'/':'index.html','/case-study':'case-study.html','/assets/AIZOYA_Keyboard_Journeys_Case_Study_2026.pdf':'assets/AIZOYA_Keyboard_Journeys_Case_Study_2026.pdf','/assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png':'assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png','/app.js':'app.js','/style.css':'style.css','/fixture.js':'fixture.js','/fixture.css':'fixture.css','/recorded.js':'recorded.js','/recorded/manifest.json':'recorded/manifest.json',
     '/evaluation/heldout-v3-plan.json':'evaluation/heldout-v3-plan.json','/evaluation/obstacle-v2-plan.json':'evaluation/obstacle-v2-plan.json',
     '/provenance/meta-heldout-v3/result.json':'provenance/meta-heldout-v3/result.json','/provenance/meta-heldout-v3/manifest.json':'provenance/meta-heldout-v3/manifest.json','/provenance/meta-heldout-v3/keyboard.png':'provenance/meta-heldout-v3/keyboard.png','/provenance/meta-heldout-v3/replay.png':'provenance/meta-heldout-v3/replay.png',
     '/provenance/meta-adaptive-v1/result.json':'provenance/meta-adaptive-v1/result.json','/provenance/meta-adaptive-v1/manifest.json':'provenance/meta-adaptive-v1/manifest.json','/provenance/meta-adaptive-v1/keyboard.png':'provenance/meta-adaptive-v1/keyboard.png','/provenance/meta-adaptive-v1/replay.png':'provenance/meta-adaptive-v1/replay.png',
@@ -24,7 +24,7 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publ
     '/provenance/meta-obstacle-v2/result.json':'provenance/meta-obstacle-v2/result.json','/provenance/meta-obstacle-v2/manifest.json':'provenance/meta-obstacle-v2/manifest.json','/provenance/meta-obstacle-v2/keyboard.png':'provenance/meta-obstacle-v2/keyboard.png'};
    const recordedImage=/^\/recorded\/(broken|fixed|alternate|reordered|space-only|trap)-(mouse|keyboard)\.png$/.test(url.pathname);
    if(files[url.pathname]||recordedImage||/^\/fixture\/(broken|fixed|alternate|reordered|space-only|trap|heldout|adaptive)$/.test(url.pathname)){
-    const file=files[url.pathname]||(recordedImage?url.pathname.slice(1):'fixture.html');const mime=file.endsWith('.png')?'image/png':file.endsWith('.json')?'application/json; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8';return reply(200,await readAsset(path.join(root,'public',file)),mime);
+    const file=files[url.pathname]||(recordedImage?url.pathname.slice(1):'fixture.html');const mime=file.endsWith('.png')?'image/png':file.endsWith('.pdf')?'application/pdf':file.endsWith('.json')?'application/json; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8';return reply(200,await readAsset(path.join(root,'public',file)),mime);
    }
    if(url.pathname==='/api/status')return reply(200,{meta:metaStatus(),scope:'owned_fixture_only',public_release:false,persistence:'session_memory_1_hour',name_status:'working_description_not_cleared_brand'});
   }
