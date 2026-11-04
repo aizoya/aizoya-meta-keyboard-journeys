@@ -111,13 +111,17 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  const response=await s.request('GET','/');
  assert.equal(response.status,200);
  const html=await response.text();
- assert.match(html,/Read held-out result/);
+ assert.match(html,/Read adaptive result/);
+ assert.match(html,/recovered after the interface changed/i);
+ assert.match(html,/inventory changes/i);
+ assert.match(html,/41770415998/);
+ assert.match(html,/Earlier held-out result/);
  assert.match(html,/Inspect the exact held-out JSON and screenshots/);
  assert.match(html,/href="\/provenance\/meta-heldout-v3\/result\.json"/);
  assert.match(html,/href="\/evaluation\/heldout-v3-plan\.json"/);
  assert.match(html,/provenance\/meta-heldout-v3\/result\.json/);
- assert.match(html,/changed version of the task/i);
- assert.match(html,/Five requests, no retry/i);
+ assert.match(html,/recovered after the interface changed/i);
+ assert.match(html,/Six requests, no retry/i);
  assert.match(html,/Read obstacle result/);
  assert.match(html,/meta-obstacle-v2\/result\.json/);
  assert.match(html,/Bounded run did not complete; the focus cycle is recorded/i);
@@ -149,6 +153,10 @@ test('every judge-facing proof route serves the committed bytes with the correct
   '/provenance/meta-heldout-v3/manifest.json':'application/json; charset=utf-8',
   '/provenance/meta-heldout-v3/keyboard.png':'image/png',
   '/provenance/meta-heldout-v3/replay.png':'image/png',
+  '/provenance/meta-adaptive-v1/result.json':'application/json; charset=utf-8',
+  '/provenance/meta-adaptive-v1/manifest.json':'application/json; charset=utf-8',
+  '/provenance/meta-adaptive-v1/keyboard.png':'image/png',
+  '/provenance/meta-adaptive-v1/replay.png':'image/png',
   '/provenance/meta-obstacle-v2/result.json':'application/json; charset=utf-8',
   '/provenance/meta-obstacle-v2/manifest.json':'application/json; charset=utf-8',
   '/provenance/meta-obstacle-v2/keyboard.png':'image/png'

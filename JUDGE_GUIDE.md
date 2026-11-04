@@ -27,6 +27,8 @@ A precommitted obstacle fixture was then run once with an eight-request limit an
 
 The verified model evidence covers two completed owned keyboard-only fixtures plus one bounded obstacle fixture, including one precommitted held-out challenge. It does not cover arbitrary applications, real accounts, purchases or the hosted public AI flow. Live Meta is disabled on the hosted application.
 
+An additional adaptive check directly tests changed-state recovery. In [run 41770415998](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41770415998), Muse selected Sand; the fixture then disabled Sand and reported Blue as the remaining available finish. Muse observed the changed state, selected Blue, and completed in six requests with no retry. Deterministic store code decided completion, and replay used zero model requests. See the permanent [result](provenance/meta-adaptive-v1/result.json) and [manifest](provenance/meta-adaptive-v1/manifest.json).
+
 ## What is implemented
 
 - Separate browser contexts for mouse and keyboard routes.
