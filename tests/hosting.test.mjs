@@ -128,6 +128,9 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/CI_INTEGRATION\.md/);
  assert.match(html,/github-actions-keyboard-journey\.yml/);
  assert.match(html,/reusable customer-owned local targets/i);
+ assert.match(html,/See the exact integration contract/i);
+ assert.match(html,/journey\.config\.json/);
+ assert.match(html,/data-journey-complete/);
 });
 
 
