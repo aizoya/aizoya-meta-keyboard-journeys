@@ -1,5 +1,5 @@
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
-import {validateJourneyConfig,sameTargetOrigin,observeJourneyTarget} from '../target-contract.mjs';
+import {validateJourneyConfig,sameTargetOrigin,observeJourneyTarget,buildTargetFailure} from '../target-contract.mjs';
 import {validateAction,KEYS} from '../policy.mjs';
 import {metaAction,metaStatus} from '../meta.mjs';
 
@@ -39,9 +39,9 @@ try{
  await mkdir('artifacts/ci-target',{recursive:true});await writeFile('artifacts/ci-target/result.json',JSON.stringify(result,null,2)+'\n');
  console.log(JSON.stringify(result));if(!state.complete)process.exitCode=1;
 }catch(error){
- const bounded=error.message==='meta_incomplete'&&trace.length>0;
- const result=bounded?{schema_version:1,status:'needs_review',classification:'bounded_meta_incomplete',scope:'customer_owned_local_target_keyboard_only',target:{name:target.name,url:target.url,task:target.task},requests_reserved:metaStatus().calls_reserved,max_requests:8,retried:false,keyboard_completed:false,actions:trace.flatMap(x=>x.action?[x.action]:[]),elapsed_ms:Date.now()-started,steps:trace.map(({provider,...step})=>step),limitations:['local same-origin target only','keyboard lane only','bounded noncompletion is a review lead','not an accessibility certification']}:{status:'infrastructure_error',error:String(error.message).startsWith('meta_')?error.message:'runner_failure',requests_reserved:metaStatus().calls_reserved,retried:false};
- if(bounded){await mkdir('artifacts/ci-target',{recursive:true});await writeFile('artifacts/ci-target/result.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));}else console.error(JSON.stringify(result));
+ const result=buildTargetFailure({message:error.message,trace,target,requestsReserved:metaStatus().calls_reserved,elapsedMs:Date.now()-started});
+ await mkdir('artifacts/ci-target',{recursive:true});await writeFile('artifacts/ci-target/result.json',JSON.stringify(result,null,2)+'\n');
+ if(result.status==='needs_review')console.log(JSON.stringify(result));else console.error(JSON.stringify(result));
  process.exitCode=1;
 }
 finally{if(context)await context.close();if(browser)await browser.close();}
