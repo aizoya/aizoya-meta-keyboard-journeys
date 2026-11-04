@@ -1,0 +1,284 @@
+{
+  "status": "passed",
+  "scope": "one_owned_heldout_fixture_keyboard_only",
+  "evaluation": "precommitted_heldout_v3",
+  "mouse_comparison": "not_tested",
+  "other_variants": "not_tested",
+  "public_deployment": "AI remains disabled",
+  "requests_reserved": 5,
+  "max_requests": 8,
+  "retried": false,
+  "keyboard_completed": true,
+  "runner_status": "observed",
+  "error": null,
+  "saved_action_replay_completed": true,
+  "replay_made_no_model_calls": true,
+  "actions": [
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Space"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Space"
+    }
+  ],
+  "elapsed_ms": 11282,
+  "steps": [
+    {
+      "index": 0,
+      "action": null,
+      "state": {
+        "focus": {
+          "target": null,
+          "tag": "BODY",
+          "role": null,
+          "text": "\nCOMMON GOODSPractice store · no purchase\nMade for a little more order.DESK ESSENTIALSThe everyday o"
+        },
+        "selected": "No finish selected",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "option-a",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Ocean"
+        },
+        "selected": "No finish selected",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "action": {
+        "kind": "press",
+        "key": "Space"
+      },
+      "state": {
+        "focus": {
+          "target": "option-a",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Ocean"
+        },
+        "selected": "Ocean selected",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "option-b",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Dune"
+        },
+        "selected": "Ocean selected",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Place in demo kit"
+        },
+        "selected": "Ocean selected",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "action": {
+        "kind": "press",
+        "key": "Space"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Place in demo kit"
+        },
+        "selected": "Ocean selected",
+        "complete": true,
+        "outcome": "Ocean finish placed. Demo task complete.",
+        "controls": [
+          {
+            "target": "option-a",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "option-b",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    }
+  ]
+}
