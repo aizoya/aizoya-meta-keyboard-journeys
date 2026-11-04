@@ -120,6 +120,8 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/meta-obstacle-v2\/result\.json/);
  assert.match(html,/Muse selected Blue, then exposed the focus trap/i);
  assert.match(html,/raw runner labeled the terminal/i);
+ assert.match(html,/Inspect the exact obstacle JSON/);
+ assert.match(html,/&quot;evaluation&quot;: &quot;precommitted_obstacle_v2&quot;/);
  assert.match(html,/not an accessibility audit/i);
  assert.match(html,/interactive examples below are scripted and make no AI request/i);
 });
