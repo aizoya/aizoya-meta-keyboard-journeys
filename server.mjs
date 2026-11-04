@@ -9,7 +9,7 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publ
  const app=http.createServer(async(req,res)=>{
   const actualPort=port||app.address()?.port;const host=req.headers.host;const allowed=new Set([`localhost:${actualPort}`,`127.0.0.1:${actualPort}`,...externalOrigins.map(value=>value.host)]);
   const isExternal=externalOrigins.find(value=>value.host===host);const requestOrigin=isExternal?isExternal.origin:`http://${host}`;
-  const reply=(code,data,mime='application/json')=>{const bytes=mime==='application/json'?Buffer.from(JSON.stringify(data)):Buffer.from(data);res.writeHead(code,{'Content-Type':mime,'Content-Length':bytes.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'none'"});res.end(bytes);};
+  const reply=(code,data,mime='application/json')=>{const bytes=mime==='application/json'?Buffer.from(JSON.stringify(data)):Buffer.from(data);res.writeHead(code,{'Content-Type':mime,'Content-Length':bytes.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self' https://www.youtube-nocookie.com; frame-ancestors 'self'; base-uri 'none'; form-action 'none'"});res.end(bytes);};
   try{
   if(!allowed.has(host))return reply(403,{error:'untrusted_host'});
   const url=new URL(req.url,`http://${host}`);const now=Date.now();
