@@ -1,0 +1,283 @@
+{
+  "status": "passed",
+  "scope": "one_owned_fixed_fixture_keyboard_only",
+  "mouse_comparison": "not_tested",
+  "other_variants": "not_tested",
+  "public_deployment": "AI remains disabled",
+  "requests_reserved": 5,
+  "max_requests": 8,
+  "retried": false,
+  "keyboard_completed": true,
+  "runner_status": "observed",
+  "error": null,
+  "saved_action_replay_completed": true,
+  "replay_made_no_model_calls": true,
+  "actions": [
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Space"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Space"
+    }
+  ],
+  "elapsed_ms": 10501,
+  "steps": [
+    {
+      "index": 0,
+      "action": null,
+      "state": {
+        "focus": {
+          "target": null,
+          "tag": "BODY",
+          "role": null,
+          "text": "\nCOMMON GOODSPractice store · no purchase\nMade for a little more order.DESK ESSENTIALSThe everyday o"
+        },
+        "selected": "No color selected",
+        "complete": false,
+        "outcome": "Your practice kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "sand",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Sand"
+        },
+        "selected": "No color selected",
+        "complete": false,
+        "outcome": "Your practice kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "blue",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Blue"
+        },
+        "selected": "No color selected",
+        "complete": false,
+        "outcome": "Your practice kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "action": {
+        "kind": "press",
+        "key": "Space"
+      },
+      "state": {
+        "focus": {
+          "target": "blue",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Blue"
+        },
+        "selected": "Blue selected",
+        "complete": false,
+        "outcome": "Your practice kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Add to practice kit"
+        },
+        "selected": "Blue selected",
+        "complete": false,
+        "outcome": "Your practice kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "action": {
+        "kind": "press",
+        "key": "Space"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Add to practice kit"
+        },
+        "selected": "Blue selected",
+        "complete": true,
+        "outcome": "Blue organizer added. Practice task complete.",
+        "controls": [
+          {
+            "target": "sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    }
+  ]
+}

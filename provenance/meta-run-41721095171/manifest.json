@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "evidence_type": "bounded_meta_model_api_keyboard_journey",
+  "workflow_run": 41721095171,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171",
+  "artifact_id": 13272891015,
+  "artifact_name": "meta-fixed-keyboard-evidence",
+  "artifact_digest": "sha256:4fb3de4980624dcdade8d24e9dce4ec4a5f3020bed4a21e0db5aa8b16ec09731",
+  "source_commit": "0c792cfce06ecf520685a1ba2c9c9f251734e6c4",
+  "created_at": "2026-11-03T21:22:38Z",
+  "files": [
+    "result.json",
+    "keyboard.png",
+    "replay.png"
+  ],
+  "limitations": [
+    "one owned corrected fixture",
+    "keyboard route only",
+    "public live AI disabled",
+    "screenshots are evidence, not model input"
+  ]
+}

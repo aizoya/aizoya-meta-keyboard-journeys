@@ -102,3 +102,15 @@ test('asset errors are contained and the same server remains usable',async t=>{
  assert.equal(failed.status,500);assert.deepEqual(await failed.json(),{error:'internal_error'});
  assert.equal((await fetch(base+'/api/status')).status,200);
 });
+
+
+test('judge page exposes permanent Meta evidence and honest scope',async t=>{
+ const s=await server(t);
+ const response=await s.request('GET','/');
+ assert.equal(response.status,200);
+ const html=await response.text();
+ assert.match(html,/Read permanent result/);
+ assert.match(html,/provenance\/meta-run-41721095171\/result\.json/);
+ assert.match(html,/not an accessibility audit/i);
+ assert.match(html,/interactive examples below are scripted and make no AI request/i);
+});
