@@ -1,6 +1,10 @@
-# AIZOYA Meta keyboard journeys — development candidate
+# AIZOYA Keyboard Journeys
 
-Working description; no final product name selected. One owned practice store, mouse/keyboard route comparison, action restrictions, trace replay and a reviewable test draft. No real payments, user accounts or external-site testing.
+An open-source keyboard-journey evidence tool for product and engineering teams. Compare mouse and constrained keyboard routes, inspect deterministic outcomes, replay saved actions and export reviewable regression evidence. The hosted demonstration uses owned fictional fixtures; the reusable CI adapter supports customer-owned loopback applications with no real payments, accounts or arbitrary public-site testing.
+
+- **Live product:** https://meta.aizoya.com
+- **Customer CI integration:** [CI_INTEGRATION.md](CI_INTEGRATION.md)
+- **License:** MIT
 
 ## Current state
 
@@ -12,7 +16,7 @@ Two bounded Meta checks have passed. On November 3, 2026, Muse Spark completed t
 
 A stronger precommitted held-out evaluation passed in [run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005). Before inference, the repository froze renamed labels and machine targets, changed choice order, renamed completion and receipt language, and fixed the pass criteria. Muse Spark completed it in five requests using Tab, Space, Tab, Tab, Space. There was no retry, and saved-action replay completed with zero additional model calls. The [raw held-out result](provenance/meta-heldout-v3/result.json), frames, plan, source commit and artifact digest are committed permanently. Two earlier versioned attempts ended before inference with zero reserved requests; both infrastructure failures are also preserved.
 
-A precommitted obstacle check adds negative evidence. In [run 41753137334](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334), Muse selected Blue and then the focus trace alternated between Sand and Blue until the eight-request cap stopped the run. The exact [raw result](provenance/meta-obstacle-v2/result.json), screenshot, frozen plan and artifact manifest are permanent; there was no retry. The raw runner classified terminal `meta_incomplete` as `infrastructure_error`, so that classification limitation is reported rather than hidden. The observed states support a review lead for this one owned focus-trap fixture, not proof that no keyboard route exists and not accessibility certification.
+A precommitted obstacle check adds negative evidence. In [run 41753137334](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334), Muse selected Blue and then the focus trace alternated between Sand and Blue. The eighth reserved request returned incomplete with completion still false. The exact [raw result](provenance/meta-obstacle-v2/result.json), screenshot, frozen plan and artifact manifest are permanent; there was no retry. The raw runner classified terminal `meta_incomplete` as `infrastructure_error`, so that classification limitation is reported rather than hidden. The observed states support a review lead for this one owned focus-trap fixture, not proof that no keyboard route exists and not accessibility certification.
 
 The product now includes a reusable CI adapter for customer-owned applications. A team runs its app on loopback, supplies a three-field `journey.config.json`, and exposes four stable `data-journey-*` attributes. The adapter rejects remote URLs and credentials, blocks cross-origin requests, permits only the fixed keyboard vocabulary, caps Muse at eight requests with no automatic retry, and writes a reviewable JSON artifact. See [CI_INTEGRATION.md](CI_INTEGRATION.md) and the [GitHub Actions example](examples/github-actions-keyboard-journey.yml). Configuration validation and the browser contract are automated; no customer production benchmark or live customer Meta run is claimed.
 
@@ -46,7 +50,7 @@ Run the same browser checks after installing dependencies and Chromium: `npm run
 
 See JUDGE_GUIDE.md, DEMO_SCRIPT.md, SUBMISSION_READINESS.md and HOSTING_HANDOFF.md. The practice iframe now fits its content, and completed results scroll into view with reduced-motion support. Six authored examples are regression cases, not an independent benchmark. Production hosting is verified at https://meta.aizoya.com. On November 3, 2026, the owner verified anonymous access in a fresh Private Safari session and exercised the core mobile judge flow on physical iPhone Safari.
 
-Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. Current main source controls report 37 passing tests in GitHub Actions run 41735584947. TLS and the custom domain are verified on the hosted deployment. Durable cross-instance quotas and storage are not implemented; see HOSTING_HANDOFF.md. Public Meta calls remain disabled.
+Hosting source preparation now supports an explicit HTTPS `PUBLIC_ORIGIN`, Secure cookies on that host and correctly addressed test exports. The current release adds exact proof-route byte and MIME checks, safe CI failure artifacts and real-browser evidence-image loading checks. TLS and the custom domain are verified on the hosted deployment. Durable cross-instance quotas and storage are not implemented; see HOSTING_HANDOFF.md. Public Meta calls remain disabled.
 
 ## Recorded examples and standalone preview
 

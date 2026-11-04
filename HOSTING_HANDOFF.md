@@ -1,6 +1,6 @@
 # Hosting and production checkpoint
 
-Production is deployed at **https://meta.aizoya.com** through Vercel using the Docker runtime and custom DNS. Vercel confirmed deployment of commit `54bbc122bdefeec0383ff682be7f81d9397af609`.
+Production is deployed at **https://meta.aizoya.com** through Vercel using the Docker runtime and custom DNS. The release process requires a successful Vercel status on the exact merged commit before submission.
 
 ## Verified
 

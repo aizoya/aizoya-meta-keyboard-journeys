@@ -32,3 +32,8 @@ export async function observeJourneyTarget(page){
   };
  });
 }
+
+export function buildTargetFailure({message,trace=[],target,requestsReserved=0,elapsedMs=0}){
+ const bounded=message==='meta_incomplete'&&trace.length>0;
+ return {schema_version:1,status:bounded?'needs_review':'infrastructure_error',classification:bounded?'bounded_meta_incomplete':String(message).startsWith('meta_')?message:'runner_failure',scope:'customer_owned_local_target_keyboard_only',target:{name:target.name,url:target.url,task:target.task},requests_reserved:requestsReserved,max_requests:8,retried:false,keyboard_completed:false,actions:trace.flatMap(x=>x.action?[x.action]:[]),elapsed_ms:elapsedMs,steps:trace.map(({provider,...step})=>step),limitations:['local same-origin target only','keyboard lane only','bounded noncompletion is a review lead','not an accessibility certification']};
+}

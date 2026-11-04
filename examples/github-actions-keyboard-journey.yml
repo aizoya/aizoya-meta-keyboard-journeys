@@ -10,10 +10,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm ci
+      - run: npm install --ignore-scripts
       - run: npx playwright install --with-deps chromium
-      - run: npm run start:test-app &
-      - run: node scripts/ci-target.mjs --config=journey.config.json --check
+      - run: npm start &
+      - run: |
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:8787/api/status && exit 0
+            sleep 1
+          done
+          exit 1
+      - run: |
+          cp examples/journey.config.json journey.config.json
+          node scripts/ci-target.mjs --config=journey.config.json --check
       - run: node scripts/ci-target.mjs --config=journey.config.json
         env:
           MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}

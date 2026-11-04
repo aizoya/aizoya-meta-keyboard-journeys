@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {request as httpRequest} from 'node:http';
+import {createHash} from 'node:crypto';
+import {readFile} from 'node:fs/promises';
 import {createApp} from '../server.mjs';
 import {exportOrigin,replaySource} from '../policy.mjs';
 
@@ -114,7 +116,7 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/href="\/provenance\/meta-heldout-v3\/result\.json"/);
  assert.match(html,/href="\/evaluation\/heldout-v3-plan\.json"/);
  assert.match(html,/provenance\/meta-heldout-v3\/result\.json/);
- assert.match(html,/precommitted held-out journey/i);
+ assert.match(html,/changed version of the task/i);
  assert.match(html,/Five requests, no retry/i);
  assert.match(html,/Read obstacle result/);
  assert.match(html,/meta-obstacle-v2\/result\.json/);
@@ -131,6 +133,31 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/See the exact integration contract/i);
  assert.match(html,/journey\.config\.json/);
  assert.match(html,/data-journey-complete/);
+ assert.match(html,/href="#try">Check the sample journey/i);
+ assert.match(html,/id="try" class="workspace"/);
+ assert.match(html,/For frontend teams/i);
+ assert.match(html,/result-caveat/);
+});
+
+test('every judge-facing proof route serves the committed bytes with the correct type',async t=>{
+ const s=await server(t);
+ const assets={
+  '/evaluation/heldout-v3-plan.json':'application/json; charset=utf-8',
+  '/evaluation/obstacle-v2-plan.json':'application/json; charset=utf-8',
+  '/provenance/meta-heldout-v3/result.json':'application/json; charset=utf-8',
+  '/provenance/meta-heldout-v3/manifest.json':'application/json; charset=utf-8',
+  '/provenance/meta-heldout-v3/keyboard.png':'image/png',
+  '/provenance/meta-heldout-v3/replay.png':'image/png',
+  '/provenance/meta-obstacle-v2/result.json':'application/json; charset=utf-8',
+  '/provenance/meta-obstacle-v2/manifest.json':'application/json; charset=utf-8',
+  '/provenance/meta-obstacle-v2/keyboard.png':'image/png'
+ };
+ for(const [route,mime]of Object.entries(assets)){
+  const response=await fetch(s.base+route);assert.equal(response.status,200,route);assert.equal(response.headers.get('content-type'),mime,route);
+  const served=Buffer.from(await response.arrayBuffer());const committed=await readFile(new URL('../public'+route,import.meta.url));
+  assert.equal(createHash('sha256').update(served).digest('hex'),createHash('sha256').update(committed).digest('hex'),route);
+ }
+ assert.equal((await fetch(s.base+'/provenance/unknown/result.json')).status,404);
 });
 
 

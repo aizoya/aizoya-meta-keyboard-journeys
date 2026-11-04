@@ -55,6 +55,8 @@ try{
    try{
     const page=await context.newPage();
     await page.goto('http://127.0.0.1:8787');
+    await page.waitForFunction(()=>document.querySelector('.obstacle-image img')?.naturalWidth>0);
+    assert.equal(await page.locator('.hero-actions a').first().getAttribute('href'),'#try');
     await page.waitForFunction(()=>!document.querySelector('#recorded-variant').disabled);
     assert.equal(await page.locator('#recorded-variant').inputValue(),'broken','Recorded examples preload without opening the gallery');
     let posts=0;const track=request=>{if(request.method()==='POST')posts++;};page.on('request',track);
@@ -78,6 +80,7 @@ try{
 
     await page.locator('#result-title').filter({hasText:'Both checkout attempts finished'}).waitFor({timeout:60000});
     assert.equal(await page.locator('#keyboard-status').textContent(),'Task completed');
+    assert.match(await page.locator('#result-caveat').textContent(),/Both recorded attempts completed this task/);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'No horizontal page overflow');
     await page.locator('#technical-evidence summary').click();
     const downloadEvent=page.waitForEvent('download');
