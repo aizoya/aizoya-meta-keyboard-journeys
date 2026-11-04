@@ -6,6 +6,21 @@ import {readFile} from 'node:fs/promises';
 import {createApp} from '../server.mjs';
 import {exportOrigin,replaySource} from '../policy.mjs';
 
+function assertCompletePng(bytes){
+ const signature=Buffer.from([137,80,78,71,13,10,26,10]);
+ assert.deepEqual(bytes.subarray(0,8),signature);
+ let offset=8,ended=false;
+ while(offset+12<=bytes.length){
+  const length=bytes.readUInt32BE(offset);
+  const type=bytes.toString('ascii',offset+4,offset+8);
+  offset+=12+length;
+  assert.ok(offset<=bytes.length,`PNG ${type} chunk is truncated`);
+  if(type==='IEND'){ended=true;break;}
+ }
+ assert.equal(ended,true,'PNG must contain a complete IEND chunk');
+ assert.equal(offset,bytes.length,'PNG must not contain trailing bytes');
+}
+
 test('export destinations reject credentials, paths and unsafe protocols',()=>{
  for(const value of ['javascript:alert(1)','http://judge.example','https://user:password@judge.example','https://judge.example/path','https://judge.example/?key=x','https://judge.example/#x'])assert.throws(()=>exportOrigin(value));
  assert.equal(exportOrigin('https://judge.example/'),'https://judge.example');
@@ -163,6 +178,8 @@ test('case study gives judges a mobile-friendly overview and stable downloads',a
  assert.equal(pdf.status,200);assert.equal(pdf.headers.get('content-type'),'application/pdf');
  const image=await s.request('GET','/assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png');
  assert.equal(image.status,200);assert.equal(image.headers.get('content-type'),'image/png');
+ const imageBytes=await readFile(new URL('../public/assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png',import.meta.url));
+ assertCompletePng(imageBytes);
 });
 
 test('every judge-facing proof route serves the committed bytes with the correct type',async t=>{
