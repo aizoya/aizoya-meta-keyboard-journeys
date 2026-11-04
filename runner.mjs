@@ -27,14 +27,15 @@ export async function runLane(browser,origin,variant,mode,planner='fixture_repla
   await context.route('**/*',route=>{const u=new URL(route.request().url());return u.origin===origin&&['/fixture/','/fixture.'].some(p=>u.pathname.startsWith(p))?route.continue():route.abort();});
   page=await context.newPage();page.on('dialog',d=>d.dismiss());page.on('popup',p=>p.close());
   await page.goto(fixtureURL(origin,variant),{waitUntil:'networkidle',timeout:8000});
-  await page.waitForSelector('[data-target="blue"]');
+  await page.waitForSelector('[data-target]');
   let state=await observe(page);
   trace.push({index:0,action:null,state,screenshot:(await page.screenshot({type:'png'})).toString('base64')});
   const limit=actions?actions.length:14;
   for(let step=0;step<limit&&!state.complete;step++){
    if(Date.now()-started>45000)throw Error('run_timeout');
    if(!sameFixtureOrigin(page.url(),origin))throw Error('navigation_blocked');
-   const decision=actions?{action:actions[step]}:planner==='meta'?await metaAction(state,mode,'Add the Blue organizer to the practice kit',trace.map(x=>({action:x.action,state:x.state}))):{action:fixtureAction(state,mode,step)};
+   const task=variant==='heldout'?'Choose Ocean, then place it in the demo kit':'Add the Blue organizer to the practice kit';
+   const decision=actions?{action:actions[step]}:planner==='meta'?await metaAction(state,mode,task,trace.map(x=>({action:x.action,state:x.state}))):{action:fixtureAction(state,mode,step)};
    validateAction(decision.action,mode);if(decision.action.kind==='stop')break;
    await execute(page,decision.action,mode);state=await observe(page);
    trace.push({index:trace.length,action:decision.action,state,provider:decision.provider||null,screenshot:(await page.screenshot({type:'png'})).toString('base64')});

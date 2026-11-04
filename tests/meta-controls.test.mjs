@@ -83,3 +83,14 @@ test('browser journey configuration check never dispatches or starts a browser',
  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'8'},encoding:'utf8'});
  assert.equal(r.status,0,r.stderr);assert.equal(JSON.parse(r.stdout).ready,true);
 });
+
+test('held-out evaluation is selectable without dispatching or launching a browser',()=>{
+ const code=`process.argv.push('--check');globalThis.fetch=()=>{throw Error('network must not run')};await import('./scripts/meta-journey.mjs');`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'8',META_JOURNEY_VARIANT:'heldout'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);assert.deepEqual(JSON.parse(r.stdout),{mode:'configuration_only_no_request',variant:'heldout',ready:true,max_requests:8,max_output_tokens_per_request:300});
+});
+test('unknown evaluation variant is rejected before any model request',()=>{
+ const code=`globalThis.fetch=()=>{throw Error('network must not run')};await import('./scripts/meta-journey.mjs');`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'8',META_JOURNEY_VARIANT:'unknown'},encoding:'utf8'});
+ assert.equal(r.status,2);assert.match(r.stderr,/Not run/);assert.doesNotMatch(r.stderr,/network must not run/);
+});
