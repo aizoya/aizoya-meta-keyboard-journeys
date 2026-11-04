@@ -73,3 +73,8 @@ The hosted demo uses one owned practice store; the CI adapter accepts only custo
 ## Final link check
 
 Verify anonymous repository access, anonymous product access, video playback, exact submitted branch, required model disclosures, team details and the portal confirmation before calling submission complete.
+
+## Promotional teaser video
+https://www.youtube.com/watch?v=CcWVfMJIkl0
+
+63.6-second AI-presented promotional explainer with illustrative interfaces. This is supplementary to actual application evidence and is not a screen recording or accessibility certification. Published unlisted with synthetic-media disclosure.
