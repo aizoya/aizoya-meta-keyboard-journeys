@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v1",
+  "status": "infrastructure_error",
+  "workflow_run": 41748351496,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41748351496",
+  "artifact_id": 13285300071,
+  "artifact_digest": "sha256:d712e0a4122e185e0b2bf60d46c97f50ae94bc44333aa2f37455c567981e7d0f",
+  "source_commit": "03035bae6bd45bc15aee38ff6f88d35a43ab588e",
+  "requests_reserved": 0,
+  "retried": false,
+  "root_cause": "The owned heldout fixture was not included in the server static-route allowlist. Chromium received a 404 before any model request.",
+  "disposition": "Published unchanged. The same evaluation will not be rerun. A versioned v2 may run only after a separately committed infrastructure correction."
+}

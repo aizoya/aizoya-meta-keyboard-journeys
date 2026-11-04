@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "scope": "one_owned_heldout_fixture_keyboard_only",
+  "evaluation": "precommitted_heldout_v1",
+  "mouse_comparison": "not_tested",
+  "other_variants": "not_tested",
+  "public_deployment": "AI remains disabled",
+  "requests_reserved": 0,
+  "max_requests": 8,
+  "retried": false,
+  "keyboard_completed": false,
+  "runner_status": "infrastructure_error",
+  "error": "runner_failure",
+  "saved_action_replay_completed": false,
+  "replay_made_no_model_calls": true,
+  "actions": [],
+  "elapsed_ms": 28,
+  "steps": []
+}

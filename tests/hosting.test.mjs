@@ -114,3 +114,14 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/not an accessibility audit/i);
  assert.match(html,/interactive examples below are scripted and make no AI request/i);
 });
+
+
+test('held-out evaluation fixture is served without enabling it in the public API',async t=>{
+ const s=await server(t);
+ const fixture=await s.request('GET','/fixture/heldout');
+ assert.equal(fixture.status,200);
+ const html=await fixture.text();
+ assert.match(html,/id="task"/);
+ const attempt=await s.request('POST','/api/run');
+ assert.equal(attempt.status,201);
+});
