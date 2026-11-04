@@ -124,6 +124,10 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/&quot;evaluation&quot;: &quot;precommitted_obstacle_v2&quot;/);
  assert.match(html,/not an accessibility audit/i);
  assert.match(html,/interactive examples below are scripted and make no AI request/i);
+ assert.match(html,/Put a keyboard journey/i);
+ assert.match(html,/CI_INTEGRATION\.md/);
+ assert.match(html,/github-actions-keyboard-journey\.yml/);
+ assert.match(html,/reusable customer-owned local targets/i);
 });
 
 

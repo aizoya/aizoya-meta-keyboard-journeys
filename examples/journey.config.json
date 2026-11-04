@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "name": "customer-checkout",
+  "url": "http://127.0.0.1:3000/checkout",
+  "task": "Choose the Blue item, then add it to the cart"
+}

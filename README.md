@@ -14,6 +14,8 @@ A stronger precommitted held-out evaluation passed in [run 41749591005](https://
 
 A precommitted obstacle check adds negative evidence. In [run 41753137334](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334), Muse selected Blue and then the focus trace alternated between Sand and Blue until the eight-request cap stopped the run. The exact [raw result](provenance/meta-obstacle-v2/result.json), screenshot, frozen plan and artifact manifest are permanent; there was no retry. The raw runner classified terminal `meta_incomplete` as `infrastructure_error`, so that classification limitation is reported rather than hidden. The observed states support a review lead for this one owned focus-trap fixture, not proof that no keyboard route exists and not accessibility certification.
 
+The product now includes a reusable CI adapter for customer-owned applications. A team runs its app on loopback, supplies a three-field `journey.config.json`, and exposes four stable `data-journey-*` attributes. The adapter rejects remote URLs and credentials, blocks cross-origin requests, permits only the fixed keyboard vocabulary, caps Muse at eight requests with no automatic retry, and writes a reviewable JSON artifact. See [CI_INTEGRATION.md](CI_INTEGRATION.md) and the [GitHub Actions example](examples/github-actions-keyboard-journey.yml). Configuration validation and the browser contract are automated; no customer production benchmark or live customer Meta run is claimed.
+
 ## Run locally
 
 Node 22+, with the exact Playwright dependency in package.json:
@@ -30,7 +32,7 @@ Compare the original, corrected, arrow-key, reordered, Space-key and focus-trap 
 
 Meta mode requires MODEL_API_KEY, PASSAGE_ENABLE_META=1 and a positive PASSAGE_MAX_META_CALLS (at most 100). Do not enable it without billing readiness and an authorized finite request allowance. The server reserves requests before dispatch, without automatic retries. This is a request quota, not an exact dollar guarantee or a provider bill cap. Standard-mode Muse Spark 1.3 is the prepared endpoint. A bounded keyboard-only run succeeded as documented above; public Meta mode remains disabled. Never paste keys into chat, browser fields or source.
 
-Saved runs are in per-session server memory with one-hour expiry, a maximum of six run records and two global active jobs. They do not survive process restart. They are not durable evidence records. No arbitrary URL input, production authentication or container isolation is implemented. The public hackathon deployment is a constrained prototype. Anonymous local sessions are not production identity.
+Saved runs are in per-session server memory with one-hour expiry, a maximum of six run records and two global active jobs. They do not survive process restart. They are not durable evidence records. No arbitrary public URL input, production authentication or container isolation is implemented. The separate CI adapter supports only customer-owned loopback targets. The public hackathon deployment is a constrained prototype. Anonymous local sessions are not production identity.
 
 ## Result interpretation
 
