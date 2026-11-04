@@ -1,0 +1,350 @@
+{
+  "status": "passed",
+  "scope": "one_owned_adaptive_fixture_keyboard_only",
+  "evaluation": "adaptive_changed_state_recovery",
+  "mouse_comparison": "not_tested",
+  "other_variants": "not_tested",
+  "public_deployment": "AI remains disabled",
+  "requests_reserved": 6,
+  "max_requests": 8,
+  "retried": false,
+  "keyboard_completed": true,
+  "runner_status": "observed",
+  "error": null,
+  "saved_action_replay_completed": true,
+  "replay_made_no_model_calls": true,
+  "actions": [
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Enter"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Enter"
+    },
+    {
+      "kind": "press",
+      "key": "Tab"
+    },
+    {
+      "kind": "press",
+      "key": "Enter"
+    }
+  ],
+  "elapsed_ms": 11301,
+  "steps": [
+    {
+      "index": 0,
+      "action": null,
+      "state": {
+        "focus": {
+          "target": null,
+          "tag": "BODY",
+          "role": null,
+          "text": "\nCOMMON GOODSPractice store · no purchase\nMade for a little more order.DESK ESSENTIALSThe everyday o"
+        },
+        "selected": "Both finishes are currently available.",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "sand",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Sand"
+        },
+        "selected": "Both finishes are currently available.",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "action": {
+        "kind": "press",
+        "key": "Enter"
+      },
+      "state": {
+        "focus": {
+          "target": null,
+          "tag": "BODY",
+          "role": null,
+          "text": "\nCOMMON GOODSPractice store · no purchase\nMade for a little more order.DESK ESSENTIALSThe everyday o"
+        },
+        "selected": "Sand became unavailable after the inventory update. Choose Blue, the remaining available finish.",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "blue",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Blue"
+        },
+        "selected": "Sand became unavailable after the inventory update. Choose Blue, the remaining available finish.",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "action": {
+        "kind": "press",
+        "key": "Enter"
+      },
+      "state": {
+        "focus": {
+          "target": "blue",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Blue"
+        },
+        "selected": "Blue selected and available",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "action": {
+        "kind": "press",
+        "key": "Tab"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Place in demo kit"
+        },
+        "selected": "Blue selected and available",
+        "complete": false,
+        "outcome": "Your demo kit is empty.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "action": {
+        "kind": "press",
+        "key": "Enter"
+      },
+      "state": {
+        "focus": {
+          "target": "finish",
+          "tag": "BUTTON",
+          "role": null,
+          "text": "Place in demo kit"
+        },
+        "selected": "Blue selected and available",
+        "complete": true,
+        "outcome": "Blue finish placed after the inventory change. Demo task complete.",
+        "controls": [
+          {
+            "target": "sand",
+            "text": "Sand",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": true
+          },
+          {
+            "target": "blue",
+            "text": "Blue",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          },
+          {
+            "target": "finish",
+            "text": "Place in demo kit",
+            "tag": "BUTTON",
+            "role": null,
+            "tabIndex": 0,
+            "disabled": false
+          }
+        ]
+      }
+    }
+  ]
+}
