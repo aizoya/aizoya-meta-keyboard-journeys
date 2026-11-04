@@ -20,6 +20,11 @@ export async function execute(page,action,mode){
  if(action.kind==='press')await page.keyboard.press(action.key);
  else if(action.kind==='click')await page.locator(`[data-target="${action.target}"]`).click({timeout:1500});
 }
+export function classifyLaneFailure(error,trace){
+ const message=String(error?.message||'');
+ if(message==='meta_incomplete'&&trace.length>0)return {status:'observed',error:'bounded_meta_incomplete'};
+ return {status:'infrastructure_error',error:message.startsWith('meta_')?message:'runner_failure'};
+}
 export async function runLane(browser,origin,variant,mode,planner='fixture_replay',actions=null){
  const context=await browser.newContext({viewport:{width:800,height:650},serviceWorkers:'block',acceptDownloads:false});
  const trace=[];let page;const started=Date.now();
@@ -41,7 +46,7 @@ export async function runLane(browser,origin,variant,mode,planner='fixture_repla
    trace.push({index:trace.length,action:decision.action,state,provider:decision.provider||null,screenshot:(await page.screenshot({type:'png'})).toString('base64')});
   }
   return {mode,planner,variant,status:'observed',completed:state.complete,elapsed_ms:Date.now()-started,trace,actions:trace.flatMap(t=>t.action?[t.action]:[]),last_state:state};
- }catch(error){return {mode,planner,variant,status:'infrastructure_error',completed:false,error:String(error.message).startsWith('meta_')?error.message:'runner_failure',elapsed_ms:Date.now()-started,trace,actions:trace.flatMap(t=>t.action?[t.action]:[])};}
+ }catch(error){const failure=classifyLaneFailure(error,trace);return {mode,planner,variant,...failure,completed:false,elapsed_ms:Date.now()-started,trace,actions:trace.flatMap(t=>t.action?[t.action]:[])};}
  finally{await context.close();}
 }
 export async function runComparison(origin,variant,planner='fixture_replay',prior=null){

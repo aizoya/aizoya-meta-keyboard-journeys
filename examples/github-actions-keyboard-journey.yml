@@ -1,0 +1,26 @@
+name: keyboard-journey
+on: [pull_request]
+jobs:
+  keyboard-journey:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run start:test-app &
+      - run: node scripts/ci-target.mjs --config=journey.config.json --check
+      - run: node scripts/ci-target.mjs --config=journey.config.json
+        env:
+          MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
+          PASSAGE_ENABLE_META: "1"
+          PASSAGE_MAX_META_CALLS: "8"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: keyboard-journey-evidence
+          path: artifacts/ci-target/result.json

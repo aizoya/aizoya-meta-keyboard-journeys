@@ -12,7 +12,7 @@ Target **2:45–2:55**. Use the hosted application, the committed Meta result, a
 | 1:43–2:05 | Choose **Run the same check again**. | Saved actions replay in fresh browser contexts. The model cannot award itself a pass, and replay cannot make another model request. |
 | 2:05–2:25 | Select **Check the corrected checkout** and show both lanes complete. | After the control is corrected, both routes finish. The successful route exports as a Playwright regression-test draft. |
 | 2:25–2:40 | Open recorded examples; show Arrow-key and Focus-trap. | The regression gallery covers arrow keys, Space activation, changed tab order and a focus trap. These are authored cases, clearly labeled scripted and no AI. |
-| 2:40–2:55 | Show public GitHub repository and limits at the bottom of the site. | The source is open, the evidence is reproducible, and the scope is explicit: one owned practice store, no purchases, and no claim of certification. |
+| 2:40–2:55 | Show the **Put a keyboard journey on every pull request** card and public repository. | Teams can copy the workflow, run their own app locally in CI, and receive the same bounded evidence artifact. The source is open, remote targets are rejected, and this is evidence for review—not certification. |
 
 ## Recording checklist
 

@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {validateAction,fixtureURL,summarize,replaySource} from '../policy.mjs';
-import {fixtureAction} from '../runner.mjs';
+import {fixtureAction,classifyLaneFailure} from '../runner.mjs';
 import {createApp} from '../server.mjs';
 test('keyboard executor rejects every pointer, fill, focus and script escape',()=>{
  for(const a of [{kind:'click',target:'blue'},{kind:'fill',text:'blue'},{kind:'focus',target:'blue'},{kind:'evaluate',code:'document.body.click()'},{kind:'press',key:'Control+L'},{kind:'press',key:'Tab',target:'blue'}])assert.throws(()=>validateAction(a,'keyboard'));
@@ -23,6 +23,11 @@ test('failed bounded search remains a review lead and infrastructure failure sta
  assert.equal(summarize(good,bad).status,'needs_review');assert.match(summarize(good,bad).detail,/cannot prove/);
  assert.equal(summarize(good,{status:'infrastructure_error'}).status,'infrastructure_error');
  assert.equal(summarize(bad,bad).status,'inconclusive');assert.equal(summarize(good,good).status,'completed_both');
+});
+test('bounded model exhaustion with trace evidence is observed, not infrastructure failure',()=>{
+ assert.deepEqual(classifyLaneFailure(Error('meta_incomplete'),[{state:{complete:false}}]),{status:'observed',error:'bounded_meta_incomplete'});
+ assert.equal(classifyLaneFailure(Error('meta_incomplete'),[]).status,'infrastructure_error');
+ assert.equal(classifyLaneFailure(Error('browser_crash'),[{state:{}}]).status,'infrastructure_error');
 });
 test('fixture replay can explore the valid arrow-key alternative without clicking',()=>{
  assert.deepEqual(fixtureAction({focus:{target:'sand',role:'radio'},selected:'No color selected'},'keyboard',0),{kind:'press',key:'ArrowRight'});

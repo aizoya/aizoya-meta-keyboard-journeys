@@ -7,6 +7,7 @@ import path from 'node:path';
 import {createApp} from '../server.mjs';
 import {runComparison} from '../runner.mjs';
 import {replaySource} from '../policy.mjs';
+import {observeJourneyTarget} from '../target-contract.mjs';
 
 // Real Chromium, scripted planner, owned fixtures. No Meta requests.
 const app=createApp({port:8787});
@@ -42,6 +43,13 @@ try{
  const {chromium}=createRequire(import.meta.url)('playwright');
  const browser=await chromium.launch({headless:true});
  try{
+  const contractContext=await browser.newContext({viewport:{width:800,height:650}});
+  try{
+   const page=await contractContext.newPage();await page.goto('http://127.0.0.1:8787/fixture/fixed');
+   let state=await observeJourneyTarget(page);assert.equal(state.complete,false);assert.deepEqual(state.controls.map(c=>c.target),['sand','blue','finish']);
+   for(const key of ['Tab','Tab','Space','Tab','Enter'])await page.keyboard.press(key);
+   state=await observeJourneyTarget(page);assert.equal(state.complete,true);assert.match(state.outcome,/task complete/i);
+  }finally{await contractContext.close();}
   for(const viewport of [{width:1280,height:900},{width:390,height:844}]){
    const context=await browser.newContext({viewport,acceptDownloads:true});
    try{

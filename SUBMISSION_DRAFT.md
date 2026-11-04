@@ -16,7 +16,7 @@ A checkout can work with a mouse while a keyboard attempt gets stuck. Engineers 
 
 ## Product
 
-The prototype runs mouse and keyboard routes in separate Chromium contexts against an owned fictional store. The keyboard executor accepts only approved key presses. A deterministic receipt checks completion independently of the planner. Users can inspect frames and actions, replay saved actions in fresh contexts and export a fixed-template Playwright test draft.
+The prototype runs mouse and keyboard routes in separate Chromium contexts against an owned fictional store. The keyboard executor accepts only approved key presses. A deterministic receipt checks completion independently of the planner. Users can inspect frames and actions, replay saved actions in fresh contexts and export a fixed-template Playwright test draft. A reusable CI adapter also lets an engineering team run its own app on loopback, expose four stable journey attributes and receive a bounded JSON evidence artifact on a pull request.
 
 Six authored cases cover an unfocusable control, corrected buttons, arrow-key radios, reordered controls, Space activation and a focus trap. A recorded gallery preserves scripted browser outcomes with source-run provenance and content hashes.
 
@@ -28,7 +28,7 @@ Scope is exact: two owned keyboard-only fixtures, one known and one precommitted
 
 ## What was built during the event
 
-Owned storefront controls; constrained route execution; independent outcome checks; trace capture and saved-action replay; fixed-template test export; mobile-responsive interface; recorded evidence gallery; guarded Muse Spark transport; hosted origin/session controls; custom-domain deployment; and automated source, container and browser verification.
+Owned storefront controls; constrained route execution; independent outcome checks; trace capture and saved-action replay; fixed-template test export; reusable customer-owned loopback CI adapter and example GitHub workflow; mobile-responsive interface; recorded evidence gallery; guarded Muse Spark transport; hosted origin/session controls; custom-domain deployment; and automated source, container and browser verification.
 
 Separate restaurant and ReleaseProof prototypes were not imported or counted as new work.
 
@@ -49,11 +49,11 @@ These are owned synthetic cases, not an independent customer benchmark, customer
 
 ## Intended users and value
 
-Engineers and product teams investigating whether customers can complete important keyboard workflows. The value is an inspectable path from observed behavior to replay and a regression check. Customer demand and broader accuracy remain unvalidated.
+Engineers and product teams investigating whether customers can complete important keyboard workflows. The value is an inspectable path from observed behavior to replay and a regression check that can run on pull requests. Customer demand and broader accuracy remain unvalidated.
 
 ## Known limitations
 
-One owned practice store; no arbitrary external URLs, real accounts or purchases; two verified Meta keyboard fixtures, including one precommitted held-out challenge; bounded attempts cannot prove that no valid route exists; in-memory one-hour sessions are not durable records; per-process limits are not a global provider-spend cap; physical iPhone/Safari remains to be checked.
+The hosted demo uses one owned practice store; the CI adapter accepts only customer-owned loopback targets, not arbitrary public URLs, real accounts or purchases; two verified Meta keyboard fixtures include one precommitted held-out challenge; bounded attempts cannot prove that no valid route exists; in-memory one-hour sessions are not durable records; per-process limits are not a global provider-spend cap; no customer production benchmark exists yet.
 
 ## Final fields
 

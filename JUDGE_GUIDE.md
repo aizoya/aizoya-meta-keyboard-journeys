@@ -34,6 +34,11 @@ The verified model evidence covers two completed owned keyboard-only fixtures pl
 - Independent deterministic completion from the practice-store receipt.
 - Captured action/focus evidence, saved-action replay and fixed-template Playwright test export.
 - Six scripted owned examples and a bounded Muse Spark planner integration.
+- Reusable loopback CI adapter with a three-field configuration, four stable data attributes, same-origin network guard and JSON result artifact.
+
+## Customer integration
+
+Engineering teams can copy `examples/github-actions-keyboard-journey.yml`, run their application locally in CI, and expose the contract documented in `CI_INTEGRATION.md`. The adapter accepts only loopback HTTP targets, rejects embedded credentials and unknown configuration fields, blocks off-origin requests, and uses the same eight-request/no-retry keyboard planner. Configuration and browser-contract checks are automated. It has not been benchmarked on a customer production application.
 
 ## Remaining judge-access checks
 
