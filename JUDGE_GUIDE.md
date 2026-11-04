@@ -23,7 +23,9 @@ GitHub Actions [run 41721095171](https://github.com/aizoya/aizoya-meta-keyboard-
 
 A stronger challenge was frozen in Git before inference: renamed labels and internal targets, changed choice order, renamed completion control and receipt language, plus fixed acceptance criteria. In [held-out run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005), Muse Spark completed in five requests using Tab, Space, Tab, Tab, Space. There was no retry; replay completed with zero additional model calls. The [raw result](provenance/meta-heldout-v3/result.json), final frames, plan, commit and artifact digest are permanent.
 
-The verified model evidence covers two owned keyboard-only fixtures, including one precommitted held-out challenge. It does not cover arbitrary applications, real accounts, purchases or the hosted public AI flow. Live Meta is disabled on the hosted application.
+A precommitted obstacle fixture was then run once with an eight-request limit and no retry. In [run 41753137334](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334), Muse selected Blue; focus then alternated between Sand and Blue while completion remained false. The [raw result](provenance/meta-obstacle-v2/result.json) is published exactly. Its terminal `meta_incomplete` was classified by the runner as `infrastructure_error`; that reporting limitation remains visible. Treat this as an inspectable bounded obstacle lead, not proof of universal failure.
+
+The verified model evidence covers two completed owned keyboard-only fixtures plus one bounded obstacle fixture, including one precommitted held-out challenge. It does not cover arbitrary applications, real accounts, purchases or the hosted public AI flow. Live Meta is disabled on the hosted application.
 
 ## What is implemented
 

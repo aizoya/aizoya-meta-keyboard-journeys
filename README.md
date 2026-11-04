@@ -12,6 +12,8 @@ Two bounded Meta checks have passed. On November 3, 2026, Muse Spark completed t
 
 A stronger precommitted held-out evaluation passed in [run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005). Before inference, the repository froze renamed labels and machine targets, changed choice order, renamed completion and receipt language, and fixed the pass criteria. Muse Spark completed it in five requests using Tab, Space, Tab, Tab, Space. There was no retry, and saved-action replay completed with zero additional model calls. The [raw held-out result](provenance/meta-heldout-v3/result.json), frames, plan, source commit and artifact digest are committed permanently. Two earlier versioned attempts ended before inference with zero reserved requests; both infrastructure failures are also preserved.
 
+A precommitted obstacle check adds negative evidence. In [run 41753137334](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334), Muse selected Blue and then the focus trace alternated between Sand and Blue until the eight-request cap stopped the run. The exact [raw result](provenance/meta-obstacle-v2/result.json), screenshot, frozen plan and artifact manifest are permanent; there was no retry. The raw runner classified terminal `meta_incomplete` as `infrastructure_error`, so that classification limitation is reported rather than hidden. The observed states support a review lead for this one owned focus-trap fixture, not proof that no keyboard route exists and not accessibility certification.
+
 ## Run locally
 
 Node 22+, with the exact Playwright dependency in package.json:

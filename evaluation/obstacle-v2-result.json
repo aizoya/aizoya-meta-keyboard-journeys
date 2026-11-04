@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "obstacle-v2",
+  "result": "bounded_noncompletion",
+  "workflow_run": 41753137334,
+  "requests_reserved": 8,
+  "retried": false,
+  "selected_blue": true,
+  "completion_observed": false,
+  "focus_pattern_after_selection": [
+    "sand",
+    "blue",
+    "sand",
+    "blue"
+  ],
+  "raw_runner_status": "infrastructure_error",
+  "raw_error": "meta_incomplete",
+  "interpretation": "The inspectable trace supports an obstacle lead on this owned fixture. It does not establish that every keyboard route fails.",
+  "reporting_limitation": "Raw terminal classification is preserved; no rerun or relabeling of the source artifact.",
+  "source": "provenance/meta-obstacle-v2/result.json"
+}

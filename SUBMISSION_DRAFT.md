@@ -22,7 +22,7 @@ Six authored cases cover an unfocusable control, corrected buttons, arrow-key ra
 
 ## Meta technology
 
-Muse Spark 1.3 is integrated through the Meta Model API with strict structured output and an allowlisted action vocabulary. In bounded GitHub Actions run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171), Muse Spark completed the known corrected fixture in five requests. We then froze a held-out challenge in Git before inference: renamed labels and machine targets, changed choice order, renamed completion and receipt language, and fixed acceptance criteria. In [run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005), Muse Spark completed that challenge in five requests using Tab, Space, Tab, Tab, Space. No retry occurred, and replay completed with zero additional model calls. Raw results and frames are committed permanently.
+Muse Spark 1.3 is integrated through the Meta Model API with strict structured output and an allowlisted action vocabulary. In bounded GitHub Actions run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171), Muse Spark completed the known corrected fixture in five requests. We then froze a held-out challenge in Git before inference: renamed labels and machine targets, changed choice order, renamed completion and receipt language, and fixed acceptance criteria. In [run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005), Muse Spark completed that challenge in five requests using Tab, Space, Tab, Tab, Space. No retry occurred, and replay completed with zero additional model calls. Raw results and frames are committed permanently. A separate precommitted obstacle run used an eight-request cap and no retry. Muse selected Blue, then the recorded focus alternated between Sand and Blue while the completion control remained unreachable in that cycle. We publish its exact raw result and the runner's `infrastructure_error`/`meta_incomplete` classification limitation.
 
 Scope is exact: two owned keyboard-only fixtures, one known and one precommitted held-out challenge. These runs did not test arbitrary sites, real accounts, purchases, or the hosted public AI flow. Live Meta is disabled on Vercel to control cost; the hosted judge flow uses clearly labelled scripted examples.
 
@@ -41,6 +41,7 @@ Node.js 22, authored HTML/CSS/JavaScript, Playwright Chromium and @playwright/te
 - Hosted deployment: https://meta.aizoya.com
 - Known-fixture Meta run: five requests; completed; replay used zero additional requests.
 - Precommitted held-out Meta run: five requests; completed renamed/reordered challenge; no retry; replay used zero additional requests.
+- Precommitted obstacle Meta run: eight-request cap; selected Blue; bounded focus trace alternated Sand/Blue; no retry; raw classification limitation disclosed.
 - Automated browser acceptance: six scripted mouse/keyboard comparisons, six saved-action replays, exported-test execution, desktop and 390px-width judge flows.
 - Reliability controls: rejected requests do not consume session capacity; failed replay keeps prior evidence visible; server returns bounded safe errors.
 
