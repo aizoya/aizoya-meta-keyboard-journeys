@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "obstacle-v1",
+  "status": "infrastructure_error_before_inference",
+  "workflow_run": 41752598802,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41752598802",
+  "source_commit": "293c7abb88ab745b503e58a417bc1b1dab26639f",
+  "requests_reserved": 0,
+  "retried": false,
+  "error": "The workflow accepted trap, but scripts/meta-journey.mjs rejected it in its separate internal allowlist before browser launch or model inference.",
+  "artifact_uploaded": false
+}
