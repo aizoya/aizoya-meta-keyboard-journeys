@@ -1,13 +1,22 @@
 name: manual-meta-keyboard-journey
 on:
   workflow_dispatch:
+    inputs:
+      variant:
+        description: Owned fixture to evaluate
+        required: true
+        default: heldout
+        type: choice
+        options:
+          - heldout
+          - fixed
 permissions:
   contents: read
 concurrency:
   group: manual-meta-keyboard-journey
   cancel-in-progress: false
 jobs:
-  fixed-keyboard:
+  bounded-keyboard:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -24,13 +33,15 @@ jobs:
           MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
           PASSAGE_ENABLE_META: '1'
           PASSAGE_MAX_META_CALLS: '8'
+          META_JOURNEY_VARIANT: ${{ inputs.variant }}
         run: node scripts/meta-journey.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: meta-fixed-keyboard-evidence
+          name: meta-${{ inputs.variant }}-keyboard-evidence
           path: artifacts/meta-journey/
           if-no-files-found: ignore
           retention-days: 7
 # Manual only. Up to eight requests, each capped at 300 output tokens.
-# No live-app configuration changes. Replay uses saved actions with no inference.
+# No automatic retry and no live-app configuration change.
+# Replay uses saved actions with no inference.

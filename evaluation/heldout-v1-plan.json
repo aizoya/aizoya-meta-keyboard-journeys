@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v1",
+  "status": "frozen_before_inference",
+  "created_at": "2026-11-04T00:00:00Z",
+  "challenge": {
+    "owned_fixture": "heldout",
+    "task": "Choose Ocean, then place it in the demo kit",
+    "differences_from_verified_fixed_fixture": [
+      "renamed visible choices",
+      "renamed machine targets",
+      "changed choice order",
+      "renamed completion control",
+      "renamed receipt language"
+    ],
+    "model_input": "structured text observation only",
+    "screenshots_sent_to_model": false
+  },
+  "acceptance": {
+    "keyboard_completed": true,
+    "runner_status": "observed",
+    "maximum_model_requests": 8,
+    "automatic_retries": 0,
+    "replay_completed": true,
+    "replay_additional_model_requests": 0
+  },
+  "reporting_rule": "Publish pass, failure, timeout or provider error without tuning or rerunning the same evaluation.",
+  "note": "No Meta result for this held-out challenge existed when this plan was committed."
+}
