@@ -2,7 +2,7 @@ import {metaStatus} from '../meta.mjs';
 
 const status=metaStatus();
 const variant=process.env.META_JOURNEY_VARIANT||'fixed';
-const allowedVariant=['fixed','heldout','trap'].includes(variant);
+const allowedVariant=['fixed','heldout','trap','adaptive'].includes(variant);
 const ready=status.configured&&status.enabled&&status.max_calls===8&&allowedVariant;
 if(process.argv.includes('--check')){
  console.log(JSON.stringify({mode:'configuration_only_no_request',variant,ready,max_requests:8,max_output_tokens_per_request:300}));
@@ -30,7 +30,7 @@ if(process.argv.includes('--check')){
   const result={
    status:passed?'passed':'failed',
    scope:`one_owned_${variant}_fixture_keyboard_only`,
-   evaluation:variant==='heldout'?'precommitted_heldout_v3':variant==='trap'?'precommitted_obstacle_v2':'known_fixed_fixture',
+   evaluation:variant==='heldout'?'precommitted_heldout_v3':variant==='trap'?'precommitted_obstacle_v2':variant==='adaptive'?'adaptive_changed_state_recovery':'known_fixed_fixture',
    mouse_comparison:'not_tested',other_variants:'not_tested',public_deployment:'AI remains disabled',
    requests_reserved:metaStatus().calls_reserved,max_requests:8,retried:false,
    keyboard_completed:lane.completed,runner_status:lane.status,

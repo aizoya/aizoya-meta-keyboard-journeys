@@ -49,6 +49,13 @@ try{
    let state=await observeJourneyTarget(page);assert.equal(state.complete,false);assert.deepEqual(state.controls.map(c=>c.target),['sand','blue','finish']);
    for(const key of ['Tab','Tab','Space','Tab','Enter'])await page.keyboard.press(key);
    state=await observeJourneyTarget(page);assert.equal(state.complete,true);assert.match(state.outcome,/task complete/i);
+   await page.goto('http://127.0.0.1:8787/fixture/adaptive');
+   await page.keyboard.press('Tab');await page.keyboard.press('Space');
+   assert.match(await page.locator('#selection').textContent(),/became unavailable.*remaining available/i);
+   assert.equal(await page.locator('[data-value="sand"]').isDisabled(),true);
+   for(const key of ['Tab','Space','Tab','Enter'])await page.keyboard.press(key);
+   assert.equal(await page.locator('#receipt').getAttribute('data-complete'),'true');
+   assert.match(await page.locator('#receipt').textContent(),/after the inventory change.*complete/i);
   }finally{await contractContext.close();}
   for(const viewport of [{width:1280,height:900},{width:390,height:844}]){
    const context=await browser.newContext({viewport,acceptDownloads:true});
