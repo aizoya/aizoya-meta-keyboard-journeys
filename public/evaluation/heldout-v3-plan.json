@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v3",
+  "status": "frozen_before_inference",
+  "created_at": "2026-11-04T00:49:00Z",
+  "relationship_to_prior": "Same challenge and acceptance criteria. v1 and v2 ended before inference with zero reserved requests.",
+  "infrastructure_change": "Introduce OWNED_FIXTURES for internal navigation while keeping public VARIANTS unchanged.",
+  "challenge": {
+    "owned_fixture": "heldout",
+    "task": "Choose Ocean, then place it in the demo kit",
+    "model_input": "structured text observation only",
+    "screenshots_sent_to_model": false
+  },
+  "acceptance": {
+    "keyboard_completed": true,
+    "runner_status": "observed",
+    "maximum_model_requests": 8,
+    "automatic_retries": 0,
+    "replay_completed": true,
+    "replay_additional_model_requests": 0
+  },
+  "reporting_rule": "Publish pass, failure, timeout or provider error without tuning or rerunning heldout-v3.",
+  "note": "No model request occurred in v1 or v2. No heldout-v3 result existed when this plan was committed."
+}

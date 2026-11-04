@@ -110,6 +110,9 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.equal(response.status,200);
  const html=await response.text();
  assert.match(html,/Read held-out result/);
+ assert.match(html,/Inspect the exact held-out JSON and screenshots/);
+ assert.match(html,/href="\/provenance\/meta-heldout-v3\/result\.json"/);
+ assert.match(html,/href="\/evaluation\/heldout-v3-plan\.json"/);
  assert.match(html,/provenance\/meta-heldout-v3\/result\.json/);
  assert.match(html,/precommitted held-out journey/i);
  assert.match(html,/Five requests, no retry/i);

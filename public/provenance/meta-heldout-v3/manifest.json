@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "heldout-v3",
+  "status": "passed",
+  "workflow_run": 41749591005,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005",
+  "artifact_id": 13284918163,
+  "artifact_digest": "sha256:70526486a954350de02dd69667f933b82e83ee01cad85ae32c8c8d72cdf28231",
+  "source_commit": "1eb4645fb83b144af3950daaae9a57a7ef719d46",
+  "requests_reserved": 5,
+  "max_requests": 8,
+  "retried": false,
+  "replay_additional_requests": 0,
+  "precommitted_plan": "evaluation/heldout-v3-plan.json",
+  "files": [
+    "result.json",
+    "keyboard.png",
+    "replay.png"
+  ],
+  "limitations": [
+    "one owned held-out fixture",
+    "keyboard lane only",
+    "public live AI disabled",
+    "screenshots are evidence, not model input"
+  ]
+}
