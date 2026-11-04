@@ -1,0 +1,13 @@
+{
+  "evidence": "zero-inference fixed-route counterfactual",
+  "claim_boundary": "A previously successful saved route did not complete this adaptive fixture. This does not prove that every deterministic policy fails.",
+  "model_calls": 0,
+  "workflow_run_id": 41772230270,
+  "source_commit": "565fea83634d497087f2fa0249ae14f720b1a152",
+  "artifact_id": 13295566893,
+  "artifact_digest": "sha256:6b4166d746b1e1cdcfc72672ab7fbbe7d54a52454e34d4661873a7ad5296b664",
+  "files": {
+    "result.json": "sha256:69a05cd76f6b899a01f6b8aa79dd97665819cf627532a0c45e070890e5a16580",
+    "final.png": "sha256:4d7a300f6f5046a8ed3c816137999daa7c75a86c574432361c1d7093caebf871"
+  }
+}

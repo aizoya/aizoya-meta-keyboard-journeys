@@ -5,7 +5,7 @@ import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 import path from 'node:path';
 import {createApp} from '../server.mjs';
-import {runComparison} from '../runner.mjs';
+import {runComparison,runLane} from '../runner.mjs';
 import {replaySource} from '../policy.mjs';
 import {observeJourneyTarget} from '../target-contract.mjs';
 
@@ -43,6 +43,23 @@ try{
  const {chromium}=createRequire(import.meta.url)('playwright');
  const browser=await chromium.launch({headless:true});
  try{
+  // Counterfactual: a previously successful saved route receives no fresh
+  // observations. Run it unchanged against the adaptive fixture and record
+  // the actual outcome. This is not a claim that all deterministic policies fail.
+  const priorFixedRoute=['Tab','Space','Tab','Tab','Space'].map(key=>({kind:'press',key}));
+  const fixedRoute=await runLane(browser,'http://127.0.0.1:8787','adaptive','keyboard','saved_actions',priorFixedRoute);
+  assert.equal(fixedRoute.status,'observed');
+  assert.equal(fixedRoute.completed,false);
+  const fixedRouteEvidence={
+   status:'observed',evaluation:'fixed_route_on_adaptive_fixture',
+   purpose:'Zero-inference counterfactual. It does not prove that every deterministic policy fails.',
+   source_route:'Previously successful five-key held-out route',model_calls:0,
+   actions:priorFixedRoute,completed:fixedRoute.completed,elapsed_ms:fixedRoute.elapsed_ms,
+   final_state:fixedRoute.last_state,
+   steps:fixedRoute.trace.map(t=>({index:t.index,action:t.action,state:t.state}))
+  };
+  await writeFile('artifacts/adaptive-fixed-route.json',JSON.stringify(fixedRouteEvidence,null,2));
+  await writeFile('artifacts/adaptive-fixed-route.png',Buffer.from(fixedRoute.trace.at(-1).screenshot,'base64'));
   const contractContext=await browser.newContext({viewport:{width:800,height:650}});
   try{
    const page=await contractContext.newPage();await page.goto('http://127.0.0.1:8787/fixture/fixed');
