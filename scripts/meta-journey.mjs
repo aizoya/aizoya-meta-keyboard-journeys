@@ -30,7 +30,7 @@ if(process.argv.includes('--check')){
   const result={
    status:passed?'passed':'failed',
    scope:`one_owned_${variant}_fixture_keyboard_only`,
-   evaluation:variant==='heldout'?'precommitted_heldout_v1':'known_fixed_fixture',
+   evaluation:variant==='heldout'?'precommitted_heldout_v3':'known_fixed_fixture',
    mouse_comparison:'not_tested',other_variants:'not_tested',public_deployment:'AI remains disabled',
    requests_reserved:metaStatus().calls_reserved,max_requests:8,retried:false,
    keyboard_completed:lane.completed,runner_status:lane.status,

@@ -1,4 +1,5 @@
 export const VARIANTS = new Set(['broken','fixed','alternate','reordered','space-only','trap']);
+export const OWNED_FIXTURES = new Set([...VARIANTS,'heldout']);
 export const KEYS = new Set(['Tab','Shift+Tab','Enter','Space','ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape']);
 export function validateAction(action,mode){
   if(!action||typeof action!=='object'||Array.isArray(action))throw Error('invalid_action');
@@ -8,7 +9,7 @@ export function validateAction(action,mode){
   throw Error('action_not_allowed');
 }
 export function fixtureURL(origin,variant){
-  if(!VARIANTS.has(variant))throw Error('invalid_variant');
+  if(!OWNED_FIXTURES.has(variant))throw Error('invalid_variant');
   const u=new URL(origin);if(!['127.0.0.1','localhost'].includes(u.hostname)||u.protocol!=='http:')throw Error('local_origin_required');
   return `${u.origin}/fixture/${variant}`;
 }

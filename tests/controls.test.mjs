@@ -54,3 +54,11 @@ test('actual HTTP: arbitrary fixture or planner is rejected',async t=>{
 test('actual HTTP: backend exception is not a completed run',async t=>{
  const call=await harness(t,async()=>{throw Error('private failure detail');});const res=await call('POST','/api/run',{variant:'fixed',planner:'fixture_replay'});assert.equal(res.status,503);const body=await res.json();assert.equal(body.error,'runner_failure');assert.equal(body.id,undefined);
 });
+
+
+test('internal runner can open heldout while public variant set remains unchanged',async()=>{
+ const {VARIANTS,OWNED_FIXTURES,fixtureURL}=await import('../policy.mjs');
+ assert.equal(VARIANTS.has('heldout'),false);
+ assert.equal(OWNED_FIXTURES.has('heldout'),true);
+ assert.equal(fixtureURL('http://127.0.0.1:8787','heldout'),'http://127.0.0.1:8787/fixture/heldout');
+});
