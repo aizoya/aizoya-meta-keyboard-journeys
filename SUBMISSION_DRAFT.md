@@ -22,9 +22,9 @@ Six authored cases cover an unfocusable control, corrected buttons, arrow-key ra
 
 ## Meta technology
 
-Muse Spark 1.3 is integrated through the Meta Model API with strict structured output and an allowlisted action vocabulary. In bounded GitHub Actions run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171), Muse Spark completed the owned corrected keyboard fixture in five requests using Tab, Tab, Space, Tab, Space. The deterministic receipt confirmed completion, and saved-action replay completed without another model call.
+Muse Spark 1.3 is integrated through the Meta Model API with strict structured output and an allowlisted action vocabulary. In bounded GitHub Actions run [41721095171](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41721095171), Muse Spark completed the known corrected fixture in five requests. We then froze a held-out challenge in Git before inference: renamed labels and machine targets, changed choice order, renamed completion and receipt language, and fixed acceptance criteria. In [run 41749591005](https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41749591005), Muse Spark completed that challenge in five requests using Tab, Space, Tab, Tab, Space. No retry occurred, and replay completed with zero additional model calls. Raw results and frames are committed permanently.
 
-Scope is exact: one owned corrected fixture, keyboard lane only. That run did not test the mouse comparison, the other five variants, unseen sites or the hosted public flow. Live Meta is disabled on Vercel to control cost; the hosted judge flow uses clearly labelled scripted examples.
+Scope is exact: two owned keyboard-only fixtures, one known and one precommitted held-out challenge. These runs did not test arbitrary sites, real accounts, purchases, or the hosted public AI flow. Live Meta is disabled on Vercel to control cost; the hosted judge flow uses clearly labelled scripted examples.
 
 ## What was built during the event
 
@@ -39,11 +39,12 @@ Node.js 22, authored HTML/CSS/JavaScript, Playwright Chromium and @playwright/te
 ## Verified results
 
 - Hosted deployment: https://meta.aizoya.com
-- Bounded Meta keyboard run: five model requests; completed task; replay completed with no additional model call.
+- Known-fixture Meta run: five requests; completed; replay used zero additional requests.
+- Precommitted held-out Meta run: five requests; completed renamed/reordered challenge; no retry; replay used zero additional requests.
 - Automated browser acceptance: six scripted mouse/keyboard comparisons, six saved-action replays, exported-test execution, desktop and 390px-width judge flows.
 - Reliability controls: rejected requests do not consume session capacity; failed replay keeps prior evidence visible; server returns bounded safe errors.
 
-These are authored synthetic regression cases, not an independent benchmark, customer traction, WCAG certification or physical iPhone/Safari acceptance.
+These are owned synthetic cases, not an independent customer benchmark, customer traction or WCAG certification. The owner completed a physical iPhone/Safari smoke check.
 
 ## Intended users and value
 
@@ -51,7 +52,7 @@ Engineers and product teams investigating whether customers can complete importa
 
 ## Known limitations
 
-One owned practice store; no arbitrary external URLs, real accounts or purchases; one verified live Meta keyboard fixture; bounded attempts cannot prove that no valid route exists; in-memory one-hour sessions are not durable records; per-process limits are not a global provider-spend cap; physical iPhone/Safari remains to be checked.
+One owned practice store; no arbitrary external URLs, real accounts or purchases; two verified Meta keyboard fixtures, including one precommitted held-out challenge; bounded attempts cannot prove that no valid route exists; in-memory one-hour sessions are not durable records; per-process limits are not a global provider-spend cap; physical iPhone/Safari remains to be checked.
 
 ## Final fields
 
@@ -62,7 +63,7 @@ One owned practice store; no arbitrary external URLs, real accounts or purchases
 | Track/theme | Startup track requested; confirm eligibility and final theme in portal |
 | Repository | https://github.com/aizoya/aizoya-meta-keyboard-journeys — verified public; MIT license recognized |
 | License | MIT, Copyright (c) 2026 Franklyn Rosario |
-| Product URL | https://meta.aizoya.com — currently protected by Vercel team authentication; logged-out judge access remains a gate |
+| Product URL | https://meta.aizoya.com — owner-verified in fresh Private Safari without a sign-in wall |
 | Video URL | Pending recording, upload and playback verification |
 | Deadline | November 4, 2026, 6:00 PM Pacific, from organizer blast supplied by Franklyn |
 | Internal target | November 4, 2026, 5:00 PM Pacific |

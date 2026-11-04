@@ -109,8 +109,10 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  const response=await s.request('GET','/');
  assert.equal(response.status,200);
  const html=await response.text();
- assert.match(html,/Read permanent result/);
- assert.match(html,/provenance\/meta-run-41721095171\/result\.json/);
+ assert.match(html,/Read held-out result/);
+ assert.match(html,/provenance\/meta-heldout-v3\/result\.json/);
+ assert.match(html,/precommitted held-out journey/i);
+ assert.match(html,/Five requests, no retry/i);
  assert.match(html,/not an accessibility audit/i);
  assert.match(html,/interactive examples below are scripted and make no AI request/i);
 });
