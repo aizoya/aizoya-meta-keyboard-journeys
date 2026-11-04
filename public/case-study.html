@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Case study · AIZOYA Keyboard Journeys</title>
+  <meta name="description" content="How Muse Spark recovered after a saved keyboard route became stale, with independently verified completion and replayable evidence.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="case-page">
+  <header class="top"><a href="/" aria-label="Back to AIZOYA Keyboard Journeys" class="wordmark">AIZOYA<span> / CASE STUDY</span></a><span class="stage"><i></i> 2-minute overview</span><a href="/">Open the product ↗</a></header>
+  <main class="case-main">
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">META MODEL API · VERIFIED ADAPTIVE RUN</p>
+        <h1>A saved route stopped.<br><em>Muse recovered.</em></h1>
+        <p class="intro">Keyboard Journeys gives frontend teams an inspectable record of what happened, what changed and whether a customer could finish.</p>
+        <div class="hero-actions"><a class="primary" href="/">Try the product ↗</a><a class="secondary" href="/assets/AIZOYA_Keyboard_Journeys_Case_Study_2026.pdf" target="_blank" rel="noopener noreferrer">Download the PDF ↓</a></div>
+      </div>
+      <img src="/assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png" alt="A saved keyboard route stops while Muse follows an updated route to completion">
+    </section>
+
+    <section class="case-section case-problem">
+      <div><p class="eyebrow">THE PROBLEM</p><h2>A working checkout can still exclude a keyboard customer.</h2></div>
+      <div><p>Mouse testing can miss focus-order and keyboard-activation failures. Recorded scripts can also become stale when controls or availability change.</p><p>Teams need evidence they can inspect and replay, without turning one automated attempt into an accessibility certification.</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="eyebrow">THE VERIFIED COMPARISON</p>
+      <h2>Same adaptive fixture. Two different outcomes.</h2>
+      <div class="case-compare">
+        <article class="case-card stopped"><span>0 model calls</span><h3>Saved route: incomplete</h3><p>A previously successful five-key route replayed unchanged. Sand became unavailable. The route reached Blue, moved past it without activation and ended incomplete.</p></article>
+        <article class="case-card recovered"><span>6 bounded requests</span><h3>Muse Spark: completed</h3><p>Muse consumed fresh structured state, selected the remaining valid option and completed. There was no retry.</p></article>
+      </div>
+      <p class="case-boundary"><strong>Claim boundary:</strong> this shows one saved sequence becoming stale. It does not prove that every deterministic policy fails or that the model generalizes beyond the owned fixture.</p>
+    </section>
+
+    <section class="case-section authority">
+      <div><p class="eyebrow">CONTROL AND VERIFICATION</p><h2>The model cannot award itself a pass.</h2></div>
+      <ol>
+        <li><b>1</b><span><strong>Observe</strong> Structured focus, control and outcome state</span></li>
+        <li><b>2</b><span><strong>Choose</strong> Muse returns one allowlisted keyboard action</span></li>
+        <li><b>3</b><span><strong>Execute</strong> Playwright presses that key</span></li>
+        <li><b>4</b><span><strong>Verify</strong> Store code independently reports completion</span></li>
+      </ol>
+    </section>
+
+    <section class="case-section">
+      <p class="eyebrow">FROM PROTOTYPE TO CUSTOMER WORKFLOW</p>
+      <h2>Review a keyboard journey on every pull request.</h2>
+      <div class="case-workflow">
+        <article><b>01</b><h3>Run the owned app</h3><p>The team starts its test application on loopback in GitHub Actions.</p></article>
+        <article><b>02</b><h3>Expose a small contract</h3><p>Four stable data attributes report controls, selection, completion and outcome.</p></article>
+        <article><b>03</b><h3>Bound the agent</h3><p>Remote targets and credentials are rejected. Muse gets at most eight requests and no automatic retry.</p></article>
+        <article><b>04</b><h3>Review the artifact</h3><p>Actions, states, screenshots, request count and limitations attach to the pull request.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section case-results">
+      <div><p class="eyebrow">VERIFIED RESULTS</p><h2>Evidence before a verdict.</h2></div>
+      <ul>
+        <li><strong>Adaptive Muse run</strong><span>Completed · 6 requests · no retry</span></li>
+        <li><strong>Fixed-route counterfactual</strong><span>Incomplete · 0 model calls</span></li>
+        <li><strong>Saved-action replay</strong><span>Same completed outcome · 0 model calls</span></li>
+        <li><strong>Engineering controls</strong><span>50 source tests plus Chromium CI</span></li>
+      </ul>
+    </section>
+
+    <section class="case-cta"><p class="eyebrow">OPEN SOURCE HACKATHON PROTOTYPE</p><h2>Inspect the product and the proof.</h2><div class="hero-actions"><a class="primary" href="https://meta.aizoya.com">Open meta.aizoya.com ↗</a><a class="secondary" href="https://github.com/aizoya/aizoya-meta-keyboard-journeys" target="_blank" rel="noopener noreferrer">View public source ↗</a><a class="secondary" href="/provenance/meta-adaptive-v1/result.json" target="_blank" rel="noopener noreferrer">Read adaptive result ↗</a></div><p class="quiet">Current scope: owned synthetic fixtures and a reusable customer-owned loopback CI contract. This is not WCAG certification, a customer production benchmark or arbitrary public-site automation.</p></section>
+  </main>
+  <footer><span>AIZOYA · Built for inspectable outcomes.</span><span>Original demonstration assets · 2026</span></footer>
+</body>
+</html>

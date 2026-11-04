@@ -146,6 +146,23 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/id="try" class="workspace"/);
  assert.match(html,/For frontend teams/i);
  assert.match(html,/result-caveat/);
+ assert.match(html,/Read the 2-minute case study/);
+ assert.match(html,/href="\/case-study"/);
+ assert.match(html,/AIZOYA_Keyboard_Journeys_Case_Study_2026\.pdf/);
+});
+
+test('case study gives judges a mobile-friendly overview and stable downloads',async t=>{
+ const s=await server(t);
+ const page=await s.request('GET','/case-study');
+ assert.equal(page.status,200);assert.equal(page.headers.get('content-type'),'text/html; charset=utf-8');
+ const html=await page.text();
+ assert.match(html,/A saved route stopped/);assert.match(html,/Muse recovered/);assert.match(html,/Same adaptive fixture/);
+ assert.match(html,/model cannot award itself a pass/i);assert.match(html,/Claim boundary/);
+ assert.match(html,/meta\.aizoya\.com/);assert.match(html,/aizoya-meta-keyboard-journeys/);
+ const pdf=await s.request('GET','/assets/AIZOYA_Keyboard_Journeys_Case_Study_2026.pdf');
+ assert.equal(pdf.status,200);assert.equal(pdf.headers.get('content-type'),'application/pdf');
+ const image=await s.request('GET','/assets/AIZOYA_Keyboard_Journeys_Thumbnail_3x2.png');
+ assert.equal(image.status,200);assert.equal(image.headers.get('content-type'),'image/png');
 });
 
 test('every judge-facing proof route serves the committed bytes with the correct type',async t=>{
