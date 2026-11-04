@@ -115,6 +115,10 @@ test('judge page exposes permanent Meta evidence and honest scope',async t=>{
  assert.match(html,/recovered after the interface changed/i);
  assert.match(html,/inventory changes/i);
  assert.match(html,/41770415998/);
+ assert.match(html,/A saved route stopped\. Muse recovered from fresh state/i);
+ assert.match(html,/Read fixed-route counterfactual/i);
+ assert.match(html,/41772230270/);
+ assert.match(html,/does not prove that every deterministic policy fails/i);
  assert.match(html,/Earlier held-out result/);
  assert.match(html,/Inspect the exact held-out JSON and screenshots/);
  assert.match(html,/href="\/provenance\/meta-heldout-v3\/result\.json"/);
@@ -157,6 +161,9 @@ test('every judge-facing proof route serves the committed bytes with the correct
   '/provenance/meta-adaptive-v1/manifest.json':'application/json; charset=utf-8',
   '/provenance/meta-adaptive-v1/keyboard.png':'image/png',
   '/provenance/meta-adaptive-v1/replay.png':'image/png',
+  '/provenance/meta-adaptive-counterfactual-v1/result.json':'application/json; charset=utf-8',
+  '/provenance/meta-adaptive-counterfactual-v1/manifest.json':'application/json; charset=utf-8',
+  '/provenance/meta-adaptive-counterfactual-v1/final.png':'image/png',
   '/provenance/meta-obstacle-v2/result.json':'application/json; charset=utf-8',
   '/provenance/meta-obstacle-v2/manifest.json':'application/json; charset=utf-8',
   '/provenance/meta-obstacle-v2/keyboard.png':'image/png'
