@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "obstacle-v2",
+  "status": "bounded_noncompletion_with_reporting_limitation",
+  "workflow_run": 41753137334,
+  "workflow_url": "https://github.com/aizoya/aizoya-meta-keyboard-journeys/actions/runs/41753137334",
+  "artifact_id": 13286382679,
+  "artifact_digest": "sha256:114eaf0ca3017a3c7d91023cdbc3dcb89ec952485324db8142400398ecc85a31",
+  "source_commit": "09583efd7bf606eb51a58405ac3bc7d248d74f55",
+  "requests_reserved": 8,
+  "max_requests": 8,
+  "retried": false,
+  "precommitted_plan": "evaluation/obstacle-v2-plan.json",
+  "files": [
+    "result.json",
+    "keyboard.png"
+  ],
+  "observed_interpretation": "Muse selected Blue, then focus alternated between Sand and Blue; completion remained false at the request bound.",
+  "reporting_limitation": "The raw runner labeled terminal meta_incomplete as infrastructure_error. The exact raw result is preserved and no inference rerun occurred.",
+  "limitations": [
+    "one owned obstacle fixture",
+    "keyboard lane only",
+    "bounded noncompletion does not prove no route exists",
+    "not an accessibility certification",
+    "public live AI disabled"
+  ]
+}
