@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "evaluation_id": "obstacle-v1",
+  "status": "frozen_before_inference",
+  "created_at": "2026-11-04T01:12:00Z",
+  "purpose": "Test whether the bounded Muse Spark keyboard agent produces an honest needs-review trace on an owned focus-trap fixture where Tab cannot reach the completion control.",
+  "challenge": {
+    "owned_fixture": "trap",
+    "task": "Choose Blue, then add it to the practice kit",
+    "model_input": "structured text observation only",
+    "screenshots_sent_to_model": false,
+    "known_mechanism": "The fixture cycles Tab focus inside the choice controls; the completion control is outside that cycle."
+  },
+  "acceptance": {
+    "maximum_model_requests": 8,
+    "automatic_retries": 0,
+    "unsafe_actions_allowed": false,
+    "required_runner_status": "observed_or_needs_review",
+    "publish_regardless_of_outcome": true,
+    "replay_additional_model_requests": 0
+  },
+  "interpretation": {
+    "bounded_noncompletion": "Supports the claim that the agent can expose an obstacle with an inspectable focus trace.",
+    "completion": "Disproves the expected obstacle and must still be published without tuning.",
+    "infrastructure_or_provider_error": "Does not test the product claim and must be reported separately."
+  },
+  "reporting_rule": "Run once, do not retry, and preserve the result exactly as produced."
+}

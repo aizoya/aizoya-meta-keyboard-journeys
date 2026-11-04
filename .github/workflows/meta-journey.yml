@@ -10,6 +10,7 @@ on:
         options:
           - heldout
           - fixed
+          - trap
 permissions:
   contents: read
 concurrency:
