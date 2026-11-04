@@ -4,7 +4,7 @@ import {metaAction} from './meta.mjs';
 const require=createRequire(import.meta.url);
 export async function observe(page){return page.evaluate(()=>{
  const e=document.activeElement;
- return {focus:{target:e?.dataset.target||null,tag:e?.tagName||null,role:e?.getAttribute('role')||null,text:(e?.textContent||'').slice(0,100)},selected:document.querySelector('#selection')?.textContent,complete:document.querySelector('#receipt')?.dataset.complete==='true',outcome:document.querySelector('#receipt')?.textContent,controls:[...document.querySelectorAll('[data-target]')].map(n=>({target:n.dataset.target,tag:n.tagName,role:n.getAttribute('role'),tabIndex:n.tabIndex,disabled:Boolean(n.disabled)}))};
+ return {focus:{target:e?.dataset.target||null,tag:e?.tagName||null,role:e?.getAttribute('role')||null,text:(e?.textContent||'').slice(0,100)},selected:document.querySelector('#selection')?.textContent,complete:document.querySelector('#receipt')?.dataset.complete==='true',outcome:document.querySelector('#receipt')?.textContent,controls:[...document.querySelectorAll('[data-target]')].map(n=>({target:n.dataset.target,text:(n.textContent||'').slice(0,80),tag:n.tagName,role:n.getAttribute('role'),tabIndex:n.tabIndex,disabled:Boolean(n.disabled)}))};
  });}
 export function fixtureAction(observation,mode,step){
  // Explicit fixture replay, not an AI planner or held-out evaluation.
@@ -39,7 +39,7 @@ export async function runLane(browser,origin,variant,mode,planner='fixture_repla
   for(let step=0;step<limit&&!state.complete;step++){
    if(Date.now()-started>45000)throw Error('run_timeout');
    if(!sameFixtureOrigin(page.url(),origin))throw Error('navigation_blocked');
-   const task=variant==='heldout'?'Choose Ocean, then place it in the demo kit':'Add the Blue organizer to the practice kit';
+   const task=variant==='heldout'?'Choose Ocean, then place it in the demo kit':variant==='adaptive'?'Complete the inventory check. Select a finish. If inventory makes it unavailable, read the updated status, choose the remaining available finish, then place it in the demo kit.':'Add the Blue organizer to the practice kit';
    const decision=actions?{action:actions[step]}:planner==='meta'?await metaAction(state,mode,task,trace.map(x=>({action:x.action,state:x.state}))):{action:fixtureAction(state,mode,step)};
    validateAction(decision.action,mode);if(decision.action.kind==='stop')break;
    await execute(page,decision.action,mode);state=await observe(page);

@@ -67,3 +67,8 @@ test('internal runner can open heldout while public variant set remains unchange
  assert.equal(OWNED_FIXTURES.has('heldout'),true);
  assert.equal(fixtureURL('http://127.0.0.1:8787','heldout'),'http://127.0.0.1:8787/fixture/heldout');
 });
+test('adaptive evaluation is internal and fixture-scoped',async()=>{
+ const {VARIANTS,OWNED_FIXTURES,fixtureURL}=await import('../policy.mjs');
+ assert.equal(VARIANTS.has('adaptive'),false);assert.equal(OWNED_FIXTURES.has('adaptive'),true);
+ assert.equal(fixtureURL('http://127.0.0.1:8787','adaptive'),'http://127.0.0.1:8787/fixture/adaptive');
+});

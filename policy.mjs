@@ -1,5 +1,5 @@
 export const VARIANTS = new Set(['broken','fixed','alternate','reordered','space-only','trap']);
-export const OWNED_FIXTURES = new Set([...VARIANTS,'heldout']);
+export const OWNED_FIXTURES = new Set([...VARIANTS,'heldout','adaptive']);
 export const KEYS = new Set(['Tab','Shift+Tab','Enter','Space','ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape']);
 export function validateAction(action,mode){
   if(!action||typeof action!=='object'||Array.isArray(action))throw Error('invalid_action');
