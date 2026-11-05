@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
-const isolated={...process.env,MODEL_API_KEY:'',PASSAGE_ENABLE_META:'0',PASSAGE_MAX_META_CALLS:'0'};
+const isolated={...process.env,NODE_ENV:'test',NODE_OPTIONS:'--import=./tests/meta-budget-fixture.mjs',META_BUDGET_SUPABASE_URL:'https://budget.test',META_BUDGET_SUPABASE_SERVICE_ROLE_KEY:'test-placeholder-not-a-real-key',MODEL_API_KEY:'',PASSAGE_ENABLE_META:'0',PASSAGE_MAX_META_CALLS:'0'};
 test('manual Meta smoke refuses missing configuration without a request',()=>{
  const r=spawnSync(process.execPath,['scripts/meta-smoke.mjs'],{env:isolated,encoding:'utf8'});
  assert.equal(r.status,2);assert.match(r.stderr,/Not run/);
@@ -13,6 +13,16 @@ test('configuration-only Meta inspection makes no request even with credentials 
 });
 test('Meta transport reserves the only request and refuses a second dispatch',()=>{
  const code=`let calls=0;globalThis.fetch=async()=>{calls++;return {ok:true,json:async()=>({model:'fake-test-only',choices:[{finish_reason:'stop',message:{content:JSON.stringify({action:'press:Tab'})}}]})}};const {metaAction}=await import('./meta.mjs');await metaAction({},'keyboard','test',[]);try{await metaAction({},'keyboard','test',[]);process.exitCode=1}catch(e){if(e.message!=='meta_request_allowance_exhausted')throw e}if(calls!==1)process.exitCode=1;`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);
+});
+test('shared budget exhaustion refuses the Meta request before provider dispatch',()=>{
+ const code=`import assert from 'node:assert/strict';const {setMetaBudgetRpcForTests}=await import('./meta-budget.mjs');setMetaBudgetRpcForTests(async()=>({allowed:false,reason:'budget_exhausted'}));let calls=0;globalThis.fetch=async()=>{calls++;throw Error('Meta must not be called')};await assert.rejects((await import('./meta.mjs')).metaAction({},'keyboard','test',[]),{message:'meta_budget_exhausted'});assert.equal(calls,0);`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
+ assert.equal(r.status,0,r.stderr);
+});
+test('oversized provider payload is rejected before reserving or dispatching',()=>{
+ const code=`import assert from 'node:assert/strict';let reservations=0;const {setMetaBudgetRpcForTests}=await import('./meta-budget.mjs');setMetaBudgetRpcForTests(async()=>{reservations++;return {allowed:true}});let calls=0;globalThis.fetch=async()=>{calls++;throw Error('provider must not be called')};await assert.rejects((await import('./meta.mjs')).metaAction({text:'x'.repeat(12000)},'keyboard','test',[]),{message:'meta_request_too_large'});assert.equal(reservations,0);assert.equal(calls,0);`;
  const r=spawnSync(process.execPath,['--input-type=module','-e',code],{env:{...isolated,MODEL_API_KEY:'test-placeholder-not-a-real-key',PASSAGE_ENABLE_META:'1',PASSAGE_MAX_META_CALLS:'1'},encoding:'utf8'});
  assert.equal(r.status,0,r.stderr);
 });
