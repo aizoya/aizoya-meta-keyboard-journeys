@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/playwright:v1.62.1-noble
 WORKDIR /app
 COPY package.json ./
 RUN npm install --omit=dev --ignore-scripts
-COPY server.mjs runner.mjs policy.mjs meta.mjs ./
+COPY server.mjs runner.mjs policy.mjs meta.mjs meta-budget.mjs ./
 COPY public ./public
 COPY LICENSE THIRD_PARTY_NOTICES.md ./
 COPY third-party ./third-party

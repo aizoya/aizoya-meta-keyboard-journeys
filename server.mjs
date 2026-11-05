@@ -1,5 +1,5 @@
 import http from 'node:http';import {readFile} from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';import {randomBytes,randomUUID} from 'node:crypto';
-import {VARIANTS,replaySource,exportOrigin} from './policy.mjs';import {runComparison} from './runner.mjs';import {metaStatus} from './meta.mjs';
+import {VARIANTS,replaySource,exportOrigin} from './policy.mjs';import {runComparison} from './runner.mjs';import {metaStatus} from './meta.mjs';import {metaBudgetStatus} from './meta-budget.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publicOrigin=process.env.PUBLIC_ORIGIN||null,readAsset=readFile}={}){
  const configuredOrigins=[publicOrigin,...(process.env.VERCEL==='1'&&process.env.VERCEL_URL?[`https://${process.env.VERCEL_URL}`]:[])].filter(Boolean);
@@ -26,7 +26,7 @@ export function createApp({port=8787,hostname='127.0.0.1',run=runComparison,publ
    if(files[url.pathname]||recordedImage||/^\/fixture\/(broken|fixed|alternate|reordered|space-only|trap|heldout|adaptive)$/.test(url.pathname)){
     const file=files[url.pathname]||(recordedImage?url.pathname.slice(1):'fixture.html');const mime=file.endsWith('.png')?'image/png':file.endsWith('.pdf')?'application/pdf':file.endsWith('.json')?'application/json; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':'text/html; charset=utf-8';return reply(200,await readAsset(path.join(root,'public',file)),mime);
    }
-   if(url.pathname==='/api/status')return reply(200,{meta:metaStatus(),scope:'owned_fixture_only',public_release:false,persistence:'session_memory_1_hour',name_status:'working_description_not_cleared_brand'});
+   if(url.pathname==='/api/status'){const meta=metaStatus();meta.budget=await metaBudgetStatus();return reply(200,{meta,scope:'owned_fixture_only',public_release:false,persistence:'session_memory_1_hour',name_status:'working_description_not_cleared_brand'});}
   }
   for(const [id,s]of sessions)if(s.expires<now&&!s.busy)sessions.delete(id);
   let token=String(req.headers.cookie||'').match(/(?:^|; )passage=([a-f0-9]{48})(?:;|$)/)?.[1];
